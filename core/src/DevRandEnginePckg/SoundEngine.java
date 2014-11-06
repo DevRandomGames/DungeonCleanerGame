@@ -11,5 +11,19 @@ package DevRandEnginePckg;
  * @author ArclorenSarth
  */
 public class SoundEngine {
+    private static SoundEngine INSTANCE = null;
     
+    
+    private SoundEngine(){
+        
+    }
+    
+    private static void createInstance(){
+        INSTANCE = new SoundEngine();
+    }
+    
+    public static SoundEngine getInstance(){
+        if(INSTANCE == null) createInstance();
+        return INSTANCE;
+    }
 }

@@ -11,8 +11,20 @@ package DevRandEnginePckg;
  * @author ArclorenSarth
  */
 public class LogicEngine {
-    RenderEngine renderEng;
-    SoundEngine soundEng;
-    LogicEngine logicEng;
+    private static LogicEngine INSTANCE = null;
+    
+    
+    private LogicEngine(){
+        
+    }
+    
+    private static void createInstance(){
+        INSTANCE = new LogicEngine();
+    }
+    
+    public static LogicEngine getInstance(){
+        if(INSTANCE == null) createInstance();
+        return INSTANCE;
+    }
     
 }

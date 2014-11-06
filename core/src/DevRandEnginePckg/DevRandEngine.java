@@ -11,6 +11,36 @@ package DevRandEnginePckg;
  * @author ArclorenSarth
  */
 public class DevRandEngine {
+    private static DevRandEngine INSTANCE = null;
+    private RenderEngine renderEng;
+    private SoundEngine soundEng;
+    private LogicEngine logicEng;
     
     
+    private DevRandEngine(){
+        renderEng = RenderEngine.getInstance();
+        soundEng = SoundEngine.getInstance();
+        logicEng = LogicEngine.getInstance();
+    }
+    
+    private static void createInstance(){
+        INSTANCE = new DevRandEngine();
+    }
+    
+    public static DevRandEngine getInstance(){
+        if(INSTANCE == null) createInstance();
+        return INSTANCE;
+    }
+    
+    public void renderGame(){
+        renderEng.render();
+    }
+    
+    public void soundGame(){
+        
+    }
+    
+    public void logicGame(){
+        
+    }
 }
