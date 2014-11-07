@@ -9,6 +9,6 @@ package DevRandEnginePckg;
  *
  * @author ivan
  */
-public class AIEngine {
+public class AI {
     
 }
