@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DevRandEnginePckg;
-
-import com.badlogic.gdx.assets.AssetManager;
+package DungeonCleanerGame.CharacterPkg;
 
 /**
  *
  * @author ivan
  */
-public class MyAssetManager extends AssetManager{
+public class Player extends GameCharacter{
     
 }

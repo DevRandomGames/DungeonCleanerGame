@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package DevRandEnginePckg;
+package DevRandEnginePkg;
 
 /**
  *
@@ -13,6 +13,7 @@ package DevRandEnginePckg;
 public class DevRandEngine {
     private static DevRandEngine INSTANCE = null;
     private RenderEngine renderEng;
+    private PhysicsEngine physicsEng;
     private SoundEngine soundEng;
     private LogicEngine logicEng;
     
@@ -21,6 +22,7 @@ public class DevRandEngine {
         renderEng = RenderEngine.getInstance();
         soundEng = SoundEngine.getInstance();
         logicEng = LogicEngine.getInstance();
+        physicsEng = PhysicsEngine.getInstance();
     }
     
     private static void createInstance(){
@@ -32,15 +34,19 @@ public class DevRandEngine {
         return INSTANCE;
     }
     
-    public void renderGame(){
-        renderEng.render();
+    public RenderEngine gameRender(){
+        return renderEng;
     }
     
-    public void soundGame(){
-        
+    public SoundEngine gameSound(){
+        return soundEng;
     }
     
-    public void logicGame(){
-        
+    public LogicEngine gameLogic(){
+        return logicEng;
+    }
+    
+    public PhysicsEngine gamePhysics(){
+        return physicsEng;
     }
 }

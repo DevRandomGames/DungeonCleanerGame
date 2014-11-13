@@ -1,7 +1,7 @@
 package DungeonCleanerGame;
 
+import DevRandEnginePkg.DevRandEngine;
 import com.badlogic.gdx.ApplicationAdapter;
-import DevRandEnginePckg.*;
 
 
 public class DungeonCleaner extends ApplicationAdapter {
@@ -14,6 +14,11 @@ public class DungeonCleaner extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-            gameEngine.renderGame();
+            renderGame();
 	}
+        
+        
+        private void renderGame(){
+            gameEngine.gameRender().renderSprite("knight.jpg");
+        }
 }

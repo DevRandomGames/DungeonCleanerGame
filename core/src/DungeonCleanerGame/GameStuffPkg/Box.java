@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DevRandEnginePckg;
+package DungeonCleanerGame.GameStuffPkg;
 
 /**
  *
  * @author ivan
  */
-public class AI {
+public class Box {
     
+    public void setEnemy(){
+        
+    }
 }

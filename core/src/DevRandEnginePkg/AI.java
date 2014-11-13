@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CharacterPkg;
+package DevRandEnginePkg;
 
 /**
  *
  * @author ivan
  */
-public class NPC {
+public class AI {
     
 }

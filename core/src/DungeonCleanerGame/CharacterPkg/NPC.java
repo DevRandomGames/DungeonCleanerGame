@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GameStuff;
+package DungeonCleanerGame.CharacterPkg;
 
 /**
  *
  * @author ivan
  */
-public class Box {
+public class NPC extends GameCharacter{
     
-    public void setEnemy(){
-        
-    }
 }
