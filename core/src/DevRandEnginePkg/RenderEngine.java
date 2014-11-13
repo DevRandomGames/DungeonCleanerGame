@@ -33,6 +33,9 @@ public class RenderEngine {
     
     private RenderEngine(){
         batch = new SpriteBatch();
+        
+        Gdx.gl.glClearColor(0, 0, 0, 1);
+	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
     
     private static void createInstance(){
@@ -44,25 +47,24 @@ public class RenderEngine {
         return INSTANCE;
     }
     
+    public void renderBegin(){
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+    }
     
-    public void render () {
-	Gdx.gl.glClearColor(1, 0, 0, 1);
-	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        renderSprite("knight.jpg");
-        
+    public void renderEnd(){
+        batch.end();
     }
     
     
-    public void renderSprite(String fileName){
+    public void renderSprite(String fileName,int posX,int posY,float scale){
         img = new Texture(fileName);
         sprite = new Sprite(img);
-        sprite.setScale(0.2f);
         sprite.setOrigin(0,0);
-        sprite.setPosition(100,100);
+        sprite.setScale(scale);
+        sprite.setPosition(posX,posY);
         
-        batch.begin();
-	sprite.draw(batch);
-	batch.end();
+        sprite.draw(batch);
     }
     
     
