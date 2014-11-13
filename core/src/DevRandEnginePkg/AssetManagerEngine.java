@@ -11,6 +11,6 @@ import com.badlogic.gdx.assets.AssetManager;
  *
  * @author ivan
  */
-public class MyAssetManager extends AssetManager{
+public class AssetManagerEngine extends AssetManager{
     
 }
