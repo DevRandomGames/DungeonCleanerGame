@@ -7,7 +7,9 @@
 package DungeonCleanerGame.GameMapPkg;
 
 import DungeonCleanerGame.CharacterPkg.Enemy;
-import DungeonCleanerGame.GameStuffPkg.Box;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,13 +22,13 @@ public class Room {
     ArrayList Doors;
     int Xsize;
     int Ysize;
-    Box[][] RoomMap;
+    StaticTiledMapTile[][] RoomMap;
     ArrayList Enemies;
     ArrayList Objects;
     ArrayList Chests;
     Random RG;
    
-    private Room(){
+    public Room(){
         
         RG = new Random();
         GenerateRoom();
@@ -50,10 +52,12 @@ public class Room {
         
         Xsize = RG.nextInt(20)+1;
         Ysize = RG.nextInt(20)+1;
-        
+        Texture floor = new Texture("Piedra.png");
+        RoomMap = new StaticTiledMapTile[Xsize][Ysize];
         for(int i=0;i<Xsize;++i){
             for(int j=0;j<Ysize;++j){
-                RoomMap[i][j] = new Box();
+                TextureRegion cell = new TextureRegion(floor,1,1);
+                RoomMap[i][j].setTextureRegion(cell);
             }
         }
     }
@@ -85,5 +89,18 @@ public class Room {
         
         //
     }
+    
+    public int getXsize(){
+        return Xsize;
+    }
+    
+    public int getYsize(){
+        return Ysize;
+    }
+    
+    public StaticTiledMapTile[][] getRoomMap(){
+        return RoomMap;
+    }
+    
     
 }

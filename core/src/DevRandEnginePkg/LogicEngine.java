@@ -6,16 +6,18 @@
 
 package DevRandEnginePkg;
 
+import DungeonCleanerGame.GameMapPkg.GameMap;
+
 /**
  *
  * @author ArclorenSarth
  */
 public class LogicEngine {
     private static LogicEngine INSTANCE = null;
+    private GameMap map;
     
-    
-    private LogicEngine(){
-        
+    public LogicEngine(){
+        map = new GameMap();
     }
     
     private static void createInstance(){
@@ -25,6 +27,10 @@ public class LogicEngine {
     public static LogicEngine getInstance(){
         if(INSTANCE == null) createInstance();
         return INSTANCE;
+    }
+    
+    public GameMap getMap(){
+        return map;
     }
     
 }

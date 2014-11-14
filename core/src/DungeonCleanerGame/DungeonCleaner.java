@@ -1,6 +1,7 @@
 package DungeonCleanerGame;
 
 import DevRandEnginePkg.DevRandEngine;
+import DungeonCleanerGame.GameMapPkg.Room;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -21,6 +22,7 @@ public class DungeonCleaner extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+            
             renderGame();
 	}
         
@@ -29,6 +31,9 @@ public class DungeonCleaner extends ApplicationAdapter {
             inputControl();
             gameEngine.gameRender().renderBegin();
             gameEngine.gameRender().renderSprite("knight.jpg",posX,posY,scale);
+            gameEngine.gameLogic().getMap().insertRoom();
+            Room r = gameEngine.gameLogic().getMap().getRoom(0);
+            gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
             gameEngine.gameRender().renderEnd();
         }
         
