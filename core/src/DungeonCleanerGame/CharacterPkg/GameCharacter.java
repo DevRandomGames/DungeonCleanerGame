@@ -6,18 +6,39 @@
 
 package DungeonCleanerGame.CharacterPkg;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+
 /**
  *
  * @author ivan
  */
-public class GameCharacter {
+public class GameCharacter extends Actor{
+    
+    Texture texture;
     
     private int life;
     private int attack;
     private int defense;
     private int stamina;
-    private int Xpos;
-    private int Ypos;
+  
+    
+    
+    @Override
+    public void draw(Batch batch, float alpha){
+    batch.draw(texture,this.getX(),getY(),this.getOriginX(),this.getOriginY(),this.getWidth(),
+            this.getHeight(),this.getScaleX(), this.getScaleY(),this.getRotation(),0,0,
+            texture.getWidth(),texture.getHeight(),false,false);
+    }
+    
+    /*@Override
+    public void draw(Batch batch, float alpha){
+            batch.draw(texture,0,0);
+            
+    
+    }*/
+    
 
     public int getLife() {
         return life;
@@ -51,24 +72,5 @@ public class GameCharacter {
         this.stamina = stamina;
     }
 
-    public int getXpos() {
-        return Xpos;
-    }
-
-    public void setXpos(int Xpos) {
-        this.Xpos = Xpos;
-    }
-
-    public int getYpos() {
-        return Ypos;
-    }
-
-    public void setYpos(int Ypos) {
-        this.Ypos = Ypos;
-    }
-    
-    
-    public GameCharacter(){
-        
-    }
+       
 }

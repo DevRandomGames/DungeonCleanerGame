@@ -68,8 +68,8 @@ public class Room {
        Enemies = new ArrayList();
        for(int i=0;i<ns;++i){
            Enemy e = new Enemy();
-           e.setXpos(RG.nextInt(Xsize));
-           e.setYpos(RG.nextInt(Ysize));
+          // e.setXpos(RG.nextInt(Xsize));
+          // e.setYpos(RG.nextInt(Ysize));
            Enemies.add(e);
        }
     }

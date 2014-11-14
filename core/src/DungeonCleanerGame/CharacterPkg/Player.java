@@ -5,10 +5,21 @@
  */
 package DungeonCleanerGame.CharacterPkg;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+
 /**
  *
  * @author ivan
  */
 public class Player extends GameCharacter{
+    
+    public Player(Texture t){
+        super.texture = t;
+        setBounds(this.getX(),this.getY(),super.texture.getWidth(),super.texture.getHeight());
+        
+    }
+    
+    
     
 }

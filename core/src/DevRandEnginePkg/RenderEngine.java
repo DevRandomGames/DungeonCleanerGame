@@ -9,9 +9,9 @@ package DevRandEnginePkg;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.maps.MapLayers;
@@ -20,8 +20,10 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
+import com.badlogic.gdx.utils.viewport.*;
 
 /**
  *
@@ -35,13 +37,14 @@ public class RenderEngine {
     private TextureAtlas textureAtlas;
     private OrthogonalTiledMapRenderer mapRender;
     private OrthographicCamera camera;
+    private Stage stage;
     
     
     
     
     private RenderEngine(){
         batch = new SpriteBatch();
-        
+        stage = new Stage(new FillViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         Gdx.gl.glClearColor(0, 0, 0, 1);
 	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
@@ -53,6 +56,14 @@ public class RenderEngine {
     public static RenderEngine getInstance(){
         if(INSTANCE == null) createInstance();
         return INSTANCE;
+    }
+    
+    public Stage stage(){
+        return stage;
+    }
+    
+    public void clearScreen(){
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
     
     public void renderBegin(){

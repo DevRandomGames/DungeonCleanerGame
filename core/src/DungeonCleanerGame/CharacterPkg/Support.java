@@ -10,5 +10,7 @@ package DungeonCleanerGame.CharacterPkg;
  * @author ivan
  */
 public class Support extends GameCharacter{
-    
+    public Support(){
+        
+    }
 }
