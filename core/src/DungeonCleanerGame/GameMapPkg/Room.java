@@ -23,9 +23,9 @@ public class Room {
     int Xsize;
     int Ysize;
     StaticTiledMapTile[][] RoomMap;
-    ArrayList Enemies;
-    ArrayList Objects;
-    ArrayList Chests;
+    ArrayList<Enemy> Enemies;
+    ArrayList<Object> Objects;
+    ArrayList<Object> Chests;
     Random RG;
    
     public Room(){
@@ -54,17 +54,18 @@ public class Room {
         Ysize = RG.nextInt(20)+1;
         Texture floor = new Texture("Piedra.png");
         RoomMap = new StaticTiledMapTile[Xsize][Ysize];
+        TextureRegion cell = new TextureRegion(floor,1,1);
         for(int i=0;i<Xsize;++i){
             for(int j=0;j<Ysize;++j){
-                TextureRegion cell = new TextureRegion(floor,1,1);
-                RoomMap[i][j].setTextureRegion(cell);
+                RoomMap[i][j] = new StaticTiledMapTile(cell);
+                //RoomMap[i][j].setTextureRegion(cell);
             }
         }
     }
     
     private void GenerateEnemies(){
-       int ns = RG.nextInt((int)((Xsize*Ysize)/2));
-       
+       int ns = RG.nextInt((int)(10/*(Xsize*Ysize)/2*/));
+       Enemies = new ArrayList();
        for(int i=0;i<ns;++i){
            Enemy e = new Enemy();
            e.setXpos(RG.nextInt(Xsize));
@@ -74,7 +75,7 @@ public class Room {
     }
     
     private void GenerateObjects(){
-        int no = RG.nextInt((int)((Xsize*Ysize)/4));
+        int no = RG.nextInt((int)(/*(Xsize*Ysize)/4*/10));
     }
     
     private void GenerateChests(){

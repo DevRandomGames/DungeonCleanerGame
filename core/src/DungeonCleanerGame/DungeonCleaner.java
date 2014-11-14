@@ -18,6 +18,7 @@ public class DungeonCleaner extends ApplicationAdapter {
 	public void create () {
             gameEngine = DevRandEngine.getInstance();
             posX=0; posY=0; scale=0.1f; mvSpeed=5;
+            gameEngine.gameLogic().getMap().insertRoom();
 	}
 
 	@Override
@@ -30,10 +31,11 @@ public class DungeonCleaner extends ApplicationAdapter {
         private void renderGame(){
             inputControl();
             gameEngine.gameRender().renderBegin();
-            gameEngine.gameRender().renderSprite("knight.jpg",posX,posY,scale);
-            gameEngine.gameLogic().getMap().insertRoom();
+            
             Room r = gameEngine.gameLogic().getMap().getRoom(0);
-            gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
+            //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
+            gameEngine.gameRender().renderSprite("knight.jpg",posX,posY,scale);
+            
             gameEngine.gameRender().renderEnd();
         }
         

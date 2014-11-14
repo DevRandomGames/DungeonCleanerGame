@@ -82,17 +82,20 @@ public class RenderEngine {
 
         TiledMapTileLayer layer1 = new TiledMapTileLayer(width, height, 1, 1);
         
-        for(int i=0;i<width;++i){
-            for(int j=0;i<height;++j){
+        for(int i=0;i<zone.length;++i){
+            for(int j=0;j<zone[0].length;++j){
                 Cell cell = new Cell();
-
                 cell.setTile(zone[i][j]);
                 layer1.setCell(i, j, cell);
+                
             }
         }
-
         layers.add(layer1);
         mapRender = new OrthogonalTiledMapRenderer(map);
+        
+        
+        
+        mapRender.render();
         
    }
    
