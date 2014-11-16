@@ -16,32 +16,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 
 public class DungeonCleaner extends ApplicationAdapter {
-	DevRandEngine gameEngine;
-        private int posX;
-        private int posY;
-        private float scale;
-        private int mvSpeed;
+	private DevRandEngine gameEngine;
         
-        PlayerController PC;
+        private Player p;
+        private PlayerController plyCtrl;
+        private KeyMapper km;
         
         
         @Override
 	public void create () {
             gameEngine = DevRandEngine.getInstance();
-            posX=0; posY=0; scale=0.1f; mvSpeed=5;
             gameEngine.gameLogic().getMap().insertRoom();
-            
-                           
-            Player p = new Player(new Texture("knight.jpg"));
-            KeyMapper km = new KeyMapper();
-            km.addKey("left", Input.Keys.A);
-            km.addKey("right", Input.Keys.D);
-            km.addKey("up", Input.Keys.W);
-            km.addKey("down", Input.Keys.S);
-            PC = new DungeonPlayerController(p,km);
-            
-            p.setPosition(20, 20);
-            p.setScale(0.1f);
+            createPlayer();        
             gameEngine.gameRender().stage().addActor(p);
             
 	}
@@ -58,13 +44,33 @@ public class DungeonCleaner extends ApplicationAdapter {
             //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
             
             gameEngine.gameRender().clearScreen();
-            gameEngine.gameRender().stage().draw();
             gameEngine.gameRender().stage().act();
+            gameEngine.gameRender().stage().draw();
+            
             
         }
         
         private void inputControl(){
-              
-            PC.computeAction(0,0,0);
+            gameEngine.gameControls().computeControls();
+        }
+        
+        private void createPlayer(){
+            //CREAMOS AL JUGADOR
+            p = new Player(new Texture("knight.jpg"));
+            km = new KeyMapper();
+            
+            //PONEMOS LOS CONTROLES AL KEYMAPPER
+            km.addKey("left", Input.Keys.A);
+            km.addKey("right", Input.Keys.D);
+            km.addKey("up", Input.Keys.W);
+            km.addKey("down", Input.Keys.S);
+            
+            //CREAMOS EL PLAYERCONTROLLER Y ANADIMOS AL CONTROLS ENGINE
+            plyCtrl = new DungeonPlayerController(p,km);
+            gameEngine.gameControls().addControl(plyCtrl);
+            //POSICIONAMOS AL JUGADOR
+            
+            p.setPosition(20, 20);
+            p.setScale(0.1f);
         }
 }

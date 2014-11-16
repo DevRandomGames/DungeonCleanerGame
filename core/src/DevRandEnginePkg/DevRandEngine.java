@@ -6,6 +6,8 @@
 
 package DevRandEnginePkg;
 
+import DevRandEnginePkg.ControlsEnginePkg.ControlsEngine;
+
 /**
  *
  * @author ArclorenSarth
@@ -16,6 +18,7 @@ public class DevRandEngine {
     private PhysicsEngine physicsEng;
     private SoundEngine soundEng;
     private LogicEngine logicEng;
+    private ControlsEngine controlsEng;
     
     
     private DevRandEngine(){
@@ -23,6 +26,7 @@ public class DevRandEngine {
         soundEng = SoundEngine.getInstance();
         logicEng = LogicEngine.getInstance();
         physicsEng = PhysicsEngine.getInstance();
+        controlsEng = ControlsEngine.getInstance();
     }
     
     private static void createInstance(){
@@ -48,5 +52,9 @@ public class DevRandEngine {
     
     public PhysicsEngine gamePhysics(){
         return physicsEng;
+    }
+    
+    public ControlsEngine gameControls(){
+        return controlsEng;
     }
 }

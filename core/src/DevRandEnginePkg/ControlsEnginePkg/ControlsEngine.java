@@ -13,16 +13,24 @@ import java.util.ArrayList;
  * @author ArclorenSarth
  */
 public class ControlsEngine {
+    private static ControlsEngine INSTANCE;
     private ArrayList<ActionController> actionCtrls;
     private int plyrSts, enmSts, frndSts;
     
-
-
-    public ControlsEngine(){
+    private ControlsEngine(){
         actionCtrls = new ArrayList();
         plyrSts = 0;
         enmSts = 0;
         frndSts = 0;
+    }
+    
+    private static void createInstance(){
+        INSTANCE = new ControlsEngine();
+    }
+    
+    public static ControlsEngine getInstance(){
+        if(INSTANCE == null) createInstance();
+        return INSTANCE;
     }
 
     public void computeControls(){
