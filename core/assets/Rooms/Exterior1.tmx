@@ -112,8 +112,8 @@
  </layer>
  <objectgroup name="Objetos" width="20" height="16">
   <object name="Chest" type="object" x="1700" y="700" width="100" height="100"/>
-  <object name="water1" x="1000" y="200" width="300" height="200"/>
-  <object name="water2" x="1000" y="1200" width="300" height="200"/>
+  <object name="water1" type="object" x="1000" y="200" width="300" height="200"/>
+  <object name="water2" type="object" x="1000" y="1200" width="300" height="200"/>
   <object name="Door" type="object" x="1500" y="1200">
    <polyline points="0,0 100,0 200,0"/>
   </object>
@@ -132,5 +132,14 @@
   <object name="Pilar4" type="object" x="1000" y="500" width="100" height="100"/>
   <object name="Pilar5" type="object" x="1300" y="500" width="100" height="100"/>
   <object name="Pilar6" type="object" x="1600" y="500" width="100" height="100"/>
+  <object name="2floor1" type="object" x="400" y="100">
+   <polyline points="0,0 0,100"/>
+  </object>
+  <object name="2floor2" type="object" x="400" y="400">
+   <polyline points="0,0 0,800"/>
+  </object>
+  <object name="2floor3" type="object" x="400" y="1400">
+   <polyline points="0,0 0,100"/>
+  </object>
  </objectgroup>
 </map>

@@ -55,7 +55,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             debugRenderer = new Box2DDebugRenderer();
             Box2DMapObjectParser parser = new Box2DMapObjectParser();
             
-            tiledMap = new TmxMapLoader().load("Rooms/BigRoom1.tmx");
+            tiledMap = new TmxMapLoader().load("Rooms/Exterior1.tmx");
             tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
             
             width = Gdx.graphics.getWidth();
