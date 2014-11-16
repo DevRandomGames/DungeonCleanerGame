@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="16" tilewidth="100" tileheight="100">
+ <tileset firstgid="1" name="grass" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Textures/grass.jpg" width="500" height="500"/>
+ </tileset>
+ <tileset firstgid="26" name="Water" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Textures/Water.png" width="400" height="400"/>
+ </tileset>
+ <tileset firstgid="42" name="FlagsLight" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Textures/FlagsLight.jpg" width="400" height="400"/>
+ </tileset>
+ <tileset firstgid="58" name="Copy of 10'Stairs,NoShadow" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Stairs and elevations/Copy of 10'Stairs,NoShadow.png" width="300" height="400"/>
+ </tileset>
+ <tileset firstgid="70" name="Pillar" tilewidth="100" tileheight="100">
+  <tileoffset x="50" y="50"/>
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Pillar.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="74" name="OuterCorner" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/OuterCorner.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="83" name="OuterCornerDL" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/OuterCornerDL.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="92" name="OuterCornerDR" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/OuterCornerDR.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="101" name="OuterCornerUR" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/OuterCornerUR.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="110" name="Wall,1Square,Vertical" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/Wall,1Square,Vertical.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="116" name="Wall,1Square,VerticalIz" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/Wall,1Square,VerticalIz.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="122" name="Rubble" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Rubble.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="126" name="RuinedWallEndHorizontal" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/RuinedWallEndHorizontal.png" width="300" height="200"/>
+ </tileset>
+ <tileset firstgid="132" name="RuinedWallEndVertical" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/RuinedWallEndVertical.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="138" name="PrisonDoor" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Objects/Doors/PrisonDoor.png" width="250" height="100"/>
+ </tileset>
+ <tileset firstgid="140" name="Wall,1Square" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/Wall,1Square.png" width="300" height="200"/>
+ </tileset>
+ <tileset firstgid="146" name="Wall,1SquareDown" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/Wall,1SquareDown.png" width="300" height="200"/>
+ </tileset>
+ <tileset firstgid="152" name="SingleWallCorner" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Interior Walls/SingleWallCorner.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="161" name="SingleWall,1Sq,Hor" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Interior Walls/SingleWall,1Sq,Hor.png" width="300" height="200"/>
+ </tileset>
+ <tileset firstgid="167" name="SingleWall,1Sq,Vert" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Interior Walls/SingleWall,1Sq,Vert.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="173" name="VerticalStep,1Sq" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Stairs and elevations/VerticalStep,1Sq.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="179" name="PrisonDoor" tilewidth="100" tileheight="100">
+  <tileoffset x="0" y="40"/>
+  <image source="../Torstan's100pxTiles/Objects/Doors/PrisonDoor.png" width="250" height="100"/>
+ </tileset>
+ <tileset firstgid="181" name="Doorway,Vert" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Doorway,Vert.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="187" name="Bones" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Objects/Items/Miscellaneous set dressing/Bones.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="191" name="Tapestry5" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Objects/Items/Rugs curtains and tapestries/Tapestry5.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="197" name="Chest2" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Objects/Items/Chests and barrels/Chest2.png" width="100" height="100"/>
+ </tileset>
+ <layer name="Floor" width="20" height="16">
+  <data encoding="base64" compression="zlib">
+   eJytk1EKgDAMQ53CFKYwBfX+NzU/gRLGbMVASCj9GH1sGP7XCE9whmd4MZkDneK8wCu8mSyBTnFe4R0+TNZApzg/4Qu+TZ6BTnGezC09nanv093k5MDU9+ludnJgKl/dLU4OTOWru9XJgan3090I0xbfCNNWZ1Jf/pby6/GI9jcevW7vZvlZHn/qATXeDEo=
+  </data>
+ </layer>
+ <layer name="1" width="20" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYKA+0AdiAyA2pJJ5xkBsAsSmQGyHQ40UEEsDsQwR5pkDsQUQWwKxIw41ckAsD8QKRJinDcQ6QKxLhFpiAC3DjxoAOfyoAUbDjzKAHH7UyB/I4UeN/EHt8KMmAACGlQqP
+  </data>
+ </layer>
+ <layer name="2" width="20" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztz7EKQFAUgOH7fMRITETExMJTKKVETMrAU/qXW3flLIZ76hvO8neOo5RyMQgVKOHBxyhUoUaHXsmnQWt7tveD3pdZsOIwSO7bsOM0SHoXbmPX/wYIMb2ke3pPkCJCjFkoQ44Hg5xGJw==
+  </data>
+ </layer>
+ <layer name="Elevation" width="20" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAdWA/EG2ho/mAD1PbvYDBvPxAfoKJ5B4H4EBXNOwzER6hoHj4w0OZtBuItVLSf3mAwlgcAILsTpw==
+  </data>
+ </layer>
+ <layer name="ObjectsSkin" width="20" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYMAN6oC4Ho88qaARiJuoaN5AghYgbiVSrRsQuxNgtwFxOwFzqoC4Gog9gNgTKoaLTQyoAeJaPPK7gXgPCeYRAnuBeB+RanGFEwjAwgFdHB/AF06wcCA1/EgBsPSyHYh3UME8YtLLUAMDUd4AALudFx4=
+  </data>
+ </layer>
+ <layer name="Chest" width="20" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4C+4OhAO2AUjAIoAAD6ywDG
+  </data>
+ </layer>
+ <objectgroup name="Objetos" width="20" height="16">
+  <object name="Chest" type="object" x="1700" y="700" width="100" height="100"/>
+  <object name="water1" x="1000" y="200" width="300" height="200"/>
+  <object name="water2" x="1000" y="1200" width="300" height="200"/>
+  <object name="Door" type="object" x="1500" y="1200">
+   <polyline points="0,0 100,0 200,0"/>
+  </object>
+  <object name="Prison" type="object" x="1500" y="1200">
+   <polyline points="0,0 0,300 400,300 400,0 200,0"/>
+  </object>
+  <object name="wall1" type="object" x="1500" y="1500">
+   <polyline points="0,0 -1400,0 -1400,-300"/>
+  </object>
+  <object name="wall2" type="object" x="100" y="1100">
+   <polyline points="0,0 0,-1000 1800,-1000 1800,100"/>
+  </object>
+  <object name="Pilar1" type="object" x="700" y="900" width="100" height="100"/>
+  <object name="Pilar2" type="object" x="1000" y="900" width="100" height="100"/>
+  <object name="Pilar3" type="object" x="1600" y="900" width="100" height="100"/>
+  <object name="Pilar4" type="object" x="1000" y="500" width="100" height="100"/>
+  <object name="Pilar5" type="object" x="1300" y="500" width="100" height="100"/>
+  <object name="Pilar6" type="object" x="1600" y="500" width="100" height="100"/>
+ </objectgroup>
+</map>
