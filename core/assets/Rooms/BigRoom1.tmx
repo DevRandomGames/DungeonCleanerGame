@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="16" tilewidth="100" tileheight="100">
+<map version="1.0" orientation="orthogonal" width="24" height="16" tilewidth="100" tileheight="100">
  <tileset firstgid="1" name="FlagsDark" tilewidth="100" tileheight="100">
   <image source="../Torstan's100pxTiles/Background/Textures/FlagsDark.jpg" width="400" height="400"/>
  </tileset>
@@ -89,22 +89,23 @@
    eJztyrkNwCAQBVH6D8A2YGOOXpkGNvoZ2pFeNiF4nndSEQkXbuGxepBRUIXH6sWHhl94rDoGJpbwnNAGHcQSsQ==
   </data>
  </layer>
- <objectgroup name="Atrezzo">
+ <objectgroup name="Atrezzo" width="0" height="0">
   <object name="Bed" type="object" x="1900" y="300" width="200" height="300"/>
   <object name="Bonfire" type="object" x="1100" y="700" width="100" height="100"/>
   <object name="Hole1" type="object" x="600" y="1100" width="200" height="200"/>
   <object name="Hole2" type="object" x="1500" y="1100" width="200" height="200"/>
-  <object name="Pilar" type="object" x="1500" y="500" width="100" height="100">
-   <ellipse/>
+  <object name="Pilar1" type="object" x="700" y="500" width="100" height="100"/>
+  <object name="Pilar2" type="object" x="1500" y="500" width="100" height="100"/>
+  <object name="Pilar3" type="object" x="1500" y="900" width="100" height="100"/>
+  <object name="Pilar4" type="object" x="700" y="900" width="100" height="100"/>
+  <object name="Pared1" type="object" x="200" y="500">
+   <polyline points="0,0 0,900 600,900"/>
   </object>
-  <object name="Pilar" type="object" x="700" y="500" width="100" height="100">
-   <ellipse/>
+  <object name="Pared2" type="object" x="200" y="400">
+   <polyline points="0,0 0,-200 2000,-200 2000,500"/>
   </object>
-  <object name="Pilar" type="object" x="1500" y="900" width="100" height="100">
-   <ellipse/>
-  </object>
-  <object name="Pilar" type="object" x="700" y="900" width="100" height="100">
-   <ellipse/>
+  <object name="Pared3" type="object" x="2200" y="1000">
+   <polyline points="0,0 0,400 -1300,400"/>
   </object>
  </objectgroup>
 </map>
