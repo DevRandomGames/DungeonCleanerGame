@@ -71,10 +71,10 @@ public class DungeonCleaner extends ApplicationAdapter {
             //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
             
             gameEngine.gameRender().clearScreen();
-            
+            int[] a ={0,1,2,3};
             camera.update();
             tiledMapRenderer.setView(camera);
-            tiledMapRenderer.render();
+            tiledMapRenderer.render(a);
             
             gameEngine.gameRender().stage().act();
             gameEngine.gameRender().stage().draw();
