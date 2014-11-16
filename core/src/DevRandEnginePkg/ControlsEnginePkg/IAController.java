@@ -10,16 +10,10 @@ package DevRandEnginePkg.ControlsEnginePkg;
  *
  * @author ArclorenSarth
  */
-public class IAController extends ActionController{
-    
-    public IAController(Object o){
-        super.ctrlIdentity = o;
-    }
-    
+public abstract class IAController extends ActionController{
+    //Aqui habria algun IA class que tenga funciones booleanas o algo asi
     @Override
     public void computeAction(int p, int e, int f){
-    
-
     }
 
     

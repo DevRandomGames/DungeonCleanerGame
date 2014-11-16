@@ -10,8 +10,8 @@ package DevRandEnginePkg.ControlsEnginePkg;
  *
  * @author ArclorenSarth
  */
-public class ActionController {
-     Object ctrlIdentity;
+public abstract class ActionController {
+     protected Object ctrlIdentity;
 
      public void computeAction(int p, int e, int f){
          //metodo sobreescrito por las subclases

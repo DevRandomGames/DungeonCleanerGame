@@ -3,6 +3,7 @@ package DungeonCleanerGame;
 import DevRandEnginePkg.ControlsEnginePkg.*;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.CharacterPkg.Player;
+import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
 import DungeonCleanerGame.GameMapPkg.Room;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -37,7 +38,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             km.addKey("right", Input.Keys.D);
             km.addKey("up", Input.Keys.W);
             km.addKey("down", Input.Keys.S);
-            PC = new PlayerController(p,km);
+            PC = new DungeonPlayerController(p,km);
             
             p.setPosition(20, 20);
             p.setScale(0.1f);

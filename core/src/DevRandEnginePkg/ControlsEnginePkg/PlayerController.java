@@ -15,32 +15,14 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
  *
  * @author ArclorenSarth
  */
-public class PlayerController extends ActionController{
-    private int playerNum;
-    private KeyMapper keyMap;
+public abstract class PlayerController extends ActionController{
+    protected int playerNum;
+    protected KeyMapper keyMap;
     
     
-    public PlayerController(Player p, KeyMapper km){
-        super.ctrlIdentity = p;
-        keyMap = km;
-    }
-    
-
     @Override
     public void computeAction(int p, int e, int f){
-        Player pl = (Player) super.ctrlIdentity;
-        if(Gdx.input.isKeyPressed(keyMap.key("left"))){
-            pl.addAction(moveBy(-1f,0f,0.01f));
-        }
-        if(Gdx.input.isKeyPressed(keyMap.key("right"))){
-            pl.addAction(moveBy(1f,0f,0.01f));
-        }
-        if(Gdx.input.isKeyPressed(keyMap.key("up"))){
-            pl.addAction(moveBy(0f,1f,0.01f));
-        }
-        if(Gdx.input.isKeyPressed(keyMap.key("down"))){
-            pl.addAction(moveBy(0f,-1f,0.01f));
-        }
+        //OVERRIDED
     }
 
     public void newKeyMap(KeyMapper m){
