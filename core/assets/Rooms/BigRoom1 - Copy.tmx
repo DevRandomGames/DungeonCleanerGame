@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="16" tilewidth="100" tileheight="100">
+<map version="1.0" orientation="orthogonal" width="24" height="16" tilewidth="100" tileheight="100">
  <tileset firstgid="1" name="FlagsDark" tilewidth="100" tileheight="100">
   <image source="../Torstan's100pxTiles/Background/Textures/FlagsDark.jpg" width="400" height="400"/>
  </tileset>
@@ -89,21 +89,21 @@
    eJztyrkNwCAQBVH6D8A2YGOOXpkGNvoZ2pFeNiF4nndSEQkXbuGxepBRUIXH6sWHhl94rDoGJpbwnNAGHcQSsQ==
   </data>
  </layer>
- <objectgroup name="Atrezzo">
-  <object name="Bed" type="object" x="1900" y="300" width="200" height="300"/>
-  <object name="Bonfire" type="object" x="1100" y="700" width="100" height="100"/>
-  <object name="Hole1" type="object" x="600" y="1100" width="200" height="200"/>
-  <object name="Hole2" type="object" x="1500" y="1100" width="200" height="200"/>
-  <object name="Pilar" type="object" x="1500" y="500" width="100" height="100">
+ <objectgroup name="Atrezzo" width="24" height="16">
+  <object name="Bed" x="1900" y="300" width="200" height="300"/>
+  <object name="Bonfire" x="1100" y="700" width="100" height="100"/>
+  <object name="Hole1" x="600" y="1100" width="200" height="200"/>
+  <object name="Hole2" x="1500" y="1100" width="200" height="200"/>
+  <object name="Pilar" x="1500" y="500" width="100" height="100">
    <ellipse/>
   </object>
-  <object name="Pilar" type="object" x="700" y="500" width="100" height="100">
+  <object name="Pilar" x="700" y="500" width="100" height="100">
    <ellipse/>
   </object>
-  <object name="Pilar" type="object" x="1500" y="900" width="100" height="100">
+  <object name="Pilar" x="1500" y="900" width="100" height="100">
    <ellipse/>
   </object>
-  <object name="Pilar" type="object" x="700" y="900" width="100" height="100">
+  <object name="Pilar" x="700" y="900" width="100" height="100">
    <ellipse/>
   </object>
  </objectgroup>

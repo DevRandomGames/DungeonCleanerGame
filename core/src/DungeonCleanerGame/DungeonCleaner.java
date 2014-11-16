@@ -1,5 +1,6 @@
 package DungeonCleanerGame;
 
+import DevRandEnginePkg.Box2DMapObjectParser;
 import DevRandEnginePkg.ControlsEnginePkg.*;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.CharacterPkg.Player;
@@ -14,6 +15,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FillViewport;
@@ -27,9 +31,11 @@ public class DungeonCleaner extends ApplicationAdapter {
         private PlayerController plyCtrl;
         private KeyMapper km;
         
-        TiledMap tiledMap;
-        OrthographicCamera camera;
-        TiledMapRenderer tiledMapRenderer;
+        private TiledMap tiledMap;
+        private OrthographicCamera camera;
+        private TiledMapRenderer tiledMapRenderer;
+        private World world;
+        private Box2DDebugRenderer debugRenderer;
         
         float width;
         float height;
@@ -39,10 +45,15 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         @Override
 	public void create () {
+            
             gameEngine = DevRandEngine.getInstance();
             gameEngine.gameLogic().getMap().insertRoom();
             createPlayer();        
             gameEngine.gameRender().stage().addActor(p);
+            
+            world = new World(new Vector2(0,0),true);
+            debugRenderer = new Box2DDebugRenderer();
+            Box2DMapObjectParser parser = new Box2DMapObjectParser();
             
             tiledMap = new TmxMapLoader().load("Rooms/BigRoom1.tmx");
             tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
@@ -52,7 +63,8 @@ public class DungeonCleaner extends ApplicationAdapter {
             mapWidth = tiledMap.getProperties().get("width",Integer.class);
             mapHeight = tiledMap.getProperties().get("height",Integer.class);         
             
-              
+            parser.load(world, tiledMap);
+            
             camera = new OrthographicCamera();
             camera.setToOrtho(false,mapWidth*100,mapHeight*100);
             camera.update();
@@ -71,13 +83,14 @@ public class DungeonCleaner extends ApplicationAdapter {
             //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
             
             gameEngine.gameRender().clearScreen();
-            int[] a ={0,1,2,3};
+            
             camera.update();
             tiledMapRenderer.setView(camera);
-            tiledMapRenderer.render(a);
+            tiledMapRenderer.render();
             
             gameEngine.gameRender().stage().act();
             gameEngine.gameRender().stage().draw();
+            debugRenderer.render(world, camera.combined);
             
             
         }
