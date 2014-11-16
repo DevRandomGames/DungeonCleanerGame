@@ -8,7 +8,12 @@ import DungeonCleanerGame.GameMapPkg.Room;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FillViewport;
@@ -22,6 +27,10 @@ public class DungeonCleaner extends ApplicationAdapter {
         private PlayerController plyCtrl;
         private KeyMapper km;
         
+        TiledMap tiledMap;
+        OrthographicCamera camera;
+        TiledMapRenderer tiledMapRenderer;
+        
         
         @Override
 	public void create () {
@@ -29,6 +38,16 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameLogic().getMap().insertRoom();
             createPlayer();        
             gameEngine.gameRender().stage().addActor(p);
+            
+            float w = Gdx.graphics.getWidth();
+            float h = Gdx.graphics.getHeight();
+
+            camera = new OrthographicCamera();
+            camera.setToOrtho(false,w,h);
+            camera.update();
+            
+            tiledMap = new TmxMapLoader().load("Rooms/BigRoom1.tmx");
+            tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
             
 	}
 
@@ -44,6 +63,12 @@ public class DungeonCleaner extends ApplicationAdapter {
             //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
             
             gameEngine.gameRender().clearScreen();
+            
+            camera.update();
+            tiledMapRenderer.setView(camera);
+            tiledMapRenderer.render();
+            
+            
             gameEngine.gameRender().stage().act();
             gameEngine.gameRender().stage().draw();
             

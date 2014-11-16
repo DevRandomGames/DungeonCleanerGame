@@ -8,8 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
                 config.title = "Dungeon Cleaner";
-                //config.width = 576;
-                //config.height = 480;
+                config.width = 1280;
+                config.height = 720;
 		new LwjglApplication(new DungeonCleaner(), config);
 	}
 }
