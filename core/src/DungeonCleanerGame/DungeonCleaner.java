@@ -31,6 +31,11 @@ public class DungeonCleaner extends ApplicationAdapter {
         OrthographicCamera camera;
         TiledMapRenderer tiledMapRenderer;
         
+        float width;
+        float height;
+        int mapWidth;
+        int mapHeight;
+        
         
         @Override
 	public void create () {
@@ -39,16 +44,19 @@ public class DungeonCleaner extends ApplicationAdapter {
             createPlayer();        
             gameEngine.gameRender().stage().addActor(p);
             
-            float w = Gdx.graphics.getWidth();
-            float h = Gdx.graphics.getHeight();
-
-            camera = new OrthographicCamera();
-            camera.setToOrtho(false,w,h);
-            camera.update();
-            
             tiledMap = new TmxMapLoader().load("Rooms/BigRoom1.tmx");
             tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
             
+            width = Gdx.graphics.getWidth();
+            height = Gdx.graphics.getHeight();
+            mapWidth = tiledMap.getProperties().get("width",Integer.class);
+            mapHeight = tiledMap.getProperties().get("height",Integer.class);         
+            
+              
+            camera = new OrthographicCamera();
+            camera.setToOrtho(false,mapWidth*100,mapHeight*100);
+            camera.update();
+           
 	}
 
 	@Override
@@ -67,7 +75,6 @@ public class DungeonCleaner extends ApplicationAdapter {
             camera.update();
             tiledMapRenderer.setView(camera);
             tiledMapRenderer.render();
-            
             
             gameEngine.gameRender().stage().act();
             gameEngine.gameRender().stage().draw();
