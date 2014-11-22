@@ -102,6 +102,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         private void createPlayer(){
             //CREAMOS AL JUGADOR
             p = new Player(new Texture("knight.jpg"));
+            p.LoadPlayerTexture();
             km = new KeyMapper();
             
             //PONEMOS LOS CONTROLES AL KEYMAPPER

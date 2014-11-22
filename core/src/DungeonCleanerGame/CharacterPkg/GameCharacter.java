@@ -118,7 +118,7 @@ public class GameCharacter extends Actor{
         WalkSheet = new Texture(Gdx.files.internal("Warrior.png"));
        
         //NOTE: In Final version put sheet_rows and sheet_colums!
-        TextureRegion[][] tmp = TextureRegion.split(WalkSheet,4,4);
+        TextureRegion[][] tmp = TextureRegion.split(WalkSheet,WalkSheet.getWidth()/4,WalkSheet.getHeight()/4);
         
         WalkDown = new Animation(0.5f,tmp[0]);
         WalkLeft = new Animation(0.5f,tmp[1]);
