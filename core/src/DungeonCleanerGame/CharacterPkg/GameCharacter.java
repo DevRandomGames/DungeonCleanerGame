@@ -68,7 +68,7 @@ public class GameCharacter extends Actor{
     @Override
     public void draw(Batch batch, float alpha){
         
-     texture = UpdatePlayer(Gdx.graphics.getDeltaTime());
+    texture = UpdatePlayer(Gdx.graphics.getDeltaTime());
     batch.draw(texture,this.getX(),getY(),this.getOriginX(),this.getOriginY(),this.getWidth(),
             this.getHeight(),this.getScaleX(), this.getScaleY(),this.getRotation(),0,0,
             texture.getWidth(),texture.getHeight(),false,false);
@@ -119,16 +119,21 @@ public class GameCharacter extends Actor{
        
         //NOTE: In Final version put sheet_rows and sheet_colums!
         TextureRegion[][] tmp = TextureRegion.split(WalkSheet,WalkSheet.getWidth()/4,WalkSheet.getHeight()/4);
+        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("WarriorAt.txt"));
+        System.out.println(WalkSheet.getWidth()+" "+WalkSheet.getHeight());
+
         
-        WalkDown = new Animation(0.5f,tmp[0]);
-        WalkLeft = new Animation(0.5f,tmp[1]);
-        WalkRight = new Animation(0.5f,tmp[2]);
-        WalkUp = new Animation(0.5f,tmp[3]);
+        WalkDown = new Animation(1.0f,tmp[0]);
+        WalkLeft = new Animation(1.0f,tmp[1]);
+        WalkRight = new Animation(1.0f,tmp[2]);
+        WalkUp = new Animation(1.0f,tmp[3]);
         
-        stndbydown = new Animation(0, tmp[0][0]);
-        stndbyleft = new Animation(0, tmp[1][0]);
-        stndbyright = new Animation(0, tmp[2][0]);
-        stndbyup = new Animation(0, tmp[3][0]);
+        System.out.println(WalkUp.getAnimationDuration()+" ");
+        
+        stndbydown = new Animation(0, atlas.findRegion("Warrior_0-0.jpeg"));
+        stndbyleft = new Animation(0, atlas.findRegion("Warrior_0-1.jpeg"));
+        stndbyright = new Animation(0, atlas.findRegion("Warrior_0-2.jpeg"));
+        stndbyup = new Animation(0, atlas.findRegion("Warrior_0-3.jpeg"));
 
      
     }
@@ -142,29 +147,39 @@ public class GameCharacter extends Actor{
         
         switch(st){
             case walk:
-                switch(d){
-                    case down: fm=WalkDown;
-                    case left: fm=WalkLeft;
-                    case right: fm=WalkRight;
-                    case up: fm=WalkUp;    
-                }
+                fm = GetWalkAnimation(d);
             break;
             case standby:
-                switch(d){
-                    case down: fm=stndbydown;
-                    case left: fm=stndbyleft;
-                    case right: fm=stndbyright;
-                    case up: fm=stndbyup;    
-                }
+                fm = GetStnAnimation(d);
             break;    
                 
         }
-        
+        //System.out.println("statetime:"+statetime+" Index:"+fm.getKeyFrameIndex(statetime));
         return fm.getKeyFrame(statetime, loop).getTexture();
     
     }
     
+    private Animation GetWalkAnimation(dir d){
+        Animation fm = null;
+        switch(d){
+            case down: fm = WalkDown; System.out.println("WD"); break;
+            case left: fm=WalkLeft; System.out.println("WL"); break;
+            case right: fm=WalkRight;System.out.println("WR"); break;
+            case up: fm=WalkUp;System.out.println("WU"); break;  
+        }
+        return fm;
+    }
     
+    private Animation GetStnAnimation(dir d){
+        Animation fm = null;
+        switch(d){
+            case down: fm=stndbydown;System.out.println("SD"); break;
+            case left: fm=stndbyleft;System.out.println("SL"); break;
+            case right: fm=stndbyright;System.out.println("SR"); break;
+            case up: fm=stndbyup;System.out.println("SU"); break;    
+        }
+        return fm;
+    }
     
        
 }
