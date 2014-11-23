@@ -32,20 +32,20 @@ public class DungeonPlayerController extends PlayerController{
         Player pl = (Player) super.ctrlIdentity;
         pl.st = walk;
         if(Gdx.input.isKeyPressed(keyMap.key("left"))){
-            pl.addAction(moveBy(-1f,0f,0.01f));
+            pl.addAction(moveBy(-2f,0f,0.01f));
             pl.d = left;
             
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("right"))){
-            pl.addAction(moveBy(1f,0f,0.01f));
+            pl.addAction(moveBy(2f,0f,0.01f));
             pl.d = right;
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("up"))){
-            pl.addAction(moveBy(0f,1f,0.01f));
+            pl.addAction(moveBy(0f,2f,0.01f));
             pl.d = up;
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("down"))){
-            pl.addAction(moveBy(0f,-1f,0.01f));
+            pl.addAction(moveBy(0f,-2f,0.01f));
             pl.d = down;
         }
         else{

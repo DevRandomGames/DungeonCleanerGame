@@ -14,9 +14,9 @@ import com.badlogic.gdx.graphics.g2d.Batch;
  */
 public class Player extends GameCharacter{
     
-    public Player(Texture t){
-        super.texture = t;
-        setBounds(this.getX(),this.getY(),super.texture.getWidth(),super.texture.getHeight());
+    public Player(){
+        //super.texture = t;
+        setBounds(this.getX(),this.getY(),64,64);
         
     }
     

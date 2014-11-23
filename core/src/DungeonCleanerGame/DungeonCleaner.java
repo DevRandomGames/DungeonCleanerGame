@@ -83,7 +83,6 @@ public class DungeonCleaner extends ApplicationAdapter {
             //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
             
             gameEngine.gameRender().clearScreen();
-            
             camera.update();
             tiledMapRenderer.setView(camera);
             tiledMapRenderer.render();
@@ -101,7 +100,8 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private void createPlayer(){
             //CREAMOS AL JUGADOR
-            p = new Player(new Texture("knight.jpg"));
+            p = new Player();
+      
             p.LoadPlayerTexture();
             km = new KeyMapper();
             
@@ -117,6 +117,6 @@ public class DungeonCleaner extends ApplicationAdapter {
             //POSICIONAMOS AL JUGADOR
             
             p.setPosition(20, 20);
-            p.setScale(0.1f);
+            //p.setScale(0.1f);
         }
 }

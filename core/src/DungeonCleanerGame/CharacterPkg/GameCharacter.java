@@ -28,6 +28,16 @@ public class GameCharacter extends Actor{
     
     Texture WalkSheet;
     
+    int HEIGTH;
+    int WIDTH;
+    
+    
+    TextureRegion[] WalkRightTex;
+    TextureRegion[] WalkLeftTex;
+    TextureRegion[] WalkUpTex;
+    TextureRegion[] WalkDownTex;
+    
+    
     public enum state{
         walk,
         die,
@@ -42,7 +52,7 @@ public class GameCharacter extends Actor{
         left
     }
     
-    Texture texture;
+    TextureRegion texture;
     public dir d=right;
     public state st=standby;
     
@@ -69,9 +79,10 @@ public class GameCharacter extends Actor{
     public void draw(Batch batch, float alpha){
         
     texture = UpdatePlayer(Gdx.graphics.getDeltaTime());
-    batch.draw(texture,this.getX(),getY(),this.getOriginX(),this.getOriginY(),this.getWidth(),
-            this.getHeight(),this.getScaleX(), this.getScaleY(),this.getRotation(),0,0,
-            texture.getWidth(),texture.getHeight(),false,false);
+    //texture = WalkUpTex[0].getTexture();
+    //System.out.println(texture.getWidth()+" "+texture.getHeight());
+    batch.draw(texture,this.getX(),this.getY(),this.getOriginX(),this.getOriginY(),this.getWidth(),
+            this.getHeight(),this.getScaleX(), this.getScaleY(),this.getRotation(),false);
     }
     
     /*@Override
@@ -116,29 +127,49 @@ public class GameCharacter extends Actor{
 
     public void LoadPlayerTexture(){
         WalkSheet = new Texture(Gdx.files.internal("Warrior.png"));
+        
+        WalkRightTex = new TextureRegion[4];
+        WalkLeftTex = new TextureRegion[4];
+        WalkUpTex = new TextureRegion[4];
+        WalkDownTex = new TextureRegion[4];
+        
+        this.HEIGTH = WalkSheet.getHeight()/4;
+        this.WIDTH = WalkSheet.getWidth()/4;
        
         //NOTE: In Final version put sheet_rows and sheet_colums!
         TextureRegion[][] tmp = TextureRegion.split(WalkSheet,WalkSheet.getWidth()/4,WalkSheet.getHeight()/4);
-        TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("WarriorAt.txt"));
-        System.out.println(WalkSheet.getWidth()+" "+WalkSheet.getHeight());
-
+        //TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("WarriorAt.pack"));
+        //System.out.println(WalkSheet.getWidth()+" "+WalkSheet.getHeight());
         
-        WalkDown = new Animation(1.0f,tmp[0]);
-        WalkLeft = new Animation(1.0f,tmp[1]);
-        WalkRight = new Animation(1.0f,tmp[2]);
-        WalkUp = new Animation(1.0f,tmp[3]);
+        //System.out.println(atlas.findRegion("Warrior_0-0.jpeg").getTexture());
+        
+        for(int i=0;i<4;++i){
+            WalkDownTex[i] = tmp[1][i];
+            WalkLeftTex[i] = tmp[3][i];
+            WalkRightTex[i] = tmp[0][i];
+            WalkUpTex[i] = tmp[2][i];
+            
+            System.out.println(WalkUpTex[i].getTexture().getHeight());
+        }
+        
+        
+        
+        WalkDown = new Animation(0.3f,WalkDownTex);
+        WalkLeft = new Animation(0.3f,WalkLeftTex);
+        WalkRight = new Animation(0.3f,WalkRightTex);
+        WalkUp = new Animation(0.3f,WalkUpTex);
         
         System.out.println(WalkUp.getAnimationDuration()+" ");
         
-        stndbydown = new Animation(0, atlas.findRegion("Warrior_0-0.jpeg"));
-        stndbyleft = new Animation(0, atlas.findRegion("Warrior_0-1.jpeg"));
-        stndbyright = new Animation(0, atlas.findRegion("Warrior_0-2.jpeg"));
-        stndbyup = new Animation(0, atlas.findRegion("Warrior_0-3.jpeg"));
+        stndbydown = new Animation(0, WalkDownTex[0]);
+        stndbyleft = new Animation(0, WalkLeftTex[0]);
+        stndbyright = new Animation(0,WalkRightTex[0]);
+        stndbyup = new Animation(0, WalkUpTex[0]);
 
      
     }
     
-    private Texture UpdatePlayer(float DeltaTime){
+    private TextureRegion UpdatePlayer(float DeltaTime){
         
         statetime+=DeltaTime;
         
@@ -154,8 +185,8 @@ public class GameCharacter extends Actor{
             break;    
                 
         }
-        //System.out.println("statetime:"+statetime+" Index:"+fm.getKeyFrameIndex(statetime));
-        return fm.getKeyFrame(statetime, loop).getTexture();
+        System.out.println("statetime:"+statetime+" Index:"+fm.getKeyFrameIndex(statetime));
+        return fm.getKeyFrame(statetime, loop);
     
     }
     
