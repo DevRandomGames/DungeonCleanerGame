@@ -9,6 +9,8 @@ package DungeonCleanerGame.GameMapPkg;
 import DungeonCleanerGame.CharacterPkg.Enemy;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,25 +21,25 @@ import java.util.Random;
  */
 public class Room {
     
+    private TiledMap tiledMap;
+    private int width;
+    private int height;
+    
     ArrayList Doors;
-    int Xsize;
-    int Ysize;
-    StaticTiledMapTile[][] RoomMap;
     ArrayList<Enemy> Enemies;
     ArrayList<Object> Objects;
     ArrayList<Object> Chests;
     Random RG;
    
-    public Room(){
-        
+    public Room(String mapName){
         RG = new Random();
-        GenerateRoom();
-        GenerateDoors();
-        GenerateEnemies();
-        GenerateObjects();
-        GenerateChests();
+        GenerateRoom(mapName);
+        //GenerateDoors();
+        //GenerateEnemies();
+        //GenerateObjects();
+        //GenerateChests();
     }
-    
+       
     private void GenerateDoors(){
         
         int nd = RG.nextInt(5);
@@ -48,19 +50,22 @@ public class Room {
         }
     }
     
-    private void GenerateRoom(){
-        
-        Xsize = RG.nextInt(20)+1;
-        Ysize = RG.nextInt(20)+1;
-        Texture floor = new Texture("Piedra.png");
-        RoomMap = new StaticTiledMapTile[Xsize][Ysize];
-        TextureRegion cell = new TextureRegion(floor,1,1);
-        for(int i=0;i<Xsize;++i){
-            for(int j=0;j<Ysize;++j){
-                RoomMap[i][j] = new StaticTiledMapTile(cell);
-                //RoomMap[i][j].setTextureRegion(cell);
-            }
-        }
+    public int getWidth(){
+        return width;
+    }
+    
+    public int getHeight(){
+        return height;
+    }
+    
+    public TiledMap getRoomMap(){
+        return tiledMap;
+    }    
+    
+    private void GenerateRoom(String mapName){
+        tiledMap = new TmxMapLoader().load("Rooms/"+mapName);
+        width = tiledMap.getProperties().get("width",Integer.class);
+        height = tiledMap.getProperties().get("height",Integer.class);
     }
     
     private void GenerateEnemies(){
@@ -83,25 +88,12 @@ public class Room {
         //Now depends on the room size, maybe we can add some stat or skill
         //call it lucky that increase the likelihood of chest
         int nc;
-        if(Xsize*Ysize > 20){
+        if(width*height > 20){
             nc = RG.nextInt(2);
         }
         else nc = 0;
         
         //
     }
-    
-    public int getXsize(){
-        return Xsize;
-    }
-    
-    public int getYsize(){
-        return Ysize;
-    }
-    
-    public StaticTiledMapTile[][] getRoomMap(){
-        return RoomMap;
-    }
-    
     
 }

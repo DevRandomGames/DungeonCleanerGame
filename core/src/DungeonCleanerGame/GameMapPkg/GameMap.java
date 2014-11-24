@@ -13,7 +13,9 @@ import java.util.ArrayList;
  * @author ArclorenSarth
  */
 public class GameMap {
-    ArrayList DungeonMap;
+    Room actualRoom;
+    
+    ArrayList<Room> DungeonMap;
     int numberofrooms;
     
     public GameMap(){
@@ -21,13 +23,24 @@ public class GameMap {
         numberofrooms = 5;
     }
     
-    public void insertRoom (){
-        Room r = new Room();
+    public void newRoom(String roomName){
+        Room r = new Room(roomName);
         DungeonMap.add(r);
+        actualRoom = r;
     }
     
+    public void newRandomRoom(){
+        Room r = new Room("RandomMap");
+        DungeonMap.add(r);
+        actualRoom = r;
+    }
+            
     public Room getRoom(int i){
-        return (Room) DungeonMap.get(i);
+        return DungeonMap.get(i);
+    }
+    
+    public Room getActualRoom(){
+        return actualRoom;
     }
     
     

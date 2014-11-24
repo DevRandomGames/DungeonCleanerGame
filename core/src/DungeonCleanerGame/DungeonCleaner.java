@@ -5,6 +5,7 @@ import DevRandEnginePkg.ControlsEnginePkg.*;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.CharacterPkg.Player;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
+import DungeonCleanerGame.GameMapPkg.GameMap;
 import DungeonCleanerGame.GameMapPkg.Room;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -28,16 +29,16 @@ public class DungeonCleaner extends ApplicationAdapter {
 	private DevRandEngine gameEngine;
         
         private Player p;
+        private GameMap DungeonMap;
+                
         
-        
-        private TiledMap tiledMap;
         private OrthographicCamera camera;
         private TiledMapRenderer tiledMapRenderer;
         private World world;
         private Box2DDebugRenderer debugRenderer;
         
-        float width;
-        float height;
+        float widthScreen;
+        float heightScreen;
         int mapWidth;
         int mapHeight;
         
@@ -53,15 +54,18 @@ public class DungeonCleaner extends ApplicationAdapter {
             debugRenderer = new Box2DDebugRenderer();
             Box2DMapObjectParser parser = new Box2DMapObjectParser();
             
-            tiledMap = new TmxMapLoader().load("Rooms/Exterior1.tmx");
-            tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+            DungeonMap = new GameMap();
+            DungeonMap.newRoom("Exterior1.tmx");
             
-            width = Gdx.graphics.getWidth();
-            height = Gdx.graphics.getHeight();
-            mapWidth = tiledMap.getProperties().get("width",Integer.class);
-            mapHeight = tiledMap.getProperties().get("height",Integer.class);         
+            tiledMapRenderer = new OrthogonalTiledMapRenderer
+            (DungeonMap.getActualRoom().getRoomMap());
             
-            parser.load(world, tiledMap);
+            widthScreen = Gdx.graphics.getWidth();
+            heightScreen = Gdx.graphics.getHeight();
+            mapWidth = DungeonMap.getActualRoom().getWidth();
+            mapHeight = DungeonMap.getActualRoom().getHeight();         
+            
+            parser.load(world, DungeonMap.getActualRoom().getRoomMap());
             
             camera = new OrthographicCamera();
             camera.setToOrtho(false,mapWidth*100,mapHeight*100);
