@@ -44,8 +44,9 @@ public class RenderEngine {
     private RenderEngine(){
         batch = new SpriteBatch();
         stage = new Stage(new FillViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
-        camera = new OrthographicCamera();
-        
+        //camera = new OrthographicCamera();
+        camera = (OrthographicCamera) stage.getCamera();
+                
         Gdx.gl.glClearColor(0, 0, 0, 1);
 	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }

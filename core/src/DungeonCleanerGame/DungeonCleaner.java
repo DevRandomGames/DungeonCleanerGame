@@ -36,8 +36,8 @@ public class DungeonCleaner extends ApplicationAdapter {
         private World world;
         private Box2DDebugRenderer debugRenderer;
         
-        float widthScreen;
-        float heightScreen;
+        int widthScreen;
+        int heightScreen;
         int mapWidth;
         int mapHeight;
         
@@ -47,12 +47,10 @@ public class DungeonCleaner extends ApplicationAdapter {
             widthScreen = Gdx.graphics.getWidth();
             heightScreen = Gdx.graphics.getHeight();
             gameEngine = DevRandEngine.getInstance();
-            
+            gameEngine.gameRender().setCamera(widthScreen,heightScreen);
             createPlayer();
             createGameMap();
             createWorld();
-            
-            gameEngine.gameRender().setCamera(mapWidth*100,mapHeight*100);
         }
 
 	@Override
@@ -85,8 +83,9 @@ public class DungeonCleaner extends ApplicationAdapter {
             p.LoadPlayerTexture();
             //ANADIMOS PlayerControls AL CONTROLS ENGINE
             gameEngine.gameControls().addControl(p.getPlayerControls());
-            //POSICIONAMOS AL JUGADOR
-            p.setPosition(20, 20);
+            //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
+            p.setPosition(0,0);
+            gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             //p.setScale(0.1f);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().stage().addActor(p);
