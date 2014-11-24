@@ -12,6 +12,7 @@ import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.*;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.*;
 import DungeonCleanerGame.CharacterPkg.Player;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveBy;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveBy;
 
@@ -21,9 +22,15 @@ import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveBy;
  */
 public class DungeonPlayerController extends PlayerController{
     
-    public DungeonPlayerController(Player p, KeyMapper km){
+    public DungeonPlayerController(Player p){
         super.ctrlIdentity = p;
-        super.keyMap = km;
+        super.keyMap = new KeyMapper();
+        //PONEMOS LOS CONTROLES AL KEYMAPPER
+        super.keyMap.addKey("left", Input.Keys.A);
+        super.keyMap.addKey("right", Input.Keys.D);
+        super.keyMap.addKey("up", Input.Keys.W);
+        super.keyMap.addKey("down", Input.Keys.S);
+        
     }
     
 

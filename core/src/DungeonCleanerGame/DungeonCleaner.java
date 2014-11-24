@@ -28,8 +28,7 @@ public class DungeonCleaner extends ApplicationAdapter {
 	private DevRandEngine gameEngine;
         
         private Player p;
-        private PlayerController plyCtrl;
-        private KeyMapper km;
+        
         
         private TiledMap tiledMap;
         private OrthographicCamera camera;
@@ -47,9 +46,8 @@ public class DungeonCleaner extends ApplicationAdapter {
 	public void create () {
             
             gameEngine = DevRandEngine.getInstance();
-            gameEngine.gameLogic().getMap().insertRoom();
             createPlayer();        
-            gameEngine.gameRender().stage().addActor(p);
+           
             
             world = new World(new Vector2(0,0),true);
             debugRenderer = new Box2DDebugRenderer();
@@ -101,22 +99,13 @@ public class DungeonCleaner extends ApplicationAdapter {
         private void createPlayer(){
             //CREAMOS AL JUGADOR
             p = new Player();
-      
             p.LoadPlayerTexture();
-            km = new KeyMapper();
-            
-            //PONEMOS LOS CONTROLES AL KEYMAPPER
-            km.addKey("left", Input.Keys.A);
-            km.addKey("right", Input.Keys.D);
-            km.addKey("up", Input.Keys.W);
-            km.addKey("down", Input.Keys.S);
-            
-            //CREAMOS EL PLAYERCONTROLLER Y ANADIMOS AL CONTROLS ENGINE
-            plyCtrl = new DungeonPlayerController(p,km);
-            gameEngine.gameControls().addControl(plyCtrl);
+            //ANADIMOS PlayerControls AL CONTROLS ENGINE
+            gameEngine.gameControls().addControl(p.getPlayerControls());
             //POSICIONAMOS AL JUGADOR
-            
             p.setPosition(20, 20);
             //p.setScale(0.1f);
+            //ANADIMOS PLAYER AL STAGE
+            gameEngine.gameRender().stage().addActor(p);
         }
 }

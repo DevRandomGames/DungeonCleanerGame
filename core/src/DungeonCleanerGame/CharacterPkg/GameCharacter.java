@@ -6,6 +6,7 @@
 
 package DungeonCleanerGame.CharacterPkg;
 
+import DevRandEnginePkg.ControlsEnginePkg.ActionController;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.right;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.standby;
 import com.badlogic.gdx.Gdx;
@@ -21,6 +22,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  * @author ivan
  */
 public class GameCharacter extends Actor{
+    
+    protected ActionController controls;
     
     int sheet_rows;
     int sheet_columns;
@@ -92,7 +95,10 @@ public class GameCharacter extends Actor{
     
     }*/
     
-
+    public ActionController getControls(){
+        return controls;
+    }
+           
     public int getLife() {
         return life;
     }
