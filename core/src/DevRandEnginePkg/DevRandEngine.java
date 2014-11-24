@@ -7,6 +7,7 @@
 package DevRandEnginePkg;
 
 import DevRandEnginePkg.ControlsEnginePkg.ControlsEngine;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 
 /**
  *
@@ -20,6 +21,8 @@ public class DevRandEngine {
     private LogicEngine logicEng;
     private ControlsEngine controlsEng;
     
+    private Box2DDebugRenderer debugRenderer;
+    
     
     private DevRandEngine(){
         renderEng = RenderEngine.getInstance();
@@ -27,6 +30,8 @@ public class DevRandEngine {
         logicEng = LogicEngine.getInstance();
         physicsEng = PhysicsEngine.getInstance();
         controlsEng = ControlsEngine.getInstance();
+        
+        debugRenderer = new Box2DDebugRenderer();
     }
     
     private static void createInstance(){
@@ -57,4 +62,11 @@ public class DevRandEngine {
     public ControlsEngine gameControls(){
         return controlsEng;
     }
+    
+    
+    
+    public void renderWorldDebug(){
+        debugRenderer.render(physicsEng.getWorld(), renderEng.getCamera().combined);
+    }
+    
 }

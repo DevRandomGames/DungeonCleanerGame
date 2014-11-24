@@ -44,26 +44,31 @@ public class DungeonPlayerController extends PlayerController{
         if(Gdx.input.isKeyPressed(keyMap.key("left"))){
             pl.addAction(moveBy(-2f,0f,0.01f));
             pl.d = left;
+            pl.getBody().setLinearVelocity(-200f, 0f);
             gameEngine.gameRender().getCamera().translate(-2f,0);
             
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("right"))){
             pl.addAction(moveBy(2f,0f,0.01f));
             pl.d = right;
+            pl.getBody().setLinearVelocity(200f, 0f);
             gameEngine.gameRender().getCamera().translate(2f,0);
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("up"))){
             pl.addAction(moveBy(0f,2f,0.01f));
             pl.d = up;
+            pl.getBody().setLinearVelocity(0f, 200f);
             gameEngine.gameRender().getCamera().translate(0,2f);
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("down"))){
             pl.addAction(moveBy(0f,-2f,0.01f));
             pl.d = down;
+            pl.getBody().setLinearVelocity(0f, -200f);
             gameEngine.gameRender().getCamera().translate(0,-2f);
         }
         else{
             pl.st = standby;
+             pl.getBody().setLinearVelocity(0f, 0f);
         }
     }
     

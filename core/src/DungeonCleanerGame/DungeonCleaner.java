@@ -12,12 +12,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -30,11 +38,10 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private Player p;
         private GameMap DungeonMap;
-                
+        Body body;        
         
         
-        private World world;
-        private Box2DDebugRenderer debugRenderer;
+        
         
         int widthScreen;
         int heightScreen;
@@ -48,9 +55,12 @@ public class DungeonCleaner extends ApplicationAdapter {
             heightScreen = Gdx.graphics.getHeight();
             gameEngine = DevRandEngine.getInstance();
             gameEngine.gameRender().setCamera(widthScreen,heightScreen);
-            createPlayer();
+            
             createGameMap();
             createWorld();
+            
+            createPlayer();
+           
         }
 
 	@Override
@@ -64,11 +74,15 @@ public class DungeonCleaner extends ApplicationAdapter {
             //Room r = gameEngine.gameLogic().getMap().getRoom(0);
             //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
             
+            
             gameEngine.gameRender().clearScreen();
             gameEngine.gameRender().getCamera().update();
+            gameEngine.gamePhysics().renderPhysics();
             gameEngine.gameRender().renderMap();
             gameEngine.gameRender().renderStage();
-            debugRenderer.render(world, gameEngine.gameRender().getCamera().combined);
+            gameEngine.renderWorldDebug();
+            
+            
             
             
         }
@@ -84,7 +98,8 @@ public class DungeonCleaner extends ApplicationAdapter {
             //ANADIMOS PlayerControls AL CONTROLS ENGINE
             gameEngine.gameControls().addControl(p.getPlayerControls());
             //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
-            p.setPosition(0,0);
+            //p.setPosition(200,200);
+            p.createBody(200,200);
             gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             //p.setScale(0.1f);
             //ANADIMOS PLAYER AL STAGE
@@ -104,9 +119,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         }
         
         private void createWorld(){
-            world = new World(new Vector2(0,0),true);
-            debugRenderer = new Box2DDebugRenderer();
-            Box2DMapObjectParser parser = new Box2DMapObjectParser();
-            parser.load(world, DungeonMap.getActualRoom().getRoomMap());
+            gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap());
+           
         }
 }

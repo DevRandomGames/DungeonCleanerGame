@@ -7,6 +7,7 @@
 package DungeonCleanerGame.CharacterPkg;
 
 import DevRandEnginePkg.ControlsEnginePkg.ActionController;
+import DevRandEnginePkg.DevRandEngine;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.right;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.standby;
 import com.badlogic.gdx.Gdx;
@@ -15,6 +16,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
@@ -23,7 +29,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  */
 public class GameCharacter extends Actor{
     
+    
     protected ActionController controls;
+    protected Body body;
+    
     
     int sheet_rows;
     int sheet_columns;
@@ -84,7 +93,7 @@ public class GameCharacter extends Actor{
     texture = UpdatePlayer(Gdx.graphics.getDeltaTime());
     //texture = WalkUpTex[0].getTexture();
     //System.out.println(texture.getWidth()+" "+texture.getHeight());
-    batch.draw(texture,this.getX(),this.getY(),this.getOriginX(),this.getOriginY(),this.getWidth(),
+    batch.draw(texture,body.getPosition().x-(this.WIDTH/2),body.getPosition().y-(this.HEIGTH/2),this.getOriginX(),this.getOriginY(),this.getWidth(),
             this.getHeight(),this.getScaleX(), this.getScaleY(),this.getRotation(),false);
     }
     
@@ -95,8 +104,16 @@ public class GameCharacter extends Actor{
     
     }*/
     
+    
+    
+    
+    
     public ActionController getControls(){
         return controls;
+    }
+    
+    public Body getBody(){
+        return body;
     }
            
     public int getLife() {

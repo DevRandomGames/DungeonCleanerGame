@@ -21,6 +21,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
@@ -37,6 +38,7 @@ public class RenderEngine {
     private TiledMapRenderer mapRender;
     //private OrthogonalTiledMapRenderer mapRender;
     private Stage stage;
+    
     
     private SpriteBatch batch;
     
@@ -90,6 +92,8 @@ public class RenderEngine {
         stage.act();
         stage.draw();
     }
+    
+    
     
     
     
