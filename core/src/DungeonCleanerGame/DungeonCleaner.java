@@ -32,8 +32,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         private GameMap DungeonMap;
                 
         
-        private OrthographicCamera camera;
-        private TiledMapRenderer tiledMapRenderer;
+        
         private World world;
         private Box2DDebugRenderer debugRenderer;
         
@@ -45,33 +44,16 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         @Override
 	public void create () {
-            
-            gameEngine = DevRandEngine.getInstance();
-            createPlayer();        
-           
-            
-            world = new World(new Vector2(0,0),true);
-            debugRenderer = new Box2DDebugRenderer();
-            Box2DMapObjectParser parser = new Box2DMapObjectParser();
-            
-            DungeonMap = new GameMap();
-            DungeonMap.newRoom("Exterior1.tmx");
-            
-            tiledMapRenderer = new OrthogonalTiledMapRenderer
-            (DungeonMap.getActualRoom().getRoomMap());
-            
             widthScreen = Gdx.graphics.getWidth();
             heightScreen = Gdx.graphics.getHeight();
-            mapWidth = DungeonMap.getActualRoom().getWidth();
-            mapHeight = DungeonMap.getActualRoom().getHeight();         
+            gameEngine = DevRandEngine.getInstance();
             
-            parser.load(world, DungeonMap.getActualRoom().getRoomMap());
+            createPlayer();
+            createGameMap();
+            createWorld();
             
-            camera = new OrthographicCamera();
-            camera.setToOrtho(false,mapWidth*100,mapHeight*100);
-            camera.update();
-           
-	}
+            gameEngine.gameRender().setCamera(mapWidth*100,mapHeight*100);
+        }
 
 	@Override
 	public void render () {
@@ -85,13 +67,10 @@ public class DungeonCleaner extends ApplicationAdapter {
             //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
             
             gameEngine.gameRender().clearScreen();
-            camera.update();
-            tiledMapRenderer.setView(camera);
-            tiledMapRenderer.render();
-            
-            gameEngine.gameRender().stage().act();
-            gameEngine.gameRender().stage().draw();
-            debugRenderer.render(world, camera.combined);
+            gameEngine.gameRender().getCamera().update();
+            gameEngine.gameRender().renderMap();
+            gameEngine.gameRender().renderStage();
+            debugRenderer.render(world, gameEngine.gameRender().getCamera().combined);
             
             
         }
@@ -111,5 +90,24 @@ public class DungeonCleaner extends ApplicationAdapter {
             //p.setScale(0.1f);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().stage().addActor(p);
+        }
+        
+             
+        private void createGameMap(){
+            DungeonMap = new GameMap();
+            DungeonMap.newRoom("Exterior1.tmx");
+            
+            gameEngine.gameRender().setMapToRender
+            (DungeonMap.getActualRoom().getRoomMap());
+                        
+            mapWidth = DungeonMap.getActualRoom().getWidth();
+            mapHeight = DungeonMap.getActualRoom().getHeight();
+        }
+        
+        private void createWorld(){
+            world = new World(new Vector2(0,0),true);
+            debugRenderer = new Box2DDebugRenderer();
+            Box2DMapObjectParser parser = new Box2DMapObjectParser();
+            parser.load(world, DungeonMap.getActualRoom().getRoomMap());
         }
 }

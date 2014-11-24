@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -31,20 +32,20 @@ import com.badlogic.gdx.utils.viewport.*;
  */
 public class RenderEngine {
     private static RenderEngine INSTANCE = null;
-    private SpriteBatch batch;
-    private Sprite sprite;
-    private Texture img;
-    private TextureAtlas textureAtlas;
-    private OrthogonalTiledMapRenderer mapRender;
+    
     private OrthographicCamera camera;
+    private TiledMapRenderer mapRender;
+    //private OrthogonalTiledMapRenderer mapRender;
     private Stage stage;
     
-    
+    private SpriteBatch batch;
     
     
     private RenderEngine(){
         batch = new SpriteBatch();
         stage = new Stage(new FillViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
+        camera = new OrthographicCamera();
+        
         Gdx.gl.glClearColor(0, 0, 0, 1);
 	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
@@ -56,10 +57,6 @@ public class RenderEngine {
     public static RenderEngine getInstance(){
         if(INSTANCE == null) createInstance();
         return INSTANCE;
-    }
-    
-    public Stage stage(){
-        return stage;
     }
     
     public void clearScreen(){
@@ -75,18 +72,45 @@ public class RenderEngine {
         batch.end();
     }
     
-    
-    public void renderSprite(String fileName,int posX,int posY,float scale){
-        img = new Texture(fileName);
-        sprite = new Sprite(img);
-        sprite.setOrigin(0,0);
-        sprite.setScale(scale);
-        sprite.setPosition(posX,posY);
-        
-        sprite.draw(batch);
+    public void setCamera(int w, int h){
+        camera.setToOrtho(false,w,h);
     }
     
-   public void renderZone(StaticTiledMapTile[][] zone,int width,int height){
+    public void setMapToRender(TiledMap m){
+        mapRender = new OrthogonalTiledMapRenderer(m);
+    }
+    
+    public void renderMap(){
+        mapRender.setView(camera);
+        mapRender.render();
+    }
+    
+    public void renderStage(){
+        stage.act();
+        stage.draw();
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public TiledMapRenderer getMapRender(){
+        return mapRender;
+    }
+    
+    public OrthographicCamera getCamera(){
+        return camera;
+    }
+    
+    public Stage stage(){
+        return stage;
+    }
+    
+   /*public void renderZone(StaticTiledMapTile[][] zone,int width,int height){
        
         TiledMap map = new TiledMap();
         MapLayers layers = map.getLayers();
@@ -109,7 +133,7 @@ public class RenderEngine {
         mapRender.render();
         
    }
-   
+   */
    
     
     
