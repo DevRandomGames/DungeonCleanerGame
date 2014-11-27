@@ -86,7 +86,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().renderStage();
             gameEngine.renderWorldDebug();
             
-            contactListener();
+            
             renderDebugInfo();
         }
         
@@ -135,12 +135,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         }
         
         
-        private void contactListener(){
-            /*Array<Contact> contacts = gameEngine.gamePhysics().getWorld().getContactList();
-            for(int i=0; i<contacts.size; ++i){
-                
-            }*/
-        }
+        
         
         
 }
