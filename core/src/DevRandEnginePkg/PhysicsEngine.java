@@ -47,9 +47,11 @@ public class PhysicsEngine {
     
     
     
-    public void createWorld(TiledMap map){
+    public void createWorld(TiledMap map, float unitScale){
         world = new World(new Vector2(0f,0f),true);
+        parser.setUnitScale(unitScale);
         parser.load(world, map);
+        
     }
     
     

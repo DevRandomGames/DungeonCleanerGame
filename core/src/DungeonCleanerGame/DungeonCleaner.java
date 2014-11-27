@@ -58,7 +58,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             widthScreen = Gdx.graphics.getWidth();
             heightScreen = Gdx.graphics.getHeight();
             gameEngine = DevRandEngine.getInstance();
-            gameEngine.gameRender().setCamera(widthScreen,heightScreen);
+            gameEngine.gameRender().setCamera(widthScreen/100,heightScreen/100);
             
             createGameMap();
             createWorld();
@@ -80,6 +80,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             
             
             gameEngine.gameRender().clearScreen();
+            gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             gameEngine.gameRender().getCamera().update();
             gameEngine.gamePhysics().renderPhysics();
             gameEngine.gameRender().renderMap();
@@ -102,7 +103,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameControls().addControl(p.getPlayerControls());
             //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
             //p.setPosition(200,200);
-            p.createBody(200,200);
+            p.createBody(3,3);
             gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             //p.setScale(0.1f);
             //ANADIMOS PLAYER AL STAGE
@@ -115,14 +116,14 @@ public class DungeonCleaner extends ApplicationAdapter {
             DungeonMap.newRoom("Exterior1.tmx");
             
             gameEngine.gameRender().setMapToRender
-            (DungeonMap.getActualRoom().getRoomMap());
+            (DungeonMap.getActualRoom().getRoomMap(), 1/100f);
                         
             mapWidth = DungeonMap.getActualRoom().getWidth();
             mapHeight = DungeonMap.getActualRoom().getHeight();
         }
         
         private void createWorld(){
-            gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap());
+            gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), 1/100f);
             collissions = new DungeonCollissions();
             gameEngine.gamePhysics().getWorld().setContactListener(collissions);
         }

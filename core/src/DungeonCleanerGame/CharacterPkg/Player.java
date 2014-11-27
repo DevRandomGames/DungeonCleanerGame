@@ -25,10 +25,11 @@ public class Player extends GameCharacter{
     
     public Player(){
         //super.texture = t;
-        setBounds(this.getX(),this.getY(),64,64);
+        setBounds(0,0,64/100f,64/100f);
+        //super.setWidth(64/100f);
+        //super.setHeight(64/100f);
         //CREAMOS EL PLAYERCONTROLLER Y ANADIMOS AL CONTROLS ENGINE
         super.controls = new DungeonPlayerController(this);
-        
         gameEng = DevRandEngine.getInstance();
         //HAVE TO CREATE BODY OR IT MAYBE CRASH
     }
@@ -41,7 +42,7 @@ public class Player extends GameCharacter{
         super.body.setUserData("Player");
         this.setPosition(body.getPosition().x,body.getPosition().y);
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.getWidth()/4, this.getHeight()/4);
+        shape.setAsBox(this.getWidth()/4*this.getScaleX(), this.getHeight()/4*this.getScaleY());
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 2f;

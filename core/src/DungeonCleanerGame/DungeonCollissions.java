@@ -7,6 +7,7 @@
 package DungeonCleanerGame;
 
 import DevRandEnginePkg.DevRandEngine;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -34,6 +35,8 @@ public class DungeonCollissions implements ContactListener{
         if(b.getUserData() != null && b.getUserData().equals("Player")){
             ++numC;
             eng.gameRender().addDebugString("CONTACT NUMBER = " + numC, 1);
+            b.applyForceToCenter(-90,-30, true);
+            
         }
     }
     

@@ -93,16 +93,22 @@ public class GameCharacter extends Actor{
     texture = UpdatePlayer(Gdx.graphics.getDeltaTime());
     //texture = WalkUpTex[0].getTexture();
     
-    batch.draw(texture,body.getPosition().x-(this.WIDTH/2),body.getPosition().y-(this.HEIGTH/2),this.getOriginX(),this.getOriginY(),this.getWidth(),
-            this.getHeight(),this.getScaleX(), this.getScaleY(),this.getRotation(),false);
+    batch.draw(texture,
+               body.getPosition().x-((float)this.getWidth()/2f),
+               body.getPosition().y-((float)this.getHeight()/2f),
+               this.getOriginX(),this.getOriginY(),this.getWidth(),
+               this.getHeight(),this.getScaleX(), this.getScaleY(),
+               this.getRotation(),false);
     }
     
-    /*@Override
-    public void draw(Batch batch, float alpha){
-            batch.draw(texture,0,0);
-            
+    @Override
+    public float getX(){
+        return body.getPosition().x;
+    }
     
-    }*/
+    public float getY(){
+        return body.getPosition().y;
+    }
     
     
     

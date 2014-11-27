@@ -54,7 +54,7 @@ public class RenderEngine {
         font.setColor(Color.WHITE);
         debugInfo = new Array();
         
-        stage = new Stage(new FillViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
+        stage = new Stage(new FillViewport(Gdx.graphics.getWidth()/100f,Gdx.graphics.getHeight()/100f));
         //camera = new OrthographicCamera();
         camera = (OrthographicCamera) stage.getCamera();
                 
@@ -88,8 +88,8 @@ public class RenderEngine {
         camera.setToOrtho(false,w,h);
     }
     
-    public void setMapToRender(TiledMap m){
-        mapRender = new OrthogonalTiledMapRenderer(m);
+    public void setMapToRender(TiledMap m, float unitScale){
+        mapRender = new OrthogonalTiledMapRenderer(m,unitScale);
     }
     
     public void renderMap(){
