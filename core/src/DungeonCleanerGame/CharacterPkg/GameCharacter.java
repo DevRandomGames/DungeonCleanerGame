@@ -92,7 +92,7 @@ public class GameCharacter extends Actor{
         
     texture = UpdatePlayer(Gdx.graphics.getDeltaTime());
     //texture = WalkUpTex[0].getTexture();
-    //System.out.println(texture.getWidth()+" "+texture.getHeight());
+    
     batch.draw(texture,body.getPosition().x-(this.WIDTH/2),body.getPosition().y-(this.HEIGTH/2),this.getOriginX(),this.getOriginY(),this.getWidth(),
             this.getHeight(),this.getScaleX(), this.getScaleY(),this.getRotation(),false);
     }
@@ -162,9 +162,7 @@ public class GameCharacter extends Actor{
         //NOTE: In Final version put sheet_rows and sheet_colums!
         TextureRegion[][] tmp = TextureRegion.split(WalkSheet,WalkSheet.getWidth()/4,WalkSheet.getHeight()/4);
         //TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("WarriorAt.pack"));
-        //System.out.println(WalkSheet.getWidth()+" "+WalkSheet.getHeight());
         
-        //System.out.println(atlas.findRegion("Warrior_0-0.jpeg").getTexture());
         
         for(int i=0;i<4;++i){
             WalkDownTex[i] = tmp[1][i];
@@ -172,7 +170,7 @@ public class GameCharacter extends Actor{
             WalkRightTex[i] = tmp[0][i];
             WalkUpTex[i] = tmp[2][i];
             
-            System.out.println(WalkUpTex[i].getTexture().getHeight());
+            
         }
         
         
@@ -182,7 +180,7 @@ public class GameCharacter extends Actor{
         WalkRight = new Animation(0.3f,WalkRightTex);
         WalkUp = new Animation(0.3f,WalkUpTex);
         
-        System.out.println(WalkUp.getAnimationDuration()+" ");
+        
         
         stndbydown = new Animation(0, WalkDownTex[0]);
         stndbyleft = new Animation(0, WalkLeftTex[0]);
@@ -208,7 +206,7 @@ public class GameCharacter extends Actor{
             break;    
                 
         }
-        System.out.println("statetime:"+statetime+" Index:"+fm.getKeyFrameIndex(statetime));
+        
         return fm.getKeyFrame(statetime, loop);
     
     }
@@ -216,10 +214,10 @@ public class GameCharacter extends Actor{
     private Animation GetWalkAnimation(dir d){
         Animation fm = null;
         switch(d){
-            case down: fm = WalkDown; System.out.println("WD"); break;
-            case left: fm=WalkLeft; System.out.println("WL"); break;
-            case right: fm=WalkRight;System.out.println("WR"); break;
-            case up: fm=WalkUp;System.out.println("WU"); break;  
+            case down: fm = WalkDown; break;
+            case left: fm=WalkLeft; break;
+            case right: fm=WalkRight; break;
+            case up: fm=WalkUp; break;  
         }
         return fm;
     }
@@ -227,10 +225,10 @@ public class GameCharacter extends Actor{
     private Animation GetStnAnimation(dir d){
         Animation fm = null;
         switch(d){
-            case down: fm=stndbydown;System.out.println("SD"); break;
-            case left: fm=stndbyleft;System.out.println("SL"); break;
-            case right: fm=stndbyright;System.out.println("SR"); break;
-            case up: fm=stndbyup;System.out.println("SU"); break;    
+            case down: fm=stndbydown; break;
+            case left: fm=stndbyleft; break;
+            case right: fm=stndbyright; break;
+            case up: fm=stndbyup; break;    
         }
         return fm;
     }
