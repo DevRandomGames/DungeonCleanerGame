@@ -38,6 +38,7 @@ public class Player extends GameCharacter{
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(x,y);
         super.body = gameEng.gamePhysics().getWorld().createBody(bodyDef);
+        super.body.setUserData("Player");
         this.setPosition(body.getPosition().x,body.getPosition().y);
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.getWidth()/4, this.getHeight()/4);

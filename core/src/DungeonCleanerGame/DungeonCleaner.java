@@ -22,6 +22,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -29,12 +30,15 @@ import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import java.util.ArrayList;
 
 
 public class DungeonCleaner extends ApplicationAdapter {
 	private DevRandEngine gameEngine;
+        private DungeonCollissions collissions;
         
         private Player p;
         private GameMap DungeonMap;
@@ -82,6 +86,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().renderStage();
             gameEngine.renderWorldDebug();
             
+            contactListener();
             renderDebugInfo();
         }
         
@@ -118,12 +123,24 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private void createWorld(){
             gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap());
+            collissions = new DungeonCollissions();
+            gameEngine.gamePhysics().getWorld().setContactListener(collissions);
         }
         
         
         private void renderDebugInfo(){
-            gameEngine.gameRender().renderDebugString("PlyrX=" + p.getX() +" PlyrY=" +p.getY(),
-                                                     10,700);
-            
+            //COORDENADAS DE SCREEN, HE EMEPZADO IZQUIERDA ARRIBA POR ESO Y ES ALTA
+            gameEngine.gameRender().addDebugString("PlyrX=" + p.getX() +" PlyrY=" +p.getY(),0);
+            gameEngine.gameRender().renderDebugInfo();
         }
+        
+        
+        private void contactListener(){
+            /*Array<Contact> contacts = gameEngine.gamePhysics().getWorld().getContactList();
+            for(int i=0; i<contacts.size; ++i){
+                
+            }*/
+        }
+        
+        
 }

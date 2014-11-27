@@ -25,6 +25,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.Timer.Task;
 import com.badlogic.gdx.utils.viewport.*;
@@ -44,12 +45,14 @@ public class RenderEngine {
     
     private SpriteBatch batch;
     private BitmapFont font;
+    private Array<String> debugInfo;
     
     
     private RenderEngine(){
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.setColor(Color.WHITE);
+        debugInfo = new Array();
         
         stage = new Stage(new FillViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         //camera = new OrthographicCamera();
@@ -99,9 +102,19 @@ public class RenderEngine {
         stage.draw();
     }
     
-    public void renderDebugString(String info,int X,int Y){
+    public void addDebugString(String info, int numL){
+        if(numL >= debugInfo.size)
+            debugInfo.add(info);
+        else debugInfo.set(numL, info); 
+    }
+    
+    public void renderDebugInfo(){
+        int X = 10, Y = 700;
         batch.begin();
-        font.draw(batch,info,X,Y);
+        for(int i=0; i<debugInfo.size; ++i){
+            font.draw(batch,debugInfo.get(i),X,Y);
+            Y -= 20;
+        }
         batch.end();
     }
     
