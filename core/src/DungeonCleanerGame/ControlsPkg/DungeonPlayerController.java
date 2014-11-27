@@ -53,7 +53,7 @@ public class DungeonPlayerController extends PlayerController{
             Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
             bodypos = bodypos.sub(cam.position);
             bodypos.x += -2f;
-            gameEngine.gameRender().getCamera().translate( bodypos );
+            cam.translate( bodypos );
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("right"))){
             pl.addAction(moveBy(2f,0f,0.01f));
@@ -64,7 +64,7 @@ public class DungeonPlayerController extends PlayerController{
             Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
             bodypos = bodypos.sub(cam.position);
             bodypos.x += 2f;
-            gameEngine.gameRender().getCamera().translate( bodypos );
+            cam.translate( bodypos );
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("up"))){
             pl.addAction(moveBy(0f,2f,0.01f));
@@ -75,7 +75,7 @@ public class DungeonPlayerController extends PlayerController{
             Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
             bodypos = bodypos.sub(cam.position);
             bodypos.y += 2f;
-            gameEngine.gameRender().getCamera().translate( bodypos );
+            cam.translate( bodypos );
             
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("down"))){
@@ -87,7 +87,7 @@ public class DungeonPlayerController extends PlayerController{
             Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
             bodypos = bodypos.sub(cam.position);
             bodypos.y += -2f;
-            gameEngine.gameRender().getCamera().translate( bodypos );
+            cam.translate( bodypos );
         }
         else{
             pl.st = standby;
