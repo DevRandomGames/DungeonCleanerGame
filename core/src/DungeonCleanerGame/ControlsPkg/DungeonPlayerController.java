@@ -14,6 +14,8 @@ import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.*;
 import DungeonCleanerGame.CharacterPkg.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.math.Vector3;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveBy;
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveBy;
 
@@ -41,30 +43,51 @@ public class DungeonPlayerController extends PlayerController{
     public void computeAction(int p, int e, int f){
         Player pl = (Player) super.ctrlIdentity;
         pl.st = walk;
+        Camera cam = gameEngine.gameRender().getCamera();
+        
         if(Gdx.input.isKeyPressed(keyMap.key("left"))){
             pl.addAction(moveBy(-2f,0f,0.01f));
             pl.d = left;
             pl.getBody().setLinearVelocity(-200f, 0f);
-            gameEngine.gameRender().getCamera().translate(-2f,0);
             
+            Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
+            bodypos = bodypos.sub(cam.position);
+            bodypos.x += -2f;
+            gameEngine.gameRender().getCamera().translate( bodypos );
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("right"))){
             pl.addAction(moveBy(2f,0f,0.01f));
             pl.d = right;
             pl.getBody().setLinearVelocity(200f, 0f);
-            gameEngine.gameRender().getCamera().translate(2f,0);
+            
+           
+            Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
+            bodypos = bodypos.sub(cam.position);
+            bodypos.x += 2f;
+            gameEngine.gameRender().getCamera().translate( bodypos );
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("up"))){
             pl.addAction(moveBy(0f,2f,0.01f));
             pl.d = up;
             pl.getBody().setLinearVelocity(0f, 200f);
-            gameEngine.gameRender().getCamera().translate(0,2f);
+            
+            
+            Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
+            bodypos = bodypos.sub(cam.position);
+            bodypos.y += 2f;
+            gameEngine.gameRender().getCamera().translate( bodypos );
+            
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("down"))){
             pl.addAction(moveBy(0f,-2f,0.01f));
             pl.d = down;
             pl.getBody().setLinearVelocity(0f, -200f);
-            gameEngine.gameRender().getCamera().translate(0,-2f);
+            
+            
+            Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
+            bodypos = bodypos.sub(cam.position);
+            bodypos.y += -2f;
+            gameEngine.gameRender().getCamera().translate( bodypos );
         }
         else{
             pl.st = standby;
