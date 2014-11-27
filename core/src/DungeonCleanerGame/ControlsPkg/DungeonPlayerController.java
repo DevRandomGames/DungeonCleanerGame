@@ -46,52 +46,32 @@ public class DungeonPlayerController extends PlayerController{
         Camera cam = gameEngine.gameRender().getCamera();
         
         if(Gdx.input.isKeyPressed(keyMap.key("left"))){
-            pl.addAction(moveBy(-2f,0f,0.01f));
             pl.d = left;
             pl.getBody().setLinearVelocity(-200f, 0f);
-            
-            Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
-            bodypos = bodypos.sub(cam.position);
-            bodypos.x += -2f;
-            cam.translate( bodypos );
+            pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
+            cam.position.set(pl.getX(),pl.getY(),0);
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("right"))){
-            pl.addAction(moveBy(2f,0f,0.01f));
             pl.d = right;
             pl.getBody().setLinearVelocity(200f, 0f);
-            
-           
-            Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
-            bodypos = bodypos.sub(cam.position);
-            bodypos.x += 2f;
-            cam.translate( bodypos );
+            pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
+            cam.position.set(pl.getX(),pl.getY(),0);
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("up"))){
-            pl.addAction(moveBy(0f,2f,0.01f));
             pl.d = up;
             pl.getBody().setLinearVelocity(0f, 200f);
-            
-            
-            Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
-            bodypos = bodypos.sub(cam.position);
-            bodypos.y += 2f;
-            cam.translate( bodypos );
-            
+            pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
+            cam.position.set(pl.getX(),pl.getY(),0);
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("down"))){
-            pl.addAction(moveBy(0f,-2f,0.01f));
             pl.d = down;
             pl.getBody().setLinearVelocity(0f, -200f);
-            
-            
-            Vector3 bodypos = new Vector3(pl.getBody().getPosition(),cam.position.z);
-            bodypos = bodypos.sub(cam.position);
-            bodypos.y += -2f;
-            cam.translate( bodypos );
+            pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
+            cam.position.set(pl.getX(),pl.getY(),0);
         }
         else{
             pl.st = standby;
-             pl.getBody().setLinearVelocity(0f, 0f);
+            pl.getBody().setLinearVelocity(0f, 0f);
         }
     }
     

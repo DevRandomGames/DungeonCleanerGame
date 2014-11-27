@@ -82,9 +82,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().renderStage();
             gameEngine.renderWorldDebug();
             
-            
-            
-            
+            renderDebugInfo();
         }
         
         private void inputControl(){
@@ -120,6 +118,12 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private void createWorld(){
             gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap());
-           
+        }
+        
+        
+        private void renderDebugInfo(){
+            gameEngine.gameRender().renderDebugString("PlyrX=" + p.getX() +" PlyrY=" +p.getY(),
+                                                     10,700);
+            
         }
 }

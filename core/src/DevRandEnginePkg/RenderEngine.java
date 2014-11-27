@@ -7,9 +7,11 @@
 package DevRandEnginePkg;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -41,10 +43,14 @@ public class RenderEngine {
     
     
     private SpriteBatch batch;
+    private BitmapFont font;
     
     
     private RenderEngine(){
         batch = new SpriteBatch();
+        font = new BitmapFont();
+        font.setColor(Color.WHITE);
+        
         stage = new Stage(new FillViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         //camera = new OrthographicCamera();
         camera = (OrthographicCamera) stage.getCamera();
@@ -92,6 +98,13 @@ public class RenderEngine {
         stage.act();
         stage.draw();
     }
+    
+    public void renderDebugString(String info,int X,int Y){
+        batch.begin();
+        font.draw(batch,info,X,Y);
+        batch.end();
+    }
+    
     
     
     
