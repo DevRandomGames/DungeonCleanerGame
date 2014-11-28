@@ -54,7 +54,7 @@ public class RenderEngine {
         font.setColor(Color.WHITE);
         debugInfo = new Array();
         
-        stage = new Stage(new FillViewport(Gdx.graphics.getWidth()/100f,Gdx.graphics.getHeight()/100f));
+        stage = new Stage(new FillViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         //camera = new OrthographicCamera();
         camera = (OrthographicCamera) stage.getCamera();
                 

@@ -106,14 +106,12 @@ public class GameCharacter extends Actor{
         return body.getPosition().x;
     }
     
+    @Override
     public float getY(){
         return body.getPosition().y;
     }
     
-    
-    
-    
-    
+       
     public ActionController getControls(){
         return controls;
     }

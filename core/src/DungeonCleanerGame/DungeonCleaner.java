@@ -44,25 +44,23 @@ public class DungeonCleaner extends ApplicationAdapter {
         private GameMap DungeonMap;
         Body body;        
         
-        
-        
-        
         int widthScreen;
         int heightScreen;
         int mapWidth;
         int mapHeight;
+        float unitScale; //unidad de escalado pixeles a metros del wordl (1m/Xpxl) 
         
         
         @Override
 	public void create () {
             widthScreen = Gdx.graphics.getWidth();
             heightScreen = Gdx.graphics.getHeight();
+            unitScale = 1/100f;
             gameEngine = DevRandEngine.getInstance();
-            gameEngine.gameRender().setCamera(widthScreen/100,heightScreen/100);
+            gameEngine.gameRender().setCamera((int)(widthScreen*unitScale),(int)(heightScreen*unitScale));
             
             createGameMap();
             createWorld();
-            
             createPlayer();
            
         }
@@ -75,10 +73,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private void renderGame(){
             inputControl();
-            //Room r = gameEngine.gameLogic().getMap().getRoom(0);
-            //gameEngine.gameRender().renderZone(r.getRoomMap(), r.getXsize(), r.getYsize());
-            
-            
+                       
             gameEngine.gameRender().clearScreen();
             gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             gameEngine.gameRender().getCamera().update();
@@ -86,7 +81,6 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().renderMap();
             gameEngine.gameRender().renderStage();
             gameEngine.renderWorldDebug();
-            
             
             renderDebugInfo();
         }
@@ -97,15 +91,13 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private void createPlayer(){
             //CREAMOS AL JUGADOR
-            p = new Player();
+            p = new Player(unitScale);
             p.LoadPlayerTexture();
             //ANADIMOS PlayerControls AL CONTROLS ENGINE
             gameEngine.gameControls().addControl(p.getPlayerControls());
             //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
-            //p.setPosition(200,200);
             p.createBody(3,3);
             gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
-            //p.setScale(0.1f);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().stage().addActor(p);
         }
@@ -116,14 +108,14 @@ public class DungeonCleaner extends ApplicationAdapter {
             DungeonMap.newRoom("Exterior1.tmx");
             
             gameEngine.gameRender().setMapToRender
-            (DungeonMap.getActualRoom().getRoomMap(), 1/100f);
+            (DungeonMap.getActualRoom().getRoomMap(), unitScale);
                         
             mapWidth = DungeonMap.getActualRoom().getWidth();
             mapHeight = DungeonMap.getActualRoom().getHeight();
         }
         
         private void createWorld(){
-            gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), 1/100f);
+            gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
             collissions = new DungeonCollissions();
             gameEngine.gamePhysics().getWorld().setContactListener(collissions);
         }
