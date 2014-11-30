@@ -88,8 +88,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().setMapToRender
             (DungeonMap.getActualRoom().getRoomMap(), unitScale);
             gameEngine.gameRender().getStage().clear();
-            gameEngine.gamePhysics().getWorld().dispose();
-            World a = gameEngine.gamePhysics().getWorld();
+            //gameEngine.gamePhysics().getWorld().dispose();
             gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
             gameEngine.gamePhysics().getWorld().setContactListener(collissions);
             createPlayer(newPosPlyr.x,newPosPlyr.y);
