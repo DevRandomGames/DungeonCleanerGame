@@ -24,8 +24,13 @@ public class Room {
     private TiledMap tiledMap;
     private int width;
     private int height;
+    RoomInfo info;
     
-    ArrayList Doors;
+    Room upDoor;
+    Room downDoor;
+    Room leftDoor;
+    Room rightDoor;
+    
     ArrayList<Enemy> Enemies;
     ArrayList<Object> Objects;
     ArrayList<Object> Chests;
@@ -33,7 +38,9 @@ public class Room {
    
     public Room(String mapName){
         RG = new Random();
+        info = new RoomInfo(mapName);
         GenerateRoom(mapName);
+        
         //GenerateDoors();
         //GenerateEnemies();
         //GenerateObjects();

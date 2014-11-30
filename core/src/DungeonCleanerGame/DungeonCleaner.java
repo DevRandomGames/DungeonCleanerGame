@@ -61,19 +61,18 @@ public class DungeonCleaner extends ApplicationAdapter {
             
             createGameMap();
             createWorld();
-            createPlayer();
+            createPlayer(4.0f,4.0f);
            
         }
 
 	@Override
 	public void render () {
-            renderGame();
-	}
-        
-        
-        private void renderGame(){
+            if(DungeonMap.checkDoors(p.getX(),p.getY())){
+                changeMap();
+            }
+            
             inputControl();
-                       
+                                   
             gameEngine.gameRender().clearScreen();
             gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             gameEngine.gameRender().getCamera().update();
@@ -83,29 +82,37 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.renderWorldDebug();
             
             renderDebugInfo();
+	}
+        
+        private void changeMap(){
+            Vector2 newPosPlyr = DungeonMap.getActualPos();
+            createGameMap();
+            createWorld();
+            createPlayer(newPosPlyr.x,newPosPlyr.y);
         }
         
         private void inputControl(){
             gameEngine.gameControls().computeControls();
         }
         
-        private void createPlayer(){
+        private void createPlayer(float posX, float posY){
             //CREAMOS AL JUGADOR
             p = new Player(unitScale);
             p.LoadPlayerTexture();
             //ANADIMOS PlayerControls AL CONTROLS ENGINE
             gameEngine.gameControls().addControl(p.getPlayerControls());
             //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
-            p.createBody(3,3);
+            p.createBody(posX,posY);
             gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().stage().addActor(p);
+            
         }
         
              
         private void createGameMap(){
             DungeonMap = new GameMap();
-            DungeonMap.newRoom("Exterior1.tmx");
+            DungeonMap.newRoom("BigRoom1.tmx");
             
             gameEngine.gameRender().setMapToRender
             (DungeonMap.getActualRoom().getRoomMap(), unitScale);
