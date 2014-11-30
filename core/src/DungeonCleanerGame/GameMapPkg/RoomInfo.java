@@ -43,7 +43,7 @@ public class RoomInfo {
             leftDoorPos = new Vector2(2.25f,11.5f);
             rightDoorPos = new Vector2(21.85f,6.5f);
 
-            upBoundry = 20f;
+            upBoundry = 14f;
             downBoundry = 2f;
             leftBoundry = 2f;
             rightBoundry = 22f;

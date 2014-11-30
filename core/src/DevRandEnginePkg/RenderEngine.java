@@ -137,7 +137,7 @@ public class RenderEngine {
         return camera;
     }
     
-    public Stage stage(){
+    public Stage getStage(){
         return stage;
     }
     

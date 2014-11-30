@@ -46,8 +46,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         int widthScreen;
         int heightScreen;
-        int mapWidth;
-        int mapHeight;
+        
         float unitScale; //unidad de escalado pixeles a metros del wordl (1m/Xpxl) 
         
         
@@ -86,8 +85,13 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private void changeMap(){
             Vector2 newPosPlyr = DungeonMap.getActualPos();
-            createGameMap();
-            createWorld();
+            gameEngine.gameRender().setMapToRender
+            (DungeonMap.getActualRoom().getRoomMap(), unitScale);
+            gameEngine.gameRender().getStage().clear();
+            gameEngine.gamePhysics().getWorld().dispose();
+            World a = gameEngine.gamePhysics().getWorld();
+            gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
+            gameEngine.gamePhysics().getWorld().setContactListener(collissions);
             createPlayer(newPosPlyr.x,newPosPlyr.y);
         }
         
@@ -105,7 +109,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             p.createBody(posX,posY);
             gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             //ANADIMOS PLAYER AL STAGE
-            gameEngine.gameRender().stage().addActor(p);
+            gameEngine.gameRender().getStage().addActor(p);
             
         }
         
@@ -116,9 +120,6 @@ public class DungeonCleaner extends ApplicationAdapter {
             
             gameEngine.gameRender().setMapToRender
             (DungeonMap.getActualRoom().getRoomMap(), unitScale);
-                        
-            mapWidth = DungeonMap.getActualRoom().getWidth();
-            mapHeight = DungeonMap.getActualRoom().getHeight();
         }
         
         private void createWorld(){
