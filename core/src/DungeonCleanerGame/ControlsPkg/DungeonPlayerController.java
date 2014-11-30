@@ -35,6 +35,7 @@ public class DungeonPlayerController extends PlayerController{
         super.keyMap.addKey("right", Input.Keys.D);
         super.keyMap.addKey("up", Input.Keys.W);
         super.keyMap.addKey("down", Input.Keys.S);
+        super.keyMap.addKey("hit", Input.Keys.E);
         
     }
     
@@ -74,6 +75,9 @@ public class DungeonPlayerController extends PlayerController{
             pl.getBody().applyForceToCenter(0f, -forceMove, true);
             //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
             //cam.position.set(pl.getX(),pl.getY(),0);
+        }
+        else if(Gdx.input.isKeyPressed(keyMap.key("hit"))){
+            pl.st = strike;
         }
         else{
             pl.st = standby;
