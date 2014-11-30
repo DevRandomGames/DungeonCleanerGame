@@ -171,6 +171,7 @@ public class GameCharacter extends Actor{
         WalkLeftTex = new TextureRegion[4];
         WalkUpTex = new TextureRegion[4];
         WalkDownTex = new TextureRegion[4];
+        
         StrikeRightTex = new TextureRegion[4];
         StrikeLeftTex= new TextureRegion[4];
         StrikeUpTex= new TextureRegion[4];
