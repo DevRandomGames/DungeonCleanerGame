@@ -61,115 +61,58 @@ public class GameMap {
             if(actualRoom.leftDoor == null){
                 newRandomRoom();
                 old.leftDoor = actualRoom;
+                actualRoom.rightDoor = old;
             }
             else actualRoom = actualRoom.leftDoor;
             if(actualRoom.info.rightDoorPos != null){
                 actualPos.x = actualRoom.info.rightDoorPos.x;
                 actualPos.y = actualRoom.info.rightDoorPos.y;
-                actualRoom.rightDoor = old;
             }
-            else if(actualRoom.info.leftDoorPos != null){
-                actualPos.x = actualRoom.info.leftDoorPos.x;
-                actualPos.y = actualRoom.info.leftDoorPos.y;
-                actualRoom.leftDoor = old;
-            }
-            else if(actualRoom.info.upDoorPos != null){
-                actualPos.x = actualRoom.info.upDoorPos.x;
-                actualPos.y = actualRoom.info.upDoorPos.y;
-                actualRoom.upDoor = old;
-            }
-            else if(actualRoom.info.downDoorPos != null){
-                actualPos.x = actualRoom.info.downDoorPos.x;
-                actualPos.y = actualRoom.info.downDoorPos.y;
-                actualRoom.downDoor = old;
-            }
+            else return false;
             return true;
         }
         else if(posX > actualRoom.info.rightBoundry){
             if(actualRoom.rightDoor == null){
                 newRandomRoom();
                 old.rightDoor = actualRoom;
+                actualRoom.leftDoor = old;
             }
             else actualRoom = actualRoom.rightDoor;
             if(actualRoom.info.leftDoorPos != null){
                 actualPos.x = actualRoom.info.leftDoorPos.x;
                 actualPos.y = actualRoom.info.leftDoorPos.y;
-                actualRoom.leftDoor = old;
             }
-            else if(actualRoom.info.rightDoorPos != null){
-                actualPos.x = actualRoom.info.rightDoorPos.x;
-                actualPos.y = actualRoom.info.rightDoorPos.y;
-                actualRoom.rightDoor = old;
-            }
-            else if(actualRoom.info.upDoorPos != null){
-                actualPos.x = actualRoom.info.upDoorPos.x;
-                actualPos.y = actualRoom.info.upDoorPos.y;
-                actualRoom.upDoor = old;
-            }
-            else if(actualRoom.info.downDoorPos != null){
-                actualPos.x = actualRoom.info.downDoorPos.x;
-                actualPos.y = actualRoom.info.downDoorPos.y;
-                actualRoom.downDoor = old;
-            }
+            else return false;
             return true;
         }
         else if(posY > actualRoom.info.upBoundry){
             if(actualRoom.upDoor == null){
                 newRandomRoom();
                 old.upDoor = actualRoom;
+                actualRoom.downDoor = old;
             }
             else actualRoom = actualRoom.upDoor;
             
             if(actualRoom.info.downDoorPos != null){
                 actualPos.x = actualRoom.info.downDoorPos.x;
                 actualPos.y = actualRoom.info.downDoorPos.y;
-                actualRoom.downDoor = old;
             }
-            else if(actualRoom.info.rightDoorPos != null){
-                actualPos.x = actualRoom.info.rightDoorPos.x;
-                actualPos.y = actualRoom.info.rightDoorPos.y;
-                actualRoom.rightDoor = old;
-            }
-            else if(actualRoom.info.leftDoorPos != null){
-                actualPos.x = actualRoom.info.leftDoorPos.x;
-                actualPos.y = actualRoom.info.leftDoorPos.y;
-                actualRoom.leftDoor = old;
-            }
-            else if(actualRoom.info.upDoorPos != null){
-                actualPos.x = actualRoom.info.upDoorPos.x;
-                actualPos.y = actualRoom.info.upDoorPos.y;
-                actualRoom.upDoor = old;
-            }
-            
+            else return false;            
             return true;
         }
         else if(posY < actualRoom.info.downBoundry){
             if(actualRoom.downDoor == null){
                 newRandomRoom();
                 old.downDoor = actualRoom;
+                actualRoom.upDoor = old;
             }
             else actualRoom = actualRoom.downDoor;
             
             if(actualRoom.info.upDoorPos != null){
                 actualPos.x = actualRoom.info.upDoorPos.x;
                 actualPos.y = actualRoom.info.upDoorPos.y;
-                actualRoom.upDoor = old;
             }
-            else if(actualRoom.info.rightDoorPos != null){
-                actualPos.x = actualRoom.info.rightDoorPos.x;
-                actualPos.y = actualRoom.info.rightDoorPos.y;
-                actualRoom.rightDoor = old;
-            }
-            else if(actualRoom.info.leftDoorPos != null){
-                actualPos.x = actualRoom.info.leftDoorPos.x;
-                actualPos.y = actualRoom.info.leftDoorPos.y;
-                actualRoom.leftDoor = old;
-            }
-            else if(actualRoom.info.downDoorPos != null){
-                actualPos.x = actualRoom.info.downDoorPos.x;
-                actualPos.y = actualRoom.info.downDoorPos.y;
-                actualRoom.downDoor = old;
-            }
+            else return false;
             return true;
         }
         else return false;
