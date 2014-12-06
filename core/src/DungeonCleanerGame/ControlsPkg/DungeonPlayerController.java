@@ -45,34 +45,34 @@ public class DungeonPlayerController extends PlayerController{
         Player pl = (Player) super.ctrlIdentity;
         pl.st = walk;
         Camera cam = gameEngine.gameRender().getCamera();
-        float speed = 200;
+        float speed = 5;
         float forceMove = 1;
         
         if(Gdx.input.isKeyPressed(keyMap.key("left"))){
             pl.d = left;
-            //pl.getBody().setLinearVelocity(-200f, 0f);
-            pl.getBody().applyForceToCenter(-forceMove, 0f, true);
+            pl.getBody().setLinearVelocity(-speed, 0f);
+            //pl.getBody().applyForceToCenter(-forceMove, 0f, true);
             //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
             //cam.position.set(pl.getX(),pl.getY(),0);
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("right"))){
             pl.d = right;
-            //pl.getBody().setLinearVelocity(200f, 0f);
-            pl.getBody().applyForceToCenter(forceMove, 0f, true);
+            pl.getBody().setLinearVelocity(speed, 0f);
+            //pl.getBody().applyForceToCenter(forceMove, 0f, true);
             //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
             //cam.position.set(pl.getX(),pl.getY(),0);
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("up"))){
             pl.d = up;
-            //pl.getBody().setLinearVelocity(0f, 200f);
-            pl.getBody().applyForceToCenter(0f, forceMove, true);
+            pl.getBody().setLinearVelocity(0f, speed);
+            //pl.getBody().applyForceToCenter(0f, forceMove, true);
             //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
             //cam.position.set(pl.getX(),pl.getY(),0);
         }
         else if(Gdx.input.isKeyPressed(keyMap.key("down"))){
             pl.d = down;
-            //pl.getBody().setLinearVelocity(0f, -200f);
-            pl.getBody().applyForceToCenter(0f, -forceMove, true);
+            pl.getBody().setLinearVelocity(0f, -speed);
+            //pl.getBody().applyForceToCenter(0f, -forceMove, true);
             //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
             //cam.position.set(pl.getX(),pl.getY(),0);
         }
