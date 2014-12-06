@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="12" height="12" tilewidth="100" tileheight="100">
+ <tileset firstgid="1" name="Wood,horizontal" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Textures/Wood,horizontal.jpg" width="400" height="400"/>
+ </tileset>
+ <tileset firstgid="17" name="FlagsDark" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Textures/FlagsDark.jpg" width="400" height="400"/>
+ </tileset>
+ <tileset firstgid="33" name="Doorway,Vert" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Doorway,Vert.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="39" name="Doorway" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Doorway.png" width="300" height="200"/>
+ </tileset>
+ <tileset firstgid="45" name="OuterCorner" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/OuterCorner.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="54" name="OuterCornerDL" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/OuterCornerDL.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="63" name="OuterCornerDR" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/OuterCornerDR.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="72" name="OuterCornerUR" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/OuterCornerUR.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="81" name="Wall,1Square,Vertical" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/Wall,1Square,Vertical.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="87" name="Wall,1Square,VerticalIz" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/Wall,1Square,VerticalIz.png" width="200" height="300"/>
+ </tileset>
+ <tileset firstgid="93" name="Wall,1Square" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/Wall,1Square.png" width="300" height="200"/>
+ </tileset>
+ <tileset firstgid="99" name="Wall,1SquareDown" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Background/Walls and pillars/Earth backed walls on grid lines/Wall,1SquareDown.png" width="300" height="200"/>
+ </tileset>
+ <tileset firstgid="105" name="OilBowl,Lit,NoHalo" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Objects/Lightsources/OilBowl,Lit,NoHalo.png" width="300" height="300"/>
+ </tileset>
+ <tileset firstgid="114" name="Forge,Lit,NoHalo" tilewidth="100" tileheight="100">
+  <image source="../Torstan's100pxTiles/Objects/Lightsources/Forge,Lit,NoHalo.png" width="200" height="200"/>
+ </tileset>
+ <layer name="Floor" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJy10DcKwDAQRFHJOeec739K/0bgQgip8MArhm2GFcI9EWIkCA1dJUOOAqmhq1So0aA0dBUPPgK06NBjgPzcdftHTJixWOxfsWHHYbH/xIUbj8V+aei6/X/83yUv8twEUw==
+  </data>
+ </layer>
+ <layer name="Walls&amp;Objects" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJylz80KQGAQheHvXlgoEUtiRUSs2LBQStn7uX+vhdKk9DH1LE6dphlHKeViuLFEPhUo4cHHeGOLfKpQo0Ov3qdB+6FvwPy5f8Gq0d+wa/R173ma60/d/QFCTIIlcoIUEWLMgi1yhhwHYeIbJw==
+  </data>
+ </layer>
+ <objectgroup name="ObjectsBody" width="12" height="12">
+  <object name="Wall2" type="object" x="600" y="100">
+   <polyline points="0,0 500,0 500,700"/>
+  </object>
+  <object name="Wall1" type="object" x="1100" y="900">
+   <polyline points="0,0 0,200 -400,200"/>
+  </object>
+  <object name="Wall3" type="object" x="600" y="1100">
+   <polyline points="0,0 -500,0 -500,-600"/>
+  </object>
+  <object name="Wall4" type="object" x="500" y="100">
+   <polyline points="0,0 -400,0 -400,300"/>
+  </object>
+  <object name="forge" type="object" x="500" y="500" width="200" height="200"/>
+ </objectgroup>
+</map>
