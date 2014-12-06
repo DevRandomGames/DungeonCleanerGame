@@ -21,6 +21,7 @@ public class DevRandEngine {
     private SoundEngine soundEng;
     private LogicEngine logicEng;
     private ControlsEngine controlsEng;
+    private AIEngine iaEngine;
     
     private Box2DDebugRenderer debugRenderer;
     
@@ -31,6 +32,7 @@ public class DevRandEngine {
         logicEng = LogicEngine.getInstance();
         physicsEng = PhysicsEngine.getInstance();
         controlsEng = ControlsEngine.getInstance();
+        iaEngine = AIEngine.getInstance();
         
         debugRenderer = new Box2DDebugRenderer();
     }
@@ -62,6 +64,10 @@ public class DevRandEngine {
     
     public ControlsEngine gameControls(){
         return controlsEng;
+    }
+    
+    public AIEngine gameIA(){
+        return iaEngine;
     }
     
     
