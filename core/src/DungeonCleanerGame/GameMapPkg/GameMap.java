@@ -18,8 +18,11 @@ import java.util.Random;
 public class GameMap {
     Room actualRoom;
     Vector2 actualPos;
-    Random RG;
-    String[] mapNames = {"BigRoom1.tmx","Exterior1.tmx"};
+    String[] mapNamesLeft = {"BigRoom1.tmx","Exterior1.tmx"};
+    String[] mapNamesRight = {"BigRoom1.tmx"};
+    String[] mapNamesUp = {};
+    String[] mapNamesDown = {"BigRoom1.tmx"};
+    String[][] mapNames = {mapNamesLeft,mapNamesRight,mapNamesUp,mapNamesDown};
     
     ArrayList<Room> DungeonMap;
     int numberofrooms;
@@ -28,7 +31,6 @@ public class GameMap {
         DungeonMap = new ArrayList();
         numberofrooms = 5;
         actualPos = new Vector2(0f,0f);
-        RG = new Random();
     }
     
     public void newRoom(String roomName){
@@ -37,10 +39,8 @@ public class GameMap {
         actualRoom = r;
     }
     
-    public void newRandomRoom(){
-        Room r = new Room(mapNames[RG.nextInt(1)]);
-        DungeonMap.add(r);
-        actualRoom = r;
+    public Room newRandomRoom(int i){
+        return new Room(mapNames[i][randInt(0,mapNames[i].length)]);
     }
             
     public Room getRoom(int i){
@@ -59,65 +59,81 @@ public class GameMap {
         Room old = actualRoom;
         if(posX < actualRoom.info.leftBoundry){
             if(actualRoom.leftDoor == null){
-                newRandomRoom();
-                old.leftDoor = actualRoom;
+                Room r = newRandomRoom(1);
+                if(r.info.rightDoorPos == null) return false;
+                DungeonMap.add(r);
+                actualRoom = r;
+                old.leftDoor = r;
                 actualRoom.rightDoor = old;
+                
             }
-            else actualRoom = actualRoom.leftDoor;
-            if(actualRoom.info.rightDoorPos != null){
-                actualPos.x = actualRoom.info.rightDoorPos.x;
-                actualPos.y = actualRoom.info.rightDoorPos.y;
+            else {
+                actualRoom = actualRoom.leftDoor; 
+                actualRoom.GenerateRoom(actualRoom.getMapName());
             }
-            else return false;
+            actualPos.x = actualRoom.info.rightDoorPos.x;
+            actualPos.y = actualRoom.info.rightDoorPos.y;
             return true;
         }
         else if(posX > actualRoom.info.rightBoundry){
             if(actualRoom.rightDoor == null){
-                newRandomRoom();
-                old.rightDoor = actualRoom;
+                Room r = newRandomRoom(0);
+                if(r.info.leftDoorPos == null) return false;
+                DungeonMap.add(r);
+                actualRoom = r;
+                old.rightDoor = r;
                 actualRoom.leftDoor = old;
             }
-            else actualRoom = actualRoom.rightDoor;
-            if(actualRoom.info.leftDoorPos != null){
-                actualPos.x = actualRoom.info.leftDoorPos.x;
-                actualPos.y = actualRoom.info.leftDoorPos.y;
+            else {
+                actualRoom = actualRoom.rightDoor; 
+                actualRoom.GenerateRoom(actualRoom.getMapName());
             }
-            else return false;
+            actualPos.x = actualRoom.info.leftDoorPos.x;
+            actualPos.y = actualRoom.info.leftDoorPos.y;
             return true;
         }
         else if(posY > actualRoom.info.upBoundry){
             if(actualRoom.upDoor == null){
-                newRandomRoom();
-                old.upDoor = actualRoom;
+                Room r = newRandomRoom(3);
+                if(r.info.downDoorPos == null) return false;
+                DungeonMap.add(r);
+                actualRoom = r;
+                old.upDoor = r;
                 actualRoom.downDoor = old;
             }
-            else actualRoom = actualRoom.upDoor;
-            
-            if(actualRoom.info.downDoorPos != null){
-                actualPos.x = actualRoom.info.downDoorPos.x;
-                actualPos.y = actualRoom.info.downDoorPos.y;
+            else {
+                actualRoom = actualRoom.upDoor;
+                actualRoom.GenerateRoom(actualRoom.getMapName());
             }
-            else return false;            
+            actualPos.x = actualRoom.info.downDoorPos.x;
+            actualPos.y = actualRoom.info.downDoorPos.y;
             return true;
         }
         else if(posY < actualRoom.info.downBoundry){
             if(actualRoom.downDoor == null){
-                newRandomRoom();
-                old.downDoor = actualRoom;
+                Room r = newRandomRoom(2);
+                if(r.info.upDoorPos == null) return false;
+                DungeonMap.add(r);
+                actualRoom = r;
+                old.downDoor = r;
                 actualRoom.upDoor = old;
             }
-            else actualRoom = actualRoom.downDoor;
-            
-            if(actualRoom.info.upDoorPos != null){
-                actualPos.x = actualRoom.info.upDoorPos.x;
-                actualPos.y = actualRoom.info.upDoorPos.y;
+            else {
+                actualRoom = actualRoom.downDoor;
+                actualRoom.GenerateRoom(actualRoom.getMapName());
             }
-            else return false;
+            actualPos.x = actualRoom.info.upDoorPos.x;
+            actualPos.y = actualRoom.info.upDoorPos.y;
             return true;
         }
         else return false;
     }
     
-    
+    private static int randInt(int min, int max) {
+        //max is not included in range of the result [min,max-1]
+        Random rand = new Random();
+        int randomNum = rand.nextInt((max - min)) + min;
+        return randomNum;
+    }
     
 }

@@ -51,7 +51,7 @@ public class PhysicsEngine {
         parser = new Box2DMapObjectParser();
         world = new World(new Vector2(0f,0f),true);
         parser.setUnitScale(unitScale);
-        world = parser.load(world, map);
+        parser.load(world, map);
         
     }
     

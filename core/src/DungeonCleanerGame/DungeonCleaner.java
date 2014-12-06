@@ -49,6 +49,8 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         float unitScale; //unidad de escalado pixeles a metros del wordl (1m/Xpxl) 
         
+        Boolean b = true;
+        
         
         @Override
 	public void create () {
@@ -80,18 +82,22 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().renderStage();
             gameEngine.renderWorldDebug();
             
+            
             renderDebugInfo();
 	}
         
         private void changeMap(){
+            
             Vector2 newPosPlyr = DungeonMap.getActualPos();
+            gameEngine.gameRender().getStage().clear();
+                       
             gameEngine.gameRender().setMapToRender
             (DungeonMap.getActualRoom().getRoomMap(), unitScale);
-            gameEngine.gameRender().getStage().clear();
-            //gameEngine.gamePhysics().getWorld().dispose();
             gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
             gameEngine.gamePhysics().getWorld().setContactListener(collissions);
+                     
             createPlayer(newPosPlyr.x,newPosPlyr.y);
+            
         }
         
         private void inputControl(){

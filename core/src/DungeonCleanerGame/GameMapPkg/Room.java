@@ -21,11 +21,12 @@ import java.util.Random;
  */
 public class Room {
     
+    private String mapName;
     private TiledMap tiledMap;
     private int width;
     private int height;
     RoomInfo info;
-    
+        
     Room upDoor;
     Room downDoor;
     Room leftDoor;
@@ -37,14 +38,25 @@ public class Room {
     Random RG;
    
     public Room(String mapName){
+        this.mapName = mapName;
         RG = new Random();
         info = new RoomInfo(mapName);
         GenerateRoom(mapName);
+        upDoor = null;
+        downDoor = null;
+        leftDoor = null;
+        rightDoor = null;
+        
         
         //GenerateDoors();
         //GenerateEnemies();
         //GenerateObjects();
         //GenerateChests();
+    }
+    
+    void setDoor(int dNum, Room door){
+        if(dNum == 0) leftDoor = door;
+        else rightDoor = door;
     }
        
     private void GenerateDoors(){
@@ -55,6 +67,10 @@ public class Room {
             //add a position for every door
             //always in the walls of the room
         }
+    }
+    
+    public String getMapName(){
+        return this.mapName;
     }
     
     public int getWidth(){
@@ -69,7 +85,7 @@ public class Room {
         return tiledMap;
     }    
     
-    private void GenerateRoom(String mapName){
+    public void GenerateRoom(String mapName){
         tiledMap = new TmxMapLoader().load("Rooms/"+mapName);
         width = tiledMap.getProperties().get("width",Integer.class);
         height = tiledMap.getProperties().get("height",Integer.class);
