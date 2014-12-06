@@ -95,7 +95,7 @@ public class Room {
        int ns = RG.nextInt((int)(10/*(Xsize*Ysize)/2*/));
        Enemies = new ArrayList();
        for(int i=0;i<ns;++i){
-           Enemy e = new Enemy();
+           Enemy e = new Enemy(20);
           // e.setXpos(RG.nextInt(Xsize));
           // e.setYpos(RG.nextInt(Ysize));
            Enemies.add(e);

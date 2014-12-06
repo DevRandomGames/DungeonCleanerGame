@@ -14,6 +14,7 @@ public abstract class IAController extends ActionController{
     //Aqui habria algun IA class que tenga funciones booleanas o algo asi
     @Override
     public void computeAction(int p, int e, int f){
+        
     }
 
     

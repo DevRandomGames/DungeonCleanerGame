@@ -4,6 +4,7 @@ import DevRandEnginePkg.Box2DMapObjectParser;
 import DevRandEnginePkg.ControlsEnginePkg.*;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.CharacterPkg.Player;
+import DungeonCleanerGame.CharacterPkg.Worm;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
 import DungeonCleanerGame.GameMapPkg.GameMap;
 import DungeonCleanerGame.GameMapPkg.Room;
@@ -41,6 +42,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         private DungeonCollissions collissions;
         
         private Player p;
+        private Worm w;
         private GameMap DungeonMap;
         Body body;        
         
@@ -63,6 +65,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             createGameMap();
             createWorld();
             createPlayer(4.0f,4.0f);
+            createEnemy(5.0f,5.0f);
            
         }
 
@@ -107,7 +110,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         private void createPlayer(float posX, float posY){
             //CREAMOS AL JUGADOR
             p = new Player(unitScale);
-            p.LoadPlayerTexture();
+            p.LoadTexture();
             //ANADIMOS PlayerControls AL CONTROLS ENGINE
             gameEngine.gameControls().addControl(p.getPlayerControls());
             //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
@@ -115,6 +118,20 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().getStage().addActor(p);
+            
+        }
+        
+        private void createEnemy(float posX, float posY){
+            //CREAMOS AL JUGADOR
+            w = new Worm(unitScale);
+            w.LoadTexture();
+            //ANADIMOS PlayerControls AL CONTROLS ENGINE
+            gameEngine.gameControls().addControl(w.getEnemyControls());
+            //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
+            w.createBody(posX,posY);
+            //gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
+            //ANADIMOS PLAYER AL STAGE
+            gameEngine.gameRender().getStage().addActor(w);
             
         }
         

@@ -31,20 +31,30 @@ public class AIEngine {
     public void idiotWalk(Enemy e){
         
         if(e.d==dir.up && e.st==state.walk){
-            e.getBody().setLinearVelocity(0f, 200f);
+            e.getBody().setLinearVelocity(0f, 0.5f);
         }
         if(e.d==dir.down && e.st==state.walk){
-            e.getBody().setLinearVelocity(0f, -200f);
+            e.getBody().setLinearVelocity(0f, -0.5f);
         }
         if(e.d==dir.left && e.st==state.walk){
-            e.getBody().setLinearVelocity(-200f, 0f);
+            e.getBody().setLinearVelocity(-0.5f, 0f);
         }
         if(e.d==dir.right && e.st==state.walk){
-            e.getBody().setLinearVelocity(200f, 0f);
+            e.getBody().setLinearVelocity(0.5f, 0f);
         }
     }
     
     public void stateSelection(Enemy e){
         e.st = state.walk;
+    }
+    
+    public void RandomDir(Enemy e,int i){
+        
+        switch(i){
+            case 0:e.d=dir.left;break;
+            case 1:e.d=dir.right;break;
+            case 2:e.d=dir.up;break;
+            case 3:e.d=dir.down;break;    
+        }
     }
 }

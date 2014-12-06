@@ -79,18 +79,18 @@ public class GameCharacter extends Actor{
     private int defense;
     private int stamina;
     
-    private Animation WalkUp;
-    private Animation WalkDown;
-    private Animation WalkLeft;
-    private Animation WalkRight;
-    private Animation stndbyleft;
-    private Animation stndbyright ;
-    private Animation stndbyup;
-    private Animation stndbydown;
-    private Animation StrikeUp;
-    private Animation StrikeDown;
-    private Animation StrikeLeft;
-    private Animation StrikeRight;
+    Animation WalkUp;
+    Animation WalkDown;
+    Animation WalkLeft;
+    Animation WalkRight;
+    Animation stndbyleft;
+    Animation stndbyright ;
+    Animation stndbyup;
+    Animation stndbydown;
+    Animation StrikeUp;
+    Animation StrikeDown;
+    Animation StrikeLeft;
+    Animation StrikeRight;
     
     
     float statetime=1;
@@ -163,61 +163,8 @@ public class GameCharacter extends Actor{
         this.stamina = stamina;
     }
 
-    public void LoadPlayerTexture(){
-        WalkSheet = new Texture(Gdx.files.internal("Warrior.png"));
-        StrikeSheet = new Texture(Gdx.files.internal("Warrior_hit.png"));
-        
-        WalkRightTex = new TextureRegion[4];
-        WalkLeftTex = new TextureRegion[4];
-        WalkUpTex = new TextureRegion[4];
-        WalkDownTex = new TextureRegion[4];
-        
-        StrikeRightTex = new TextureRegion[4];
-        StrikeLeftTex= new TextureRegion[4];
-        StrikeUpTex= new TextureRegion[4];
-        StrikeDownTex = new TextureRegion[4];
-        
-        
-        
-        this.HEIGTH = WalkSheet.getHeight()/4;
-        this.WIDTH = WalkSheet.getWidth()/4;
+    public void LoadTexture(){
        
-        //NOTE: In Final version put sheet_rows and sheet_colums!
-        TextureRegion[][] tmp = TextureRegion.split(WalkSheet,WalkSheet.getWidth()/4,WalkSheet.getHeight()/4);
-        TextureRegion[][] tmp2 = TextureRegion.split(StrikeSheet,StrikeSheet.getWidth()/4,StrikeSheet.getHeight()/4);
-        //TextureAtlas atlas = new TextureAtlas(Gdx.files.internal("WarriorAt.pack"));
-        
-        
-        for(int i=0;i<4;++i){
-            WalkDownTex[i] = tmp[1][i];
-            WalkLeftTex[i] = tmp[3][i];
-            WalkRightTex[i] = tmp[0][i];
-            WalkUpTex[i] = tmp[2][i];
-            StrikeRightTex[i] = tmp2[0][i];
-            StrikeLeftTex[i]= tmp2[3][i];
-            StrikeUpTex[i]= tmp2[2][i];
-            StrikeDownTex[i] = tmp2[1][i];
-        }
-        
-        
-        
-        WalkDown = new Animation(0.3f,WalkDownTex);
-        WalkLeft = new Animation(0.3f,WalkLeftTex);
-        WalkRight = new Animation(0.3f,WalkRightTex);
-        WalkUp = new Animation(0.3f,WalkUpTex);
-        
-        StrikeUp = new Animation(0.1f,StrikeUpTex);
-        StrikeDown =new Animation(0.1f,StrikeDownTex);
-        StrikeLeft = new Animation(0.1f,StrikeLeftTex);
-        StrikeRight = new Animation(0.1f,StrikeRightTex);
-        
-        
-        stndbydown = new Animation(0, WalkDownTex[0]);
-        stndbyleft = new Animation(0, WalkLeftTex[0]);
-        stndbyright = new Animation(0,WalkRightTex[0]);
-        stndbyup = new Animation(0, WalkUpTex[0]);
-
-     
     }
     
     private TextureRegion UpdatePlayer(float DeltaTime){
