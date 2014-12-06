@@ -48,5 +48,16 @@ public class RoomInfo {
             leftBoundry = 2f;
             rightBoundry = 22f;
         }
+        else if(mapName.equals("ForgeRoom.tmx")){
+            upDoorPos = new Vector2(5.5f,10.85f);
+            downDoorPos = new Vector2(6.5f,1.25f);
+            leftDoorPos = new Vector2(1.25f,7.5f);
+            rightDoorPos = new Vector2(10.85f,3.5f);
+
+            upBoundry = 11f;
+            downBoundry = 1f;
+            leftBoundry = 1f;
+            rightBoundry = 11f;
+        }
     }
 }

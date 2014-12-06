@@ -18,10 +18,10 @@ import java.util.Random;
 public class GameMap {
     Room actualRoom;
     Vector2 actualPos;
-    String[] mapNamesLeft = {"BigRoom1.tmx","Exterior1.tmx"};
-    String[] mapNamesRight = {"BigRoom1.tmx"};
-    String[] mapNamesUp = {};
-    String[] mapNamesDown = {"BigRoom1.tmx"};
+    String[] mapNamesLeft = {"BigRoom1.tmx","Exterior1.tmx","ForgeRoom.tmx"};
+    String[] mapNamesRight = {"BigRoom1.tmx","ForgeRoom.tmx"};
+    String[] mapNamesUp = {"ForgeRoom.tmx"};
+    String[] mapNamesDown = {"BigRoom1.tmx","ForgeRoom.tmx"};
     String[][] mapNames = {mapNamesLeft,mapNamesRight,mapNamesUp,mapNamesDown};
     
     ArrayList<Room> DungeonMap;
