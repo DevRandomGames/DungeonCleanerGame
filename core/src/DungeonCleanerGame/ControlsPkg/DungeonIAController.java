@@ -33,18 +33,19 @@ public class DungeonIAController extends IAController{
     
     public DungeonIAController(Enemy e){
         super.ctrlIdentity = e;
+        e.st = walk;
         gameEngine = DevRandEngine.getInstance();
         RG = new Random();
     }
     
     public void computeAction(int p, int e, int f){
         Enemy en = (Enemy) super.ctrlIdentity;
-        en.st = walk;
+        //en.st = walk;
         //Camera cam = gameEngine.gameRender().getCamera();
         float speed = 200;
         float forceMove = 0.5f;
         
-        gameEngine.gameIA().stateSelection(en);
+        //gameEngine.gameIA().stateSelection(en);
         gameEngine.gameIA().idiotWalk(en);
         gameEngine.gameIA().RandomDir(en, RG.nextInt(4),Gdx.graphics.getDeltaTime());
         

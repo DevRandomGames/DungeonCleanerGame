@@ -45,8 +45,8 @@ public class AIEngine {
         }
     }
     
-    public void stateSelection(Enemy e){
-        e.st = state.walk;
+    public void stateSelection(Enemy e,state newSt){
+        
     }
     
     public void RandomDir(Enemy e,int i,float DeltaTime){

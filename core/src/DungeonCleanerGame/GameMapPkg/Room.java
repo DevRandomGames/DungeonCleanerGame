@@ -7,6 +7,7 @@
 package DungeonCleanerGame.GameMapPkg;
 
 import DungeonCleanerGame.CharacterPkg.Enemy;
+import DungeonCleanerGame.CharacterPkg.Worm;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -32,7 +33,7 @@ public class Room {
     Room leftDoor;
     Room rightDoor;
     
-    ArrayList<Enemy> Enemies;
+    public ArrayList<Enemy> Enemies;
     ArrayList<Object> Objects;
     ArrayList<Object> Chests;
     Random RG;
@@ -49,7 +50,7 @@ public class Room {
         
         
         //GenerateDoors();
-        //GenerateEnemies();
+        GenerateEnemies();
         //GenerateObjects();
         //GenerateChests();
     }
@@ -95,10 +96,9 @@ public class Room {
        int ns = RG.nextInt((int)(10/*(Xsize*Ysize)/2*/));
        Enemies = new ArrayList();
        for(int i=0;i<ns;++i){
-           Enemy e = new Enemy(20);
-          // e.setXpos(RG.nextInt(Xsize));
-          // e.setYpos(RG.nextInt(Ysize));
-           Enemies.add(e);
+           switch(RG.nextInt(1)){
+               case 0:Worm w = new Worm(1/100f);Enemies.add(w);break;
+           }
        }
     }
     

@@ -37,6 +37,9 @@ public class DungeonCollissions implements ContactListener{
             ++numC;
             eng.gameRender().addDebugString("CONTACT NUMBER = " + numC, 1);
             a.applyForceToCenter(-90,-30, true);
+            if(contact.getFixtureA().isSensor()){
+                eng.gameLogic().getMap().getActualRoom().
+            }
         }
         /*else if(b.getUserData() != null && b.getUserData().equals("Player")){
             ++numC;
