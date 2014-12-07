@@ -62,11 +62,13 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine = DevRandEngine.getInstance();
             gameEngine.gameRender().setCamera((int)(widthScreen*unitScale),(int)(heightScreen*unitScale));
             
-            gameEngine.randEng.randInt(1,4);
+            
             createGameMap();
             createWorld();
             createPlayer(4.0f,4.0f);
             createEnemy(5.0f,5.0f);
+            
+            createMusic();
            
         }
 
@@ -157,6 +159,17 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().addDebugString("PlyrX=" + p.getX() +" PlyrY=" +p.getY(),0);
             gameEngine.gameRender().renderDebugInfo();
         }
+        
+        
+        private void createMusic(){
+            gameEngine.gameSound().setMusicPath("Audio/Music/");
+            gameEngine.gameSound().setSoundPath("Audio/Sound/");
+            gameEngine.gameSound().addMusic("DoomTheme.mp3");
+            gameEngine.gameSound().addMusic("DukeNukemTheme.mp3");
+            gameEngine.gameSound().setRandomMusicToPlay();
+        }
+        
+        
         
         
         

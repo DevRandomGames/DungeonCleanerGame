@@ -9,6 +9,7 @@ package DevRandEnginePkg;
 import com.badlogic.gdx.Audio;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Music.OnCompletionListener;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -45,15 +46,24 @@ public class SoundEngine {
         musicPath = p;
     }
     
-    public void setSoundpath(String p){
+    public void setSoundPath(String p){
         soundPath = p;
     }
     
+    
+    public void addMusic(String m){
+        musicNames.add(m);
+    }
+    
+    public void addSound(String s){
+        soundNames.add(s);
+    }
     
     public void setMusicToPlay(String m){
         if (music != null){music.stop();music.dispose();}
         music = audio.newMusic(Gdx.files.internal(musicPath + m));
         music.play();
+       
     }
     
     public void setRandomMusicToPlay(){
@@ -62,4 +72,8 @@ public class SoundEngine {
         music = audio.newMusic(Gdx.files.internal(musicPath + musicNames.get(random)));
         music.play();
     }
+   
+    
 }
+
+
