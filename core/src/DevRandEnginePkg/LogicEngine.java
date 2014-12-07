@@ -13,19 +13,20 @@ import DungeonCleanerGame.GameMapPkg.GameMap;
  * @author ArclorenSarth
  */
 public class LogicEngine {
+    private DevRandEngine engine;
     private static LogicEngine INSTANCE = null;
     
     
-    public LogicEngine(){
-        
+    public LogicEngine(DevRandEngine e){
+        engine = e;
     }
     
-    private static void createInstance(){
-        INSTANCE = new LogicEngine();
+    private static void createInstance(DevRandEngine e){
+        INSTANCE = new LogicEngine(e);
     }
     
-    public static LogicEngine getInstance(){
-        if(INSTANCE == null) createInstance();
+    public static LogicEngine getInstance(DevRandEngine e){
+        if(INSTANCE == null) createInstance(e);
         return INSTANCE;
     }
     

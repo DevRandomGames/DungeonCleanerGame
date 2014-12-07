@@ -84,7 +84,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gamePhysics().renderPhysics();
             gameEngine.gameRender().renderMap();
             gameEngine.gameRender().renderStage();
-            gameEngine.renderWorldDebug();
+            gameEngine.gameRender().renderWorldDebug();
             
             
             renderDebugInfo();

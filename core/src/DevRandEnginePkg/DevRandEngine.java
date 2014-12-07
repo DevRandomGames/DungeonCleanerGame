@@ -24,18 +24,18 @@ public class DevRandEngine {
     private AIEngine iaEngine;
     public RandomEngine randEng;
     
-    private Box2DDebugRenderer debugRenderer;
+    
     
     
     private DevRandEngine(){
-        renderEng = RenderEngine.getInstance();
-        soundEng = SoundEngine.getInstance();
-        logicEng = LogicEngine.getInstance();
-        physicsEng = PhysicsEngine.getInstance();
-        controlsEng = ControlsEngine.getInstance();
-        iaEngine = AIEngine.getInstance();
+        renderEng = RenderEngine.getInstance(this);
+        soundEng = SoundEngine.getInstance(this);
+        logicEng = LogicEngine.getInstance(this);
+        physicsEng = PhysicsEngine.getInstance(this);
+        controlsEng = ControlsEngine.getInstance(this);
+        iaEngine = AIEngine.getInstance(this);
         
-        debugRenderer = new Box2DDebugRenderer();
+        
     }
     
     private static void createInstance(){
@@ -73,8 +73,6 @@ public class DevRandEngine {
     
     
     
-    public void renderWorldDebug(){
-        debugRenderer.render(physicsEng.getWorld(), renderEng.getCamera().combined);
-    }
+    
     
 }

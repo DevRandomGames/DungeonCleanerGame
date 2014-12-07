@@ -36,23 +36,26 @@ import com.badlogic.gdx.utils.viewport.*;
  */
 public class RenderEngine {
     private static RenderEngine INSTANCE = null;
+    private DevRandEngine engine;
     
     private OrthographicCamera camera;
     private TiledMapRenderer mapRender;
     //private OrthogonalTiledMapRenderer mapRender;
     private Stage stage;
     
-    
+    private Box2DDebugRenderer debugRenderer;
     private SpriteBatch batch;
     private BitmapFont font;
     private Array<String> debugInfo;
     
     
-    private RenderEngine(){
+    private RenderEngine(DevRandEngine e){
+        engine = e;
         batch = new SpriteBatch();
         font = new BitmapFont();
         font.setColor(Color.WHITE);
         debugInfo = new Array();
+        debugRenderer = new Box2DDebugRenderer();
         
         stage = new Stage(new FillViewport(Gdx.graphics.getWidth(),Gdx.graphics.getHeight()));
         //camera = new OrthographicCamera();
@@ -62,12 +65,12 @@ public class RenderEngine {
 	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     }
     
-    private static void createInstance(){
-        INSTANCE = new RenderEngine();
+    private static void createInstance(DevRandEngine e){
+        INSTANCE = new RenderEngine(e);
     }
     
-    public static RenderEngine getInstance(){
-        if(INSTANCE == null) createInstance();
+    public static RenderEngine getInstance(DevRandEngine e){
+        if(INSTANCE == null) createInstance(e);
         return INSTANCE;
     }
     
@@ -100,6 +103,10 @@ public class RenderEngine {
     public void renderStage(){
         stage.act();
         stage.draw();
+    }
+    
+    public void renderWorldDebug(){
+        debugRenderer.render(engine.gamePhysics().getWorld(), camera.combined);
     }
     
     public void addDebugString(String info, int numL){

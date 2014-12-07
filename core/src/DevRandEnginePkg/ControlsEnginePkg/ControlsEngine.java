@@ -6,6 +6,7 @@
 
 package DevRandEnginePkg.ControlsEnginePkg;
 
+import DevRandEnginePkg.DevRandEngine;
 import java.util.ArrayList;
 
 /**
@@ -13,23 +14,25 @@ import java.util.ArrayList;
  * @author ArclorenSarth
  */
 public class ControlsEngine {
+    private DevRandEngine engine;
     private static ControlsEngine INSTANCE;
     private ArrayList<ActionController> actionCtrls;
     private int plyrSts, enmSts, frndSts;
     
-    private ControlsEngine(){
+    private ControlsEngine(DevRandEngine e){
+        engine = e;
         actionCtrls = new ArrayList();
         plyrSts = 0;
         enmSts = 0;
         frndSts = 0;
     }
     
-    private static void createInstance(){
-        INSTANCE = new ControlsEngine();
+    private static void createInstance(DevRandEngine e){
+        INSTANCE = new ControlsEngine(e);
     }
     
-    public static ControlsEngine getInstance(){
-        if(INSTANCE == null) createInstance();
+    public static ControlsEngine getInstance(DevRandEngine e){
+        if(INSTANCE == null) createInstance(e);
         return INSTANCE;
     }
 

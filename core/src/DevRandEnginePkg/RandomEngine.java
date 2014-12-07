@@ -14,21 +14,7 @@ import java.util.Random;
  * @author ArclorenSarth
  */
 public class RandomEngine {
-    /*private static RandomEngine INSTANCE = null;
-    
-    
-    private RandomEngine(){
-        
-    }
-    
-    private static void createInstance(){
-        INSTANCE = new RandomEngine();
-    }
-    
-    public static RandomEngine getInstance(){
-        if(INSTANCE == null) createInstance();
-        return INSTANCE;
-    }*/
+    //CLASE CON SOLO FUNCIONES ESTATICAS (NO TIENE INSTANCE)
     
     public static int randInt(int min, int max) {
         //max is not included in range of the result [min,max-1]

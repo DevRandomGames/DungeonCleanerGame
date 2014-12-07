@@ -18,22 +18,23 @@ import java.util.ArrayList;
  * @author ArclorenSarth
  */
 public class PhysicsEngine {
+    private DevRandEngine engine;
     private static PhysicsEngine INSTANCE = null;
     
     private World world;
     Box2DMapObjectParser parser;
     
     
-    private PhysicsEngine(){
-        
+    private PhysicsEngine(DevRandEngine e){
+        engine = e;
     }
     
-    private static void createInstance(){
-        INSTANCE = new PhysicsEngine();
+    private static void createInstance(DevRandEngine e){
+        INSTANCE = new PhysicsEngine(e);
     }
     
-    public static PhysicsEngine getInstance(){
-        if(INSTANCE == null) createInstance();
+    public static PhysicsEngine getInstance(DevRandEngine e){
+        if(INSTANCE == null) createInstance(e);
         return INSTANCE;
     }
     

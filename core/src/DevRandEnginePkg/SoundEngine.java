@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.Array;
  * @author ArclorenSarth
  */
 public class SoundEngine {
+    private DevRandEngine engine;
     private static SoundEngine INSTANCE = null;
     private Audio audio = Gdx.audio;
     private Music music;
@@ -25,17 +26,18 @@ public class SoundEngine {
     private String soundPath;
     
     
-    private SoundEngine(){
+    private SoundEngine(DevRandEngine e){
+        engine = e;
         musicNames = new Array();
         soundNames = new Array();
     }
     
-    private static void createInstance(){
-        INSTANCE = new SoundEngine();
+    private static void createInstance(DevRandEngine e){
+        INSTANCE = new SoundEngine(e);
     }
     
-    public static SoundEngine getInstance(){
-        if(INSTANCE == null) createInstance();
+    public static SoundEngine getInstance(DevRandEngine e){
+        if(INSTANCE == null) createInstance(e);
         return INSTANCE;
     }
     
@@ -56,7 +58,8 @@ public class SoundEngine {
     
     public void setRandomMusicToPlay(){
         if (music != null){music.stop();music.dispose();}
-        music = audio.newMusic(Gdx.files.internal(musicPath + musicNames.get(0)));
+        int random = engine.randEng.randInt(0,musicNames.size);
+        music = audio.newMusic(Gdx.files.internal(musicPath + musicNames.get(random)));
         music.play();
     }
 }

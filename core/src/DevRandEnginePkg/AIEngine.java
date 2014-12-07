@@ -15,17 +15,20 @@ import DungeonCleanerGame.CharacterPkg.GameCharacter.state;
  * @author ivan
  */
 public class AIEngine {
-    
+    private DevRandEngine engine;
     private static AIEngine INSTANCE;
     private float controlTime=0;
     
-    
-    private static void createInstance(){
-        INSTANCE = new AIEngine();
+    private AIEngine(DevRandEngine e){
+        engine = e;
     }
     
-    public static AIEngine getInstance(){
-        if(INSTANCE == null) createInstance();
+    private static void createInstance(DevRandEngine e){
+        INSTANCE = new AIEngine(e);
+    }
+    
+    public static AIEngine getInstance(DevRandEngine e){
+        if(INSTANCE == null) createInstance(e);
         return INSTANCE;
     }
     
