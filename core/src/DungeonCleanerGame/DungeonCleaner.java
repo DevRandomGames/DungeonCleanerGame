@@ -3,6 +3,7 @@ package DungeonCleanerGame;
 import DevRandEnginePkg.Box2DMapObjectParser;
 import DevRandEnginePkg.ControlsEnginePkg.*;
 import DevRandEnginePkg.DevRandEngine;
+import DungeonCleanerGame.CharacterPkg.Ghost;
 import DungeonCleanerGame.CharacterPkg.Player;
 import DungeonCleanerGame.CharacterPkg.Worm;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
@@ -43,6 +44,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private Player p;
         private Worm w;
+        private Ghost g;
         private GameMap DungeonMap;
         Body body;        
         
@@ -127,14 +129,19 @@ public class DungeonCleaner extends ApplicationAdapter {
         private void createEnemy(float posX, float posY){
             //CREAMOS AL JUGADOR
             w = new Worm(unitScale);
+            g = new Ghost(unitScale);
             w.LoadTexture();
+            g.LoadTexture();
             //ANADIMOS PlayerControls AL CONTROLS ENGINE
             gameEngine.gameControls().addControl(w.getEnemyControls());
+            gameEngine.gameControls().addControl(g.getEnemyControls());
             //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
             w.createBody(posX,posY);
+            g.createBody(posX+5, posY+2);
             //gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().getStage().addActor(w);
+            gameEngine.gameRender().getStage().addActor(g);
             
         }
         
