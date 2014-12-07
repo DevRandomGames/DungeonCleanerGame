@@ -25,6 +25,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  */
 public class Player extends GameCharacter{
     private DevRandEngine gameEng;
+    private final short PLAYER_GROUP = -1;
     
     public Player(float unitScale){
         setBounds(0,0,64*unitScale,64*unitScale);
@@ -44,6 +45,7 @@ public class Player extends GameCharacter{
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 2f;
+        fixtureDef.filter.groupIndex=PLAYER_GROUP;
         Fixture fixture = body.createFixture(fixtureDef);
         shape.dispose();
     }

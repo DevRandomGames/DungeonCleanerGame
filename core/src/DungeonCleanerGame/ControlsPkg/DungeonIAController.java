@@ -46,7 +46,7 @@ public class DungeonIAController extends IAController{
         
         gameEngine.gameIA().stateSelection(en);
         gameEngine.gameIA().idiotWalk(en);
-        //gameEngine.gameIA().RandomDir(en, RG.nextInt(4));
+        gameEngine.gameIA().RandomDir(en, RG.nextInt(4),Gdx.graphics.getDeltaTime());
         
     }
     

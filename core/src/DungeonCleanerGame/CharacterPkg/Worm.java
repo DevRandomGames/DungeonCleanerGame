@@ -48,10 +48,10 @@ public class Worm extends Enemy{
         
         
         for(int i=0;i<2;++i){
-            WalkDownTex[i] = tmp[0][i];
-            WalkLeftTex[i] = tmp[1][i];
+            WalkDownTex[i] = tmp[3][i];
+            WalkLeftTex[i] = tmp[0][i];
             WalkRightTex[i] = tmp[2][i];
-            WalkUpTex[i] = tmp[3][i];
+            WalkUpTex[i] = tmp[1][i];
             /*StrikeRightTex[i] = tmp2[0][i];
             StrikeLeftTex[i]= tmp2[3][i];
             StrikeUpTex[i]= tmp2[2][i];

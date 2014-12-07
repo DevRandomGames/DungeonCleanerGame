@@ -32,16 +32,17 @@ public class DungeonCollissions implements ContactListener{
     public void beginContact(Contact contact){
         Body a=contact.getFixtureA().getBody();
         Body b=contact.getFixtureB().getBody();
-        if(a.getUserData() != null && a.getUserData().equals("Player")){
+        if((contact.getFixtureA().getFilterData().groupIndex==-1 && contact.getFixtureB().getFilterData().groupIndex==-2)
+            || (contact.getFixtureA().getFilterData().groupIndex==-2 && contact.getFixtureB().getFilterData().groupIndex==-1)){
             ++numC;
             eng.gameRender().addDebugString("CONTACT NUMBER = " + numC, 1);
             a.applyForceToCenter(-90,-30, true);
         }
-        else if(b.getUserData() != null && b.getUserData().equals("Player")){
+        /*else if(b.getUserData() != null && b.getUserData().equals("Player")){
             ++numC;
             eng.gameRender().addDebugString("CONTACT NUMBER = " + numC, 1);
             b.applyForceToCenter(-90,-30, true);
-        }
+        }*/
     }
     
     @Override
