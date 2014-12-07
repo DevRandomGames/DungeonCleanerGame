@@ -14,10 +14,10 @@ import DungeonCleanerGame.GameMapPkg.GameMap;
  */
 public class LogicEngine {
     private static LogicEngine INSTANCE = null;
-    private GameMap map;
+    
     
     public LogicEngine(){
-        map = new GameMap();
+        
     }
     
     private static void createInstance(){
@@ -29,8 +29,6 @@ public class LogicEngine {
         return INSTANCE;
     }
     
-    public GameMap getMap(){
-        return map;
-    }
+   
     
 }

@@ -22,6 +22,7 @@ public class DevRandEngine {
     private LogicEngine logicEng;
     private ControlsEngine controlsEng;
     private AIEngine iaEngine;
+    public RandomEngine randEng;
     
     private Box2DDebugRenderer debugRenderer;
     

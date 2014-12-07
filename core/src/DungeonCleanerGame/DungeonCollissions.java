@@ -7,6 +7,7 @@
 package DungeonCleanerGame;
 
 import DevRandEnginePkg.DevRandEngine;
+import DungeonCleanerGame.GameMapPkg.GameMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
@@ -21,8 +22,10 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 public class DungeonCollissions implements ContactListener{
     int numC;
     DevRandEngine eng;
+    GameMap DungeonMap;
     
-    public DungeonCollissions(){
+    public DungeonCollissions(GameMap map){
+        DungeonMap = map;
         numC = 0;
         eng = DevRandEngine.getInstance();
     }
@@ -38,7 +41,7 @@ public class DungeonCollissions implements ContactListener{
             eng.gameRender().addDebugString("CONTACT NUMBER = " + numC, 1);
             a.applyForceToCenter(-90,-30, true);
             if(contact.getFixtureA().isSensor()){
-                eng.gameLogic().getMap().getActualRoom().Enemies.get((Integer)a.getUserData());
+                DungeonMap.getActualRoom().Enemies.get((Integer)a.getUserData());
             }
         }
         /*else if(b.getUserData() != null && b.getUserData().equals("Player")){

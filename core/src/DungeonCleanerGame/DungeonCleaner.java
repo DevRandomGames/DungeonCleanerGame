@@ -62,6 +62,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine = DevRandEngine.getInstance();
             gameEngine.gameRender().setCamera((int)(widthScreen*unitScale),(int)(heightScreen*unitScale));
             
+            gameEngine.randEng.randInt(1,4);
             createGameMap();
             createWorld();
             createPlayer(4.0f,4.0f);
@@ -146,7 +147,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private void createWorld(){
             gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
-            collissions = new DungeonCollissions();
+            collissions = new DungeonCollissions(DungeonMap);
             gameEngine.gamePhysics().getWorld().setContactListener(collissions);
         }
         
