@@ -48,6 +48,18 @@ public class Player extends GameCharacter{
         fixtureDef.filter.groupIndex=PLAYER_GROUP;
         Fixture fixture = body.createFixture(fixtureDef);
         shape.dispose();
+        
+             
+        shape = new PolygonShape();
+        shape.setAsBox(this.getWidth()/2, this.getHeight()/2);
+        FixtureDef fixtureDef2 = new FixtureDef();
+        fixtureDef2.shape = shape;
+        fixtureDef2.density = 2f;
+        fixtureDef2.isSensor = true;
+        fixtureDef2.filter.groupIndex=PLAYER_GROUP;
+        fixture = body.createFixture(fixtureDef2);
+        shape.dispose();
+        
     }
     
     @Override
