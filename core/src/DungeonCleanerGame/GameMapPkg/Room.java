@@ -87,6 +87,7 @@ public class Room {
     }    
     
     public void GenerateRoom(String mapName){
+        if(tiledMap != null) tiledMap.dispose();
         tiledMap = new TmxMapLoader().load("Rooms/"+mapName);
         width = tiledMap.getProperties().get("width",Integer.class);
         height = tiledMap.getProperties().get("height",Integer.class);

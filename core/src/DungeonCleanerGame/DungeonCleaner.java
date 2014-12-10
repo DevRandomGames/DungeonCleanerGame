@@ -78,14 +78,14 @@ public class DungeonCleaner extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-            if(DungeonMap.checkDoors(p.getX(),p.getY())){
+            if(DungeonMap.checkDoors(p.getBodyX(),p.getBodyY())){
                 changeMap();
             }
             
             inputControl();
                                    
             gameEngine.gameRender().clearScreen();
-            gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
+            gameEngine.gameRender().getCamera().position.set(p.getBodyX(),p.getBodyY(),0);
             gameEngine.gameRender().getCamera().update();
             gameEngine.gamePhysics().renderPhysics();
             gameEngine.gameRender().renderMap();
@@ -122,7 +122,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameControls().addControl(p.getPlayerControls());
             //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
             p.createBody(posX,posY);
-            gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
+            gameEngine.gameRender().getCamera().position.set(p.getBodyX(),p.getBodyY(),0);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().getStage().addActor(p);
             
@@ -144,7 +144,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             w.createBody(posX,posY);
             g.createBody(posX+5, posY+2);
             bo.createBody(posX+6, posY+3);
-            //gameEngine.gameRender().getCamera().position.set(p.getX(),p.getY(),0);
+            //gameEngine.gameRender().getCamera().position.set(p.getBodyX(),p.getBodyY(),0);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().getStage().addActor(w);
             gameEngine.gameRender().getStage().addActor(g);
@@ -170,7 +170,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         private void renderDebugInfo(){
             //COORDENADAS DE SCREEN, HE EMEPZADO IZQUIERDA ARRIBA POR ESO Y ES ALTA
-            gameEngine.gameRender().addDebugString("PlyrX=" + p.getX() +" PlyrY=" +p.getY(),0);
+            gameEngine.gameRender().addDebugString("PlyrX=" + p.getBodyX() +" PlyrY=" +p.getBodyY(),0);
             gameEngine.gameRender().renderDebugInfo();
         }
         

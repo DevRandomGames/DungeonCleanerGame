@@ -101,24 +101,26 @@ public class GameCharacter extends Actor{
     @Override
     public void draw(Batch batch, float alpha){
         
-    texture = UpdatePlayer(Gdx.graphics.getDeltaTime());
-    //texture = WalkUpTex[0].getTexture();
-    
-    batch.draw(texture,
-               body.getPosition().x-((float)this.getWidth()/2f),
-               body.getPosition().y-((float)this.getHeight()/2f),
-               this.getOriginX(),this.getOriginY(),this.getWidth(),
-               this.getHeight(),this.getScaleX(), this.getScaleY(),
-               this.getRotation(),false);
+        texture = UpdateCharacter(Gdx.graphics.getDeltaTime());
+        batch.draw(texture,
+                   body.getPosition().x-((float)this.getWidth()/2f),
+                   body.getPosition().y-((float)this.getHeight()/2f),
+                   this.getOriginX(),this.getOriginY(),this.getWidth(),
+                   this.getHeight(),this.getScaleX(), this.getScaleY(),
+                   this.getRotation(),false);
     }
     
-    @Override
-    public float getX(){
+    
+    public void LoadTexture(){
+       //OVERRIDEN
+    }
+    
+    public float getBodyX(){
         return body.getPosition().x;
     }
     
-    @Override
-    public float getY(){
+    
+    public float getBodyY(){
         return body.getPosition().y;
     }
     
@@ -163,11 +165,9 @@ public class GameCharacter extends Actor{
         this.stamina = stamina;
     }
 
-    public void LoadTexture(){
-       
-    }
     
-    private TextureRegion UpdatePlayer(float DeltaTime){
+    
+    private TextureRegion UpdateCharacter(float DeltaTime){
         
         statetime+=DeltaTime;
         
