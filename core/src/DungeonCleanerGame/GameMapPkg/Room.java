@@ -6,9 +6,9 @@
 
 package DungeonCleanerGame.GameMapPkg;
 
+import DevRandEnginePkg.ConstantEngine;
 import DevRandEnginePkg.RandomEngine;
-import DungeonCleanerGame.CharacterPkg.Enemy;
-import DungeonCleanerGame.CharacterPkg.Worm;
+import DungeonCleanerGame.CharacterPkg.*;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -22,8 +22,7 @@ import java.util.ArrayList;
  * @author ivan
  */
 public class Room {
-    private RandomEngine random;
-    
+    private ConstantEngine constant;
     private String mapName;
     private TiledMap tiledMap;
     private int width;
@@ -41,6 +40,7 @@ public class Room {
     
    
     public Room(String mapName){
+        constant = ConstantEngine.getInstance();
         this.mapName = mapName;
         info = new RoomInfo(mapName);
         GenerateRoom(mapName);
@@ -78,10 +78,24 @@ public class Room {
     }
     
     private void GenerateEnemies(){
-       int ns = 0;
-       Enemies = new ArrayList();
-       for(int i=0;i<ns;++i){
-           
+        int ns = RandomEngine.randInt(2,width*height/2);
+        Enemies = new ArrayList();
+        int t;
+        Enemy e;
+        float x,y;
+        float unitScale = constant.getFloatConstant("unitScale");
+        for(int i=0;i<ns;++i){
+            t = RandomEngine.randInt(0, 2);
+            x = RandomEngine.randInt(2, width-2);
+            y = RandomEngine.randInt(2, height-2);
+            switch(t){
+                case 0: e = new Worm(unitScale); break;
+                case 1: e = new Ghost(unitScale); break;
+                case 2: e = new Boss1(unitScale); break;
+                default: e = new Worm(unitScale); break;
+            }
+            e.setPosition(x, y);
+            Enemies.add(e);
        }
     }
     

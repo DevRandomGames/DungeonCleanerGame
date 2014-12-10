@@ -4,6 +4,7 @@ import DevRandEnginePkg.Box2DMapObjectParser;
 import DevRandEnginePkg.ControlsEnginePkg.*;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.CharacterPkg.Boss1;
+import DungeonCleanerGame.CharacterPkg.Enemy;
 import DungeonCleanerGame.CharacterPkg.Ghost;
 import DungeonCleanerGame.CharacterPkg.Player;
 import DungeonCleanerGame.CharacterPkg.Worm;
@@ -63,14 +64,15 @@ public class DungeonCleaner extends ApplicationAdapter {
             widthScreen = Gdx.graphics.getWidth();
             heightScreen = Gdx.graphics.getHeight();
             unitScale = 1/100f;
+            
             gameEngine = DevRandEngine.getInstance();
             gameEngine.gameRender().setCamera((int)(widthScreen*unitScale),(int)(heightScreen*unitScale));
-            
+            gameEngine.gameConstant().addConstant("unitScale", unitScale);
             
             createGameMap();
             createWorld();
             createPlayer(4.0f,4.0f);
-            createEnemy(5.0f,5.0f);
+            createEnemies();
             
             createMusic();
            
@@ -122,25 +124,19 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().getStage().addActor(p);
         }
         
-        private void createEnemy(float posX, float posY){
-            //CREAMOS AL JUGADOR
-            w = new Worm(unitScale);
-            g = new Ghost(unitScale);
-            bo = new Boss1(unitScale);
-            //ANADIMOS PlayerControls AL CONTROLS ENGINE
-            gameEngine.gameControls().addControl(w.getEnemyControls());
-            gameEngine.gameControls().addControl(g.getEnemyControls());
-            gameEngine.gameControls().addControl(bo.getEnemyControls());
-            //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
-            w.createBody(posX,posY);
-            g.createBody(posX+5, posY+2);
-            bo.createBody(posX+6, posY+3);
-            //gameEngine.gameRender().getCamera().position.set(p.getBodyX(),p.getBodyY(),0);
-            //ANADIMOS PLAYER AL STAGE
-            gameEngine.gameRender().getStage().addActor(w);
-            gameEngine.gameRender().getStage().addActor(g);
-            gameEngine.gameRender().getStage().addActor(g);
-            
+        private void createEnemies(){
+            ArrayList<Enemy> enem = DungeonMap.getActualRoom().Enemies;
+            Enemy e;
+            for(int i=0; i<enem.size(); ++i){
+                e = enem.get(i);
+                //ANADIMOS EnemyControls AL CONTROLS ENGINE
+                gameEngine.gameControls().addControl(e.getEnemyControls());
+                //CREAMOS BODY
+                e.createBody(e.getX(),e.getY());
+                //ANADIMOS PLAYER AL STAGE
+                gameEngine.gameRender().getStage().addActor(e);
+                
+            }
         }
         
              

@@ -11,14 +11,13 @@ import DevRandEnginePkg.RandomEngine;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
-import java.util.Random;
+
 
 /**
  *
  * @author ArclorenSarth
  */
 public class GameMap {
-    RandomEngine random;
     Room actualRoom;
     Vector2 actualPos;
     String[] mapNamesLeft = {"BigRoom1.tmx","Exterior1.tmx","ForgeRoom.tmx"};
@@ -43,7 +42,7 @@ public class GameMap {
     }
     
     public Room newRandomRoom(int i){
-        return new Room(mapNames[i][random.randInt(0,mapNames[i].length)]);
+        return new Room(mapNames[i][RandomEngine.randInt(0,mapNames[i].length)]);
     }
             
     public Room getRoom(int i){
