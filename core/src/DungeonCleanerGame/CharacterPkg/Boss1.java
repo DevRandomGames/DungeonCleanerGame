@@ -18,9 +18,11 @@ public class Boss1 extends Enemy{
 
     public Boss1(float unitScale) {
         super(unitScale);
+        LoadTexture();
     }
-    @Override
-    public void LoadTexture(){
+    
+    
+    private void LoadTexture(){
         WalkSheet = new Texture(Gdx.files.internal("BigDady.png"));
         //StrikeSheet = new Texture(Gdx.files.internal("Warrior_hit.png"));
         

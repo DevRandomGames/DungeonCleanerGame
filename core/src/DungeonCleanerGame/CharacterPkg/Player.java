@@ -32,6 +32,7 @@ public class Player extends GameCharacter{
         //CREAMOS EL PLAYERCONTROLLER
         super.controls = new DungeonPlayerController(this);
         gameEng = DevRandEngine.getInstance();
+        LoadTexture();
     }
     
     public void createBody(float x, float y){
@@ -62,8 +63,8 @@ public class Player extends GameCharacter{
         
     }
     
-    @Override
-    public void LoadTexture(){
+    
+    private void LoadTexture(){
         WalkSheet = new Texture(Gdx.files.internal("Warrior.png"));
         StrikeSheet = new Texture(Gdx.files.internal("Warrior_hit.png"));
         

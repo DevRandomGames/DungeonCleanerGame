@@ -97,17 +97,13 @@ public class DungeonCleaner extends ApplicationAdapter {
 	}
         
         private void changeMap(){
-            
             Vector2 newPosPlyr = DungeonMap.getActualPos();
             gameEngine.gameRender().getStage().clear();
-                       
             gameEngine.gameRender().setMapToRender
             (DungeonMap.getActualRoom().getRoomMap(), unitScale);
             gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
             gameEngine.gamePhysics().getWorld().setContactListener(collissions);
-                     
             createPlayer(newPosPlyr.x,newPosPlyr.y);
-            
         }
         
         private void inputControl(){
@@ -117,7 +113,6 @@ public class DungeonCleaner extends ApplicationAdapter {
         private void createPlayer(float posX, float posY){
             //CREAMOS AL JUGADOR
             p = new Player(unitScale);
-            p.LoadTexture();
             //ANADIMOS PlayerControls AL CONTROLS ENGINE
             gameEngine.gameControls().addControl(p.getPlayerControls());
             //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
@@ -125,7 +120,6 @@ public class DungeonCleaner extends ApplicationAdapter {
             gameEngine.gameRender().getCamera().position.set(p.getBodyX(),p.getBodyY(),0);
             //ANADIMOS PLAYER AL STAGE
             gameEngine.gameRender().getStage().addActor(p);
-            
         }
         
         private void createEnemy(float posX, float posY){
@@ -133,9 +127,6 @@ public class DungeonCleaner extends ApplicationAdapter {
             w = new Worm(unitScale);
             g = new Ghost(unitScale);
             bo = new Boss1(unitScale);
-            w.LoadTexture();
-            g.LoadTexture();
-            bo.LoadTexture();
             //ANADIMOS PlayerControls AL CONTROLS ENGINE
             gameEngine.gameControls().addControl(w.getEnemyControls());
             gameEngine.gameControls().addControl(g.getEnemyControls());

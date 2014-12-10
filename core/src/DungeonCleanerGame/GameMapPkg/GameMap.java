@@ -6,7 +6,8 @@
 
 package DungeonCleanerGame.GameMapPkg;
 
-import DevRandEnginePkg.DevRandEngine;
+
+import DevRandEnginePkg.RandomEngine;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.Random;
  * @author ArclorenSarth
  */
 public class GameMap {
-    DevRandEngine gameEng;
+    RandomEngine random;
     Room actualRoom;
     Vector2 actualPos;
     String[] mapNamesLeft = {"BigRoom1.tmx","Exterior1.tmx","ForgeRoom.tmx"};
@@ -30,7 +31,6 @@ public class GameMap {
     int numberofrooms;
     
     public GameMap(){
-        gameEng = DevRandEngine.getInstance();
         DungeonMap = new ArrayList();
         numberofrooms = 5;
         actualPos = new Vector2(0f,0f);
@@ -43,7 +43,7 @@ public class GameMap {
     }
     
     public Room newRandomRoom(int i){
-        return new Room(mapNames[i][gameEng.randEng.randInt(0,mapNames[i].length)]);
+        return new Room(mapNames[i][random.randInt(0,mapNames[i].length)]);
     }
             
     public Room getRoom(int i){

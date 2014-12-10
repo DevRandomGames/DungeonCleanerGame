@@ -18,11 +18,12 @@ public class Worm extends Enemy{
 
     public Worm(float unitScale) {
         super(unitScale);
+        LoadTexture();
     }
     
     
-    @Override
-    public void LoadTexture(){
+    
+    private void LoadTexture(){
         WalkSheet = new Texture(Gdx.files.internal("WormWalk.png"));
         //StrikeSheet = new Texture(Gdx.files.internal("Warrior_hit.png"));
         

@@ -6,6 +6,7 @@
 
 package DungeonCleanerGame.GameMapPkg;
 
+import DevRandEnginePkg.RandomEngine;
 import DungeonCleanerGame.CharacterPkg.Enemy;
 import DungeonCleanerGame.CharacterPkg.Worm;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,13 +15,14 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import java.util.ArrayList;
-import java.util.Random;
+
 
 /**
  *
  * @author ivan
  */
 public class Room {
+    private RandomEngine random;
     
     private String mapName;
     private TiledMap tiledMap;
@@ -36,11 +38,10 @@ public class Room {
     public ArrayList<Enemy> Enemies;
     ArrayList<Object> Objects;
     ArrayList<Object> Chests;
-    Random RG;
+    
    
     public Room(String mapName){
         this.mapName = mapName;
-        RG = new Random();
         info = new RoomInfo(mapName);
         GenerateRoom(mapName);
         upDoor = null;
@@ -48,26 +49,9 @@ public class Room {
         leftDoor = null;
         rightDoor = null;
         
-        
-        //GenerateDoors();
         GenerateEnemies();
         //GenerateObjects();
         //GenerateChests();
-    }
-    
-    void setDoor(int dNum, Room door){
-        if(dNum == 0) leftDoor = door;
-        else rightDoor = door;
-    }
-       
-    private void GenerateDoors(){
-        
-        int nd = RG.nextInt(5);
-        for(int i=0;i<nd;++i){
-            //TODO
-            //add a position for every door
-            //always in the walls of the room
-        }
     }
     
     public String getMapName(){
@@ -94,17 +78,15 @@ public class Room {
     }
     
     private void GenerateEnemies(){
-       int ns = RG.nextInt((int)(10/*(Xsize*Ysize)/2*/));
+       int ns = 0;
        Enemies = new ArrayList();
        for(int i=0;i<ns;++i){
-           switch(RG.nextInt(1)){
-               case 0:Worm w = new Worm(1/100f);Enemies.add(w);break;
-           }
+           
        }
     }
     
     private void GenerateObjects(){
-        int no = RG.nextInt((int)(/*(Xsize*Ysize)/4*/10));
+        int no = 0;
     }
     
     private void GenerateChests(){
@@ -113,11 +95,11 @@ public class Room {
         //call it lucky that increase the likelihood of chest
         int nc;
         if(width*height > 20){
-            nc = RG.nextInt(2);
+            nc = 0;
         }
         else nc = 0;
         
-        //
+        
     }
     
 }

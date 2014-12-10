@@ -111,9 +111,9 @@ public class GameCharacter extends Actor{
     }
     
     
-    public void LoadTexture(){
+    /*public void LoadTexture(){
        //OVERRIDEN
-    }
+    }*/
     
     public float getBodyX(){
         return body.getPosition().x;
