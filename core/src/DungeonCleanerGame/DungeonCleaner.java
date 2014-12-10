@@ -5,6 +5,7 @@ import DevRandEnginePkg.ControlsEnginePkg.*;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.CharacterPkg.Boss1;
 import DungeonCleanerGame.CharacterPkg.Enemy;
+import DungeonCleanerGame.CharacterPkg.GameCharacter;
 import DungeonCleanerGame.CharacterPkg.Ghost;
 import DungeonCleanerGame.CharacterPkg.Player;
 import DungeonCleanerGame.CharacterPkg.Worm;
@@ -99,13 +100,16 @@ public class DungeonCleaner extends ApplicationAdapter {
 	}
         
         private void changeMap(){
+            System.gc();
             Vector2 newPosPlyr = DungeonMap.getActualPos();
+            saveEnemiesPosition();
             gameEngine.gameRender().getStage().clear();
             gameEngine.gameRender().setMapToRender
             (DungeonMap.getActualRoom().getRoomMap(), unitScale);
             gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
             gameEngine.gamePhysics().getWorld().setContactListener(collissions);
             createPlayer(newPosPlyr.x,newPosPlyr.y);
+            createEnemies();
         }
         
         private void inputControl(){
@@ -139,6 +143,14 @@ public class DungeonCleaner extends ApplicationAdapter {
             }
         }
         
+        private void saveEnemiesPosition(){
+            Array<Actor> act = gameEngine.gameRender().getStage().getActors();
+            GameCharacter a;
+            for(int i=0; i<act.size; ++i){
+                a = (GameCharacter)act.get(i);
+                a.setPosition(a.getBodyX(),a.getBodyY());
+            }
+        }
              
         private void createGameMap(){
             DungeonMap = new GameMap();

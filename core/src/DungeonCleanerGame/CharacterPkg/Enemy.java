@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 
 
+
 /**
  *
  * @author ivan
@@ -58,7 +59,7 @@ public class Enemy extends GameCharacter {
         fixtureArea.density = 2f;
         fixtureArea.filter.groupIndex = GROUP_MONSTER;
         body.createFixture(fixtureArea);
-        shape.dispose();
+        Areashape.dispose();
         
         
     }
