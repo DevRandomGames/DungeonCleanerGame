@@ -6,6 +6,7 @@
 package DungeonCleanerGame.GameMapPkg.MapParsers;
 
 import DevRandEnginePkg.DevRandEngine;
+import DevRandEnginePkg.UtilsEngine;
 import box2dLight.Light;
 import box2dLight.PointLight;
 import box2dLight.RayHandler;
@@ -50,7 +51,9 @@ public class MapLightParser extends MapParser {
         MapObjects objects;
         if (layer != null) {
             objects = layer.getObjects();
-        } else return;
+        } else {
+            return;
+        }
 
         for (MapObject obj : objects) {
 
@@ -65,8 +68,11 @@ public class MapLightParser extends MapParser {
 
                 float lightDistance = Float.parseFloat((String) obj.getProperties().get("lightDistance"));
                 Vector2 coord = ((RectangleMapObject) obj).getRectangle().getCenter(new Vector2());
-                PointLight a = new PointLight(ray, 128, new Color(color[0], color[1], color[2], color[3]), lightDistance, coord.x, coord.y);
-               
+
+                float offsetx = UtilsEngine.parseFloat((String) obj.getProperties().get("offsetx"));
+                float offsety = UtilsEngine.parseFloat((String) obj.getProperties().get("offsety"));
+
+                PointLight a = new PointLight(ray, 128, new Color(color[0], color[1], color[2], color[3]), lightDistance, coord.x+offsetx, coord.y + offsety);
 
             }
         }

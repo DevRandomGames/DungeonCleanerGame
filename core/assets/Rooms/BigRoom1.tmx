@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="24" height="16" tilewidth="100" tileheight="100">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="24" height="16" tilewidth="100" tileheight="100">
  <properties>
   <property name="ambrientLight" value="0.3"/>
   <property name="mapLight" value="true"/>
@@ -93,7 +93,7 @@
    eJztyrkNwCAQBVH6D8A2YGOOXpkGNvoZ2pFeNiF4nndSEQkXbuGxepBRUIXH6sWHhl94rDoGJpbwnNAGHcQSsQ==
   </data>
  </layer>
- <objectgroup name="Atrezzo" width="0" height="0">
+ <objectgroup name="Atrezzo">
   <object name="Bed" type="object" x="1900" y="300" width="200" height="300"/>
   <object name="Bonfire" type="object" x="1100" y="700" width="100" height="100">
    <properties>
@@ -117,11 +117,13 @@
   <object name="Pared3" type="object" x="2200" y="1000">
    <polyline points="0,0 0,400 -1300,400"/>
   </object>
-  <object name="Estufa" type="object" x="2200" y="400" width="100" height="100">
+  <object name="Estufa" type="object" x="2200" y="400" width="41" height="98">
    <properties>
     <property name="light" value="true"/>
     <property name="lightColor" value="1,1,0,1"/>
     <property name="lightDistance" value="2"/>
+    <property name="offsetx" value="0.0"/>
+    <property name="offsety" value="0."/>
    </properties>
   </object>
  </objectgroup>
