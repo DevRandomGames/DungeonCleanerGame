@@ -102,7 +102,9 @@ public class DungeonCleaner extends ApplicationAdapter {
 
         rayhandler.setCombinedMatrix(gameEngine.gameRender().getCamera().combined);
         rayhandler.updateAndRender();
-        rayhandler.lightList.get(0).setDistance( RandomEngine.randInt(3, 5));
+        if(rayhandler.lightList.size >0) {
+            rayhandler.lightList.get(0).setDistance( RandomEngine.randInt(3, 5));
+        }
         renderDebugInfo();
     }
 
