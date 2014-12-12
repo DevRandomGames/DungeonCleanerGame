@@ -117,5 +117,12 @@
   <object name="Pared3" type="object" x="2200" y="1000">
    <polyline points="0,0 0,400 -1300,400"/>
   </object>
+  <object name="Estufa" type="object" x="2200" y="400" width="100" height="100">
+   <properties>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="2"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
