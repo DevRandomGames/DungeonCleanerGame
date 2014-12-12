@@ -22,7 +22,7 @@ import java.util.List;
  *
  * @author albert
  */
-public abstract class Parser {
+public abstract class MapParser {
     
     
     public abstract void parse(TiledMap tiledMap);

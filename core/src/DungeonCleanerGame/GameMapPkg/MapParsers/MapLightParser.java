@@ -10,6 +10,7 @@ import box2dLight.Light;
 import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -22,7 +23,7 @@ import java.util.List;
  *
  * @author albert
  */
-public class LightParser extends Parser {
+public class MapLightParser extends MapParser {
 
     @Override
     public void parse(TiledMap tiledMap) {
@@ -35,14 +36,21 @@ public class LightParser extends Parser {
         if (mapLight) {
             float ambrientLight = Float.parseFloat((String) tiledMap.getProperties().get("ambrientLight"));
             DevRandEngine.getInstance().gamePhysics().getRayhandler().setAmbientLight(ambrientLight);
+        } else {
+            DevRandEngine.getInstance().gamePhysics().getRayhandler().setShadows(false);
         }
     }
 
     private void parsePointLight(TiledMap tiledMap) {
-      
+
         RayHandler ray = DevRandEngine.getInstance().gamePhysics().getRayhandler();
         //Tmx code in alpha
-        MapObjects objects = tiledMap.getLayers().get("Atrezzo").getObjects();
+
+        MapLayer layer = tiledMap.getLayers().get("Atrezzo");
+        MapObjects objects;
+        if (layer != null) {
+            objects = layer.getObjects();
+        } else return;
 
         for (MapObject obj : objects) {
 
@@ -57,7 +65,8 @@ public class LightParser extends Parser {
 
                 float lightDistance = Float.parseFloat((String) obj.getProperties().get("lightDistance"));
                 Vector2 coord = ((RectangleMapObject) obj).getRectangle().getCenter(new Vector2());
-                Light a = new PointLight(ray, 10000, new Color(color[0], color[1], color[2], color[3]), lightDistance, coord.x, coord.y);
+                PointLight a = new PointLight(ray, 128, new Color(color[0], color[1], color[2], color[3]), lightDistance, coord.x, coord.y);
+               
 
             }
         }

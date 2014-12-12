@@ -135,7 +135,6 @@ public class RenderEngine {
     
     
     
-    
     public TiledMapRenderer getMapRender(){
         return mapRender;
     }

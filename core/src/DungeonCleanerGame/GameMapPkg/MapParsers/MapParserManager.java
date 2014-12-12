@@ -9,6 +9,14 @@ package DungeonCleanerGame.GameMapPkg.MapParsers;
  *
  * @author albert
  */
-public class ParserManager {
+public class MapParserManager {
+
+    public MapParserManager() {
+        
+        Class mapparser = MapParser.class;
+        mapparser.getDeclaredClasses();
+    }
     //TODO (Tinc la idea i molt guapa)
+    
+   
 }

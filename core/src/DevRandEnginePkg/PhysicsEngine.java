@@ -55,8 +55,8 @@ public class PhysicsEngine {
         world = new World(new Vector2(0f,0f),true);
         parser.setUnitScale(unitScale);
         parser.load(world, map);
+        if(rayhandler!=null ) rayhandler.dispose();
         rayhandler = new RayHandler(world);
-        
     }
     
     
