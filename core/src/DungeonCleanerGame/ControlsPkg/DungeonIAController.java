@@ -30,10 +30,12 @@ public class DungeonIAController extends IAController{
     
     private DevRandEngine gameEngine;
     private Random RG;
+    private float iaTimer;
     
     public DungeonIAController(Enemy e){
         super.ctrlIdentity = e;
         super.timer=0;
+        iaTimer=0;
         e.st = walk;
         gameEngine = DevRandEngine.getInstance();
         RG = new Random();
@@ -41,28 +43,34 @@ public class DungeonIAController extends IAController{
     
     public void computeAction(int p, int e, int f){
         
-        super.timer +=Gdx.graphics.getDeltaTime();
+        super.timer -=Gdx.graphics.getDeltaTime();
+        iaTimer+=Gdx.graphics.getDeltaTime();
         Enemy en = (Enemy) super.ctrlIdentity;
         //en.st = walk;
         //Camera cam = gameEngine.gameRender().getCamera();
         float speed = 200;
         float forceMove = 0.5f;
         
-        en.st = en.iaComputeState();
-        if(super.timer>=4){
+        if(super.timer <=0){
             super.timer = 0;
-            en.d = en.iaComputeDir();
+            en.controlsEnabled = true;
         }
         
-        switch(en.st){
-            case walk: idiotWalk(en);break;
-            //case hit: idiotWalk(en);
-            default: idiotWalk(en);break;
-        }
+       if(en.controlsEnabled){
+            en.iaComputeState();
         
-        //gameEngine.gameIA().stateSelection(en);
-        //gameEngine.gameIA().idiotWalk(en);
-        //gameEngine.gameIA().RandomDir(en, RG.nextInt(4),Gdx.graphics.getDeltaTime());
+            if(iaTimer>=4){
+                iaTimer = 0;
+                en.iaComputeDir();
+            }
+        
+            switch(en.st){
+                case walk: idiotWalk(en);break;
+                //case hit: idiotWalk(en);
+                default: idiotWalk(en);break;
+            }
+       }
+        
         
         en.getBody().setAngularVelocity(0f);
         

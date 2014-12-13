@@ -14,14 +14,23 @@ import DungeonCleanerGame.CharacterPkg.GameCharacter.dir;
  * @author ivan
  */
 public class IA {
-    private float controlTime=0;
+    
+    private boolean alert;
     
     public IA(){
-        
+        alert = false;
     }
     public void stateSelection(Enemy e){
         
         
+    }
+    
+    public void activateAlert(){
+        alert = true;
+    }
+    
+    public void desactivateAlert(){
+        alert = false;
     }
     
     public GameCharacter.dir RandomDir(int i){
