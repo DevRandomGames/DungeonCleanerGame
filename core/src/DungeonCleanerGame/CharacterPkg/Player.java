@@ -32,6 +32,10 @@ public class Player extends GameCharacter{
     
     public Player(float unitScale){
         setBounds(0,0,64*unitScale,64*unitScale);
+        super.life = constant.getIntConstant("PlayerLife");
+        super.defense = constant.getIntConstant("PlayerDefense");
+        super.attack = constant.getIntConstant("PlayerAttack");
+        super.stamina = constant.getIntConstant("PlayerStamina");
         //CREAMOS EL PLAYERCONTROLLER
         super.controls = new DungeonPlayerController(this);
         LoadTexture();

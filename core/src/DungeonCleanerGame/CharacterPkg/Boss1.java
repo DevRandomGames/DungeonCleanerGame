@@ -18,6 +18,10 @@ public class Boss1 extends Enemy{
 
     public Boss1(float unitScale) {
         super(unitScale);
+        super.life = Enemy.constant.getIntConstant("BossLife");
+        super.defense = Enemy.constant.getIntConstant("BossDefense");
+        super.attack = Enemy.constant.getIntConstant("BossAttack");
+        super.stamina = Enemy.constant.getIntConstant("BossStamina");
         LoadTexture();
     }
     
