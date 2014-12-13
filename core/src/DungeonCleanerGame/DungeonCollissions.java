@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.WorldManifold;
 
 /**
  *
@@ -60,7 +61,8 @@ public class DungeonCollissions implements ContactListener{
                 Monster = fixA.getBody();
                 Player = fixB.getBody();
             }
-            combat.computeStrikeToMonster(Player, Monster);
+            WorldManifold mani = contact.getWorldManifold();
+            combat.computeStrikeToMonster(Player, Monster,mani);
         }
         else if((fixA.getFilterData().groupIndex==gP && fixB.getFilterData().groupIndex==gM)
             || (fixA.getFilterData().groupIndex==gM && fixB.getFilterData().groupIndex==gP)){
@@ -74,7 +76,8 @@ public class DungeonCollissions implements ContactListener{
                 Player = fixA.getBody();
                 Monster = fixB.getBody();
             }
-            combat.computeStrikeToPlayer(Monster, Player);
+            WorldManifold mani = contact.getWorldManifold();
+            combat.computeStrikeToPlayer(Monster, Player,mani);
         }
         else if((fixA.getFilterData().groupIndex==gP && fixB.getFilterData().groupIndex==gMV)
             || (fixA.getFilterData().groupIndex==gMV && fixB.getFilterData().groupIndex==gP)){

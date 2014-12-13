@@ -12,6 +12,7 @@ import DungeonCleanerGame.CharacterPkg.Player;
 import DungeonCleanerGame.GameMapPkg.GameMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.WorldManifold;
 
 /**
  *
@@ -26,11 +27,11 @@ public class CombatManager {
         
     }
     
-    public void computeStrikeToMonster(Body player, Body monster){
+    public void computeStrikeToMonster(Body player, Body monster, WorldManifold mani){
         
     }
     
-    public void computeStrikeToPlayer(Body monster, Body player){
+    public void computeStrikeToPlayer(Body monster, Body player, WorldManifold mani){
         Player p = map.getPlayer();
         Enemy e = map.getEnemy((Integer)monster.getUserData());
         
@@ -44,14 +45,20 @@ public class CombatManager {
         
         p.setLife(newLife(life,defense,attack,stamina));
         player.setLinearVelocity(new Vector2(0f,0f));
-        player.applyForceToCenter(new Vector2(40,40), true);
+        Vector2 dir = mani.getNormal();
+        //dir.add(point);
+        dir.x = dir.x*2;
+        dir.y = dir.y*2;
+        player.applyForceToCenter(dir, true);
     }
     
     
     private int newLife(int oldLife, int defense, int attack, int stamina){
         int finalAttack = attack; //posteriormente aplicarle una mult con (stamina/maxStamina) o algo asi
         int randomDefense = RandomEngine.randInt(0, defense+1);
-        return oldLife - (finalAttack - randomDefense);
+        finalAttack -= randomDefense;
+        if(finalAttack < 0) finalAttack = 0;
+        return oldLife - finalAttack;
     }
     
 }
