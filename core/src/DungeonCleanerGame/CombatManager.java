@@ -6,6 +6,8 @@
 package DungeonCleanerGame;
 
 import DevRandEnginePkg.DevRandEngine;
+import DevRandEnginePkg.RandomEngine;
+import DungeonCleanerGame.CharacterPkg.Enemy;
 import DungeonCleanerGame.CharacterPkg.Player;
 import DungeonCleanerGame.GameMapPkg.GameMap;
 import com.badlogic.gdx.math.Vector2;
@@ -30,11 +32,26 @@ public class CombatManager {
     
     public void computeStrikeToPlayer(Body monster, Body player){
         Player p = map.getPlayer();
+        Enemy e = map.getEnemy((Integer)monster.getUserData());
+        
         p.disableControls(0.7f);
-        int attack = map.getEnemy((Integer)monster.getUserData()).getAttack();
-        p.setLife(p.getLife() -  attack);
+        
+        int attack = e.getAttack();
+        int stamina = e.getStamina();
+        
+        int life = p.getLife();
+        int defense = p.getDefense();
+        
+        p.setLife(newLife(life,defense,attack,stamina));
         player.setLinearVelocity(new Vector2(0f,0f));
-        player.applyForceToCenter(new Vector2(40,40), true );
+        player.applyForceToCenter(new Vector2(40,40), true);
+    }
+    
+    
+    private int newLife(int oldLife, int defense, int attack, int stamina){
+        int finalAttack = attack; //posteriormente aplicarle una mult con (stamina/maxStamina) o algo asi
+        int randomDefense = RandomEngine.randInt(0, defense+1);
+        return oldLife - (finalAttack - randomDefense);
     }
     
 }
