@@ -28,12 +28,12 @@ public class DungeonCollissions implements ContactListener{
     private static final short gPW = cons.getShortConstant("GROUP_PLAYER_WEAPON");
     private static final short gM = cons.getShortConstant("GROUP_MONSTER");
     private static final short gMV = cons.getShortConstant("GROUP_MONSTER_VISION");
-    private final GameMap DungeonMap;
+    private final CombatManager combat;
     int numPlyHits;
     int numMonHits;
     
-    public DungeonCollissions(GameMap map){
-        DungeonMap = map;
+    public DungeonCollissions(CombatManager combat){
+        this.combat = combat;
         numPlyHits = 0;
         numMonHits = 0;
     }
@@ -49,17 +49,29 @@ public class DungeonCollissions implements ContactListener{
             || (fixA.getFilterData().groupIndex==gM && fixB.getFilterData().groupIndex==gPW)){
             ++numPlyHits;
             eng.gameRender().addDebugString("PlayerHits = " + numPlyHits, 1);
-            if(fixB.getFilterData().groupIndex==gM) Monster = fixB.getBody();
-            else Monster = fixA.getBody();
-            Monster.applyForceToCenter(-90,-30, true);
+            if(fixB.getFilterData().groupIndex==gM) {
+                Monster = fixB.getBody();
+                Player = fixA.getBody();
+            }
+            else {
+                Monster = fixA.getBody();
+                Player = fixB.getBody();
+            }
+            combat.computeStrikeToMonster(Player, Monster);
         }
         else if((fixA.getFilterData().groupIndex==gP && fixB.getFilterData().groupIndex==gM)
             || (fixA.getFilterData().groupIndex==gM && fixB.getFilterData().groupIndex==gP)){
             ++numMonHits;
             eng.gameRender().addDebugString("MonsterHits = " + numMonHits, 2);
-            if(fixB.getFilterData().groupIndex==gP) Player = fixB.getBody();
-            else Player = fixA.getBody();
-            Player.applyForceToCenter(-90,-30, true);
+            if(fixB.getFilterData().groupIndex==gP){
+                Player = fixB.getBody();
+                Monster = fixA.getBody();
+            }
+            else {
+                Player = fixA.getBody();
+                Monster = fixB.getBody();
+            }
+            combat.computeStrikeToPlayer(Monster, Player);
         }
     }
     

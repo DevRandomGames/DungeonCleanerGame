@@ -48,6 +48,7 @@ public class DungeonCleaner extends ApplicationAdapter {
 
     private DevRandEngine gameEngine;
     private DungeonCollissions collissions;
+    private CombatManager combat;
 
     private Player p;
     private GameMap DungeonMap;
@@ -70,6 +71,7 @@ public class DungeonCleaner extends ApplicationAdapter {
                 
         createGameMap();
         createWorld();
+        p = new Player(unitScale);
         createPlayer(4.0f, 4.0f);
         createEnemies();
         parseMap();
@@ -151,8 +153,6 @@ public class DungeonCleaner extends ApplicationAdapter {
 
     
     private void createPlayer(float posX, float posY) {
-        //CREAMOS AL JUGADOR
-        p = new Player(unitScale);
         //ANADIMOS PlayerControls AL CONTROLS ENGINE
         gameEngine.gameControls().addControl(p.getPlayerControls());
         //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
@@ -160,6 +160,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameRender().getCamera().position.set(p.getBodyX(), p.getBodyY(), 0);
         //ANADIMOS PLAYER AL STAGE
         gameEngine.gameRender().getStage().addActor(p);
+        DungeonMap.addPlayer(p);
     }
 
     
@@ -199,7 +200,8 @@ public class DungeonCleaner extends ApplicationAdapter {
     
     private void createWorld() {
         gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
-        collissions = new DungeonCollissions(DungeonMap);
+        combat = new CombatManager(DungeonMap);
+        collissions = new DungeonCollissions(combat);
         gameEngine.gamePhysics().getWorld().setContactListener(collissions);
     }
 
