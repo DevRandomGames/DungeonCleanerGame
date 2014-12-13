@@ -21,7 +21,7 @@ import com.badlogic.gdx.utils.TimeUtils;
  * @author ArclorenSarth
  */
 public class DungeonPlayerController extends PlayerController{
-    float oldTime = TimeUtils.millis();
+    
     
     public DungeonPlayerController(Player p){
         super.timer = 0;
@@ -41,10 +41,7 @@ public class DungeonPlayerController extends PlayerController{
     public void computeAction(int p, int e, int f){
         Player pl = (Player) super.ctrlIdentity;
         
-        float newTime = TimeUtils.millis();
         super.timer -= (Gdx.graphics.getDeltaTime());
-        oldTime = newTime;
-       // System.out.println(super.timer);
         if(super.timer <=0){
             super.timer = 0;
             pl.controlsEnabled = true;
@@ -89,7 +86,11 @@ public class DungeonPlayerController extends PlayerController{
         
             if(horizontalMov == 0 && verticalMov == 0) pl.st = standby;
         
-            if(striking) pl.st = strike;
+            if(striking) {
+                pl.isStriking = true;
+                pl.st = strike;
+            }
+            else pl.isStriking = false;
         
         }
         pl.getBody().setAngularVelocity(0f);

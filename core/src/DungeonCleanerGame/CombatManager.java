@@ -30,6 +30,7 @@ public class CombatManager {
     public void computeStrikeToMonster(Body player, Body monster, WorldManifold mani){
         Player p = map.getPlayer();
         if(p.isStriking){
+            System.out.println("EN>TRO");
             Enemy e = map.getEnemy((Integer)monster.getUserData());
             e.disableControls(0.4f);
 
