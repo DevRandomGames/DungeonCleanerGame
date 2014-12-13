@@ -114,6 +114,31 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameConstant().addConstant("GROUP_MONSTER",(short)2);
         gameEngine.gameConstant().addConstant("GROUP_MONSTER_VISION",(short)3);
         
+        gameEngine.gameConstant().addConstant("PlayerLife",100);
+        gameEngine.gameConstant().addConstant("PlayerAttack",10);
+        gameEngine.gameConstant().addConstant("PlayerDefense",30);
+        gameEngine.gameConstant().addConstant("PlayerStamina",60);
+        
+        gameEngine.gameConstant().addConstant("EnemyLife",100);
+        gameEngine.gameConstant().addConstant("EnemyAttack",10);
+        gameEngine.gameConstant().addConstant("EnemyDefense",30);
+        gameEngine.gameConstant().addConstant("EnemyStamina",60);
+        
+        gameEngine.gameConstant().addConstant("WormLife",10);
+        gameEngine.gameConstant().addConstant("WormAttack",7);
+        gameEngine.gameConstant().addConstant("WormDefense",10);
+        gameEngine.gameConstant().addConstant("WormStamina",30);
+        
+        gameEngine.gameConstant().addConstant("GhostLife",40);
+        gameEngine.gameConstant().addConstant("GhostAttack",20);
+        gameEngine.gameConstant().addConstant("GhostDefense",15);
+        gameEngine.gameConstant().addConstant("GhostStamina",50);
+        
+        gameEngine.gameConstant().addConstant("BossLife",300);
+        gameEngine.gameConstant().addConstant("BossAttack",50);
+        gameEngine.gameConstant().addConstant("BossDefense",60);
+        gameEngine.gameConstant().addConstant("BossStamina",200);
+        
          
         //GETTING CONSTANTS NECESSARY FOR MAIN 
         unitScale = gameEngine.gameConstant().getFloatConstant("unitScale");
