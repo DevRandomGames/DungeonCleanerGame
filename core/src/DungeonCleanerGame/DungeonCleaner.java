@@ -50,12 +50,7 @@ public class DungeonCleaner extends ApplicationAdapter {
     private DungeonCollissions collissions;
 
     private Player p;
-    private Worm w;
-    private Ghost g;
-    private Boss1 bo;
     private GameMap DungeonMap;
-    Body body;
-
     int widthScreen;
     int heightScreen;
 
@@ -67,12 +62,12 @@ public class DungeonCleaner extends ApplicationAdapter {
     public void create() {
         widthScreen = Gdx.graphics.getWidth();
         heightScreen = Gdx.graphics.getHeight();
-        unitScale = 1 / 100f;
-
         gameEngine = DevRandEngine.getInstance();
+        
+        constantsInitialization();
+        
         gameEngine.gameRender().setCamera((int) (widthScreen * unitScale), (int) (heightScreen * unitScale));
-        gameEngine.gameConstant().addConstant("unitScale", unitScale);
-
+                
         createGameMap();
         createWorld();
         createPlayer(4.0f, 4.0f);
@@ -108,23 +103,23 @@ public class DungeonCleaner extends ApplicationAdapter {
         renderDebugInfo();
     }
 
-    private void changeMap() {
-        System.gc();
-        Vector2 newPosPlyr = DungeonMap.getActualPos();
-        saveEnemiesPosition();
-        gameEngine.gameRender().getStage().clear();
-        gameEngine.gameRender().setMapToRender(DungeonMap.getActualRoom().getRoomMap(), unitScale);
-        gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
-        gameEngine.gamePhysics().getWorld().setContactListener(collissions);
-        createPlayer(newPosPlyr.x, newPosPlyr.y);
-        createEnemies();
-        parseMap();
+    
+    
+    
+    private void constantsInitialization() {
+        //INITIALIZING OCNSTANTS
+        gameEngine.gameConstant().addConstant("unitScale", 1/100f);
+         
+        //GETTING CONSTANTS NECESSARY FOR MAIN 
+        unitScale = gameEngine.gameConstant().getFloatConstant("unitScale");
     }
-
+    
+    
     private void inputControl() {
         gameEngine.gameControls().computeControls();
     }
 
+    
     private void createPlayer(float posX, float posY) {
         //CREAMOS AL JUGADOR
         p = new Player(unitScale);
@@ -137,6 +132,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameRender().getStage().addActor(p);
     }
 
+    
     private void createEnemies() {
         ArrayList<Enemy> enem = DungeonMap.getActualRoom().Enemies;
         Enemy e;
@@ -152,6 +148,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         }
     }
 
+    
     private void saveEnemiesPosition() {
         Array<Actor> act = gameEngine.gameRender().getStage().getActors();
         GameCharacter a;
@@ -161,6 +158,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         }
     }
 
+    
     private void createGameMap() {
         DungeonMap = new GameMap();
         DungeonMap.newRoom("BigRoom1.tmx");
@@ -168,18 +166,34 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameRender().setMapToRender(DungeonMap.getActualRoom().getRoomMap(), unitScale);
     }
 
+    
     private void createWorld() {
         gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
         collissions = new DungeonCollissions(DungeonMap);
         gameEngine.gamePhysics().getWorld().setContactListener(collissions);
     }
 
+    private void changeMap() {
+        System.gc();
+        Vector2 newPosPlyr = DungeonMap.getActualPos();
+        saveEnemiesPosition();
+        gameEngine.gameRender().getStage().clear();
+        gameEngine.gameRender().setMapToRender(DungeonMap.getActualRoom().getRoomMap(), unitScale);
+        gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
+        gameEngine.gamePhysics().getWorld().setContactListener(collissions);
+        createPlayer(newPosPlyr.x, newPosPlyr.y);
+        createEnemies();
+        parseMap();
+    }
+    
+    
     private void renderDebugInfo() {
         //COORDENADAS DE SCREEN, HE EMEPZADO IZQUIERDA ARRIBA POR ESO Y ES ALTA
         gameEngine.gameRender().addDebugString("PlyrX=" + p.getBodyX() + " PlyrY=" + p.getBodyY(), 0);
         gameEngine.gameRender().renderDebugInfo();
     }
 
+    
     private void createMusic() {
         gameEngine.gameSound().setMusicPath("Audio/Music/");
         gameEngine.gameSound().setSoundPath("Audio/Sound/");
@@ -188,6 +202,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameSound().setRandomMusicToPlay();
     }
 
+    
     private void parseMap() {
         //en un futuro se ocupara el parser Manager
 
