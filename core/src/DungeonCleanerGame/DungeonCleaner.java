@@ -14,6 +14,7 @@ import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
 import DungeonCleanerGame.GameMapPkg.GameMap;
 import DungeonCleanerGame.GameMapPkg.MapParsers.MapLightParser;
 import DungeonCleanerGame.GameMapPkg.MapParsers.MapParser;
+import DungeonCleanerGame.GameMapPkg.MapParsers.MapParserManager;
 import DungeonCleanerGame.GameMapPkg.Room;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.ApplicationAdapter;
@@ -77,6 +78,8 @@ public class DungeonCleaner extends ApplicationAdapter {
         createWorld();
         createPlayer(4.0f, 4.0f);
         createEnemies();
+        
+        MapParserManager.inicialize();
         parseMap();
 
         createMusic();
@@ -106,6 +109,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             rayhandler.lightList.get(0).setDistance( RandomEngine.randInt(3, 5));
         }
         renderDebugInfo();
+     
     }
 
     private void changeMap() {
@@ -190,9 +194,7 @@ public class DungeonCleaner extends ApplicationAdapter {
 
     private void parseMap() {
         //en un futuro se ocupara el parser Manager
-
-        MapParser parser = new MapLightParser();
-        parser.parse(DungeonMap.getActualRoom().getRoomMap());
+        MapParserManager.parse(DungeonMap.getActualRoom().getRoomMap());
     }
 
 }

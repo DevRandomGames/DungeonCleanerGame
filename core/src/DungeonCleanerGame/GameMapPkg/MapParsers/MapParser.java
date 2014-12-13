@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,6 +25,9 @@ import java.util.List;
  */
 public abstract class MapParser {
     
-    
-    public abstract void parse(TiledMap tiledMap);
+
+   protected static <U extends MapParser> void addToMangager(U mapparser){
+       MapParserManager.mapParsers.add(mapparser);
+   }
+   public abstract void parse(TiledMap tiledMap);
 }

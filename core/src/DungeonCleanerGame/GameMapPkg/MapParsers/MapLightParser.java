@@ -18,14 +18,20 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author albert
  */
-public class MapLightParser extends MapParser {
 
+public class MapLightParser extends MapParser {
+    
+
+    /* need to be added on every map extends */
+
+  
     @Override
     public void parse(TiledMap tiledMap) {
         parsePointLight(tiledMap);

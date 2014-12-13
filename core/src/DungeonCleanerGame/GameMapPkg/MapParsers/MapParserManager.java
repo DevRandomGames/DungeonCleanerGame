@@ -5,18 +5,29 @@
  */
 package DungeonCleanerGame.GameMapPkg.MapParsers;
 
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.utils.Array;
+import java.util.List;
+
 /**
  *
  * @author albert
  */
 public class MapParserManager {
 
-    public MapParserManager() {
+    public final static Array<MapParser> mapParsers = new Array();
+
+    public static void parse(TiledMap tiledMap){
         
-        Class mapparser = MapParser.class;
-        mapparser.getDeclaredClasses();
+        for(MapParser parser : mapParsers){
+            parser.parse(tiledMap);
+        }
     }
-    //TODO (Tinc la idea i molt guapa)
     
-   
+    public static void inicialize(){
+        mapParsers.add(new MapLightParser());
+    }
+
+    //TODO (Tinc la idea i molt guapa)
+
 }
