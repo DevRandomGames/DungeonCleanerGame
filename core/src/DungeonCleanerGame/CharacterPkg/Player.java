@@ -5,6 +5,7 @@
  */
 package DungeonCleanerGame.CharacterPkg;
 
+import DevRandEnginePkg.ConstantEngine;
 import DevRandEnginePkg.ControlsEnginePkg.KeyMapper;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
@@ -24,14 +25,19 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * @author ivan
  */
 public class Player extends GameCharacter{
-    private DevRandEngine gameEng;
-    private final short PLAYER_GROUP = -1;
+    private static final DevRandEngine gameEng = DevRandEngine.getInstance();
+    private static final ConstantEngine constant = gameEng.gameConstant();
+    private static final short GROUP_PLAYER = constant.getShortConstant("GROUP_PLAYER");
+    private static final short GROUP_PLAYER_WEAPON = constant.getShortConstant("GROUP_PLAYER_WEAPON");
     
     public Player(float unitScale){
         setBounds(0,0,64*unitScale,64*unitScale);
+        super.life = constant.getIntConstant("PlayerLife");
+        super.defense = constant.getIntConstant("PlayerDefense");
+        super.attack = constant.getIntConstant("PlayerAttack");
+        super.stamina = constant.getIntConstant("PlayerStamina");
         //CREAMOS EL PLAYERCONTROLLER
         super.controls = new DungeonPlayerController(this);
-        gameEng = DevRandEngine.getInstance();
         LoadTexture();
     }
     
@@ -46,7 +52,7 @@ public class Player extends GameCharacter{
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 2f;
-        fixtureDef.filter.groupIndex=PLAYER_GROUP;
+        fixtureDef.filter.groupIndex=GROUP_PLAYER;
         Fixture fixture = body.createFixture(fixtureDef);
         shape.dispose();
         
@@ -57,7 +63,7 @@ public class Player extends GameCharacter{
         fixtureDef2.shape = shape;
         fixtureDef2.density = 2f;
         fixtureDef2.isSensor = true;
-        fixtureDef2.filter.groupIndex=PLAYER_GROUP;
+        fixtureDef2.filter.groupIndex=GROUP_PLAYER_WEAPON;
         fixture = body.createFixture(fixtureDef2);
         shape.dispose();
         

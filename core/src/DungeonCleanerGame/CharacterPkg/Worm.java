@@ -5,6 +5,7 @@
  */
 package DungeonCleanerGame.CharacterPkg;
 
+import DevRandEnginePkg.ConstantEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -15,9 +16,15 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * @author ivan
  */
 public class Worm extends Enemy{
-
+    
+    
     public Worm(float unitScale) {
         super(unitScale);
+        this.setBounds(0,0,64*unitScale,64*unitScale);
+        super.life = Enemy.constant.getIntConstant("WormLife");
+        super.defense = Enemy.constant.getIntConstant("WormDefense");
+        super.attack = Enemy.constant.getIntConstant("WormAttack");
+        super.stamina = Enemy.constant.getIntConstant("WormStamina");
         LoadTexture();
     }
     

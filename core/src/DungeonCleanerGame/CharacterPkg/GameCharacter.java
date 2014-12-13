@@ -29,9 +29,19 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  */
 public class GameCharacter extends Actor{
     
-    
     protected ActionController controls;
     protected Body body;
+    
+    public Boolean controlsEnabled = true;
+    public Boolean isStringing = false;
+    
+    protected int life;
+    protected int attack;
+    protected int defense;
+    protected int stamina;
+    
+    protected int maxLife;
+    protected int maxStamina;
     
     
     int sheet_rows;
@@ -74,11 +84,7 @@ public class GameCharacter extends Actor{
     public dir d=right;
     public state st=standby;
     
-    private int life;
-    private int attack;
-    private int defense;
-    private int stamina;
-    
+       
     Animation WalkUp;
     Animation WalkDown;
     Animation WalkLeft;
@@ -114,6 +120,12 @@ public class GameCharacter extends Actor{
     /*public void LoadTexture(){
        //OVERRIDEN
     }*/
+    
+    public void disableControls(float millis){
+        controls.timer += millis;
+        controlsEnabled = false;
+    }
+    
     
     public float getBodyX(){
         return body.getPosition().x;

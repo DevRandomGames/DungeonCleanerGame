@@ -8,6 +8,8 @@ package DungeonCleanerGame.GameMapPkg;
 
 
 import DevRandEnginePkg.RandomEngine;
+import DungeonCleanerGame.CharacterPkg.Enemy;
+import DungeonCleanerGame.CharacterPkg.Player;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
  * @author ArclorenSarth
  */
 public class GameMap {
+    Player player;
     Room actualRoom;
     Vector2 actualPos;
     String[] mapNamesLeft = {"BigRoom1.tmx","Exterior1.tmx","ForgeRoom.tmx"};
@@ -33,6 +36,22 @@ public class GameMap {
         DungeonMap = new ArrayList();
         numberofrooms = 5;
         actualPos = new Vector2(0f,0f);
+    }
+    
+    public void addPlayer(Player p){
+        player = p;
+    }
+    
+    public Player getPlayer(){
+        return player;
+    }
+    
+    public Enemy getEnemy(int ID){
+        ArrayList<Enemy> enemies = actualRoom.Enemies;
+        int i=0;
+        while(enemies.get(i).getEnemyID() != ID && i < enemies.size()) ++i;
+        if(i < enemies.size()) return enemies.get(i);
+        else return null;
     }
     
     public void newRoom(String roomName){

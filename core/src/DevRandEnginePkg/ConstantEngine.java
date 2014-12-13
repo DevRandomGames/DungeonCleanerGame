@@ -17,12 +17,14 @@ public class ConstantEngine {
     private static ConstantEngine INSTANCE = null;
     TreeMap<String,Integer> intConstantMap;
     TreeMap<String,Float> floatConstantMap;
+    TreeMap<String,Short> shortConstantMap;
     
     
     private ConstantEngine(DevRandEngine e){
         engine = e;
         intConstantMap = new TreeMap();
         floatConstantMap = new TreeMap();
+        shortConstantMap = new TreeMap();
     }
     
     private static void createInstance(DevRandEngine e){
@@ -45,6 +47,7 @@ public class ConstantEngine {
     public void addConstant(String con, Object value){
         if(value instanceof Integer) intConstantMap.put(con,(Integer)value);
         else if(value instanceof Float) floatConstantMap.put(con,(Float)value);
+        else if(value instanceof Short) shortConstantMap.put(con,(Short)value);
     }
     
     public int getIntConstant(String con){
@@ -53,6 +56,10 @@ public class ConstantEngine {
     
     public float getFloatConstant(String con){
         return floatConstantMap.get(con);
+    }
+    
+    public short getShortConstant(String con){
+        return shortConstantMap.get(con);
     }
     
 }

@@ -5,9 +5,13 @@
  */
 package DungeonCleanerGame.CharacterPkg;
 
+import DevRandEnginePkg.ConstantEngine;
 import DevRandEnginePkg.DevRandEngine;
+import DevRandEnginePkg.RandomEngine;
 import DungeonCleanerGame.ControlsPkg.DungeonIAController;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
+import DungeonCleanerGame.IAPkg.IA;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
@@ -22,17 +26,26 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * @author ivan
  */
 public class Enemy extends GameCharacter {
-    private DevRandEngine gameEng;
-    private final short GROUP_MONSTER=-2;
-    static private int ID=0;
+    private final static DevRandEngine gameEng = DevRandEngine.getInstance();
+    protected final static ConstantEngine constant = gameEng.gameConstant();
+    private static IA myIA;
+    private static final short GROUP_MONSTER = constant.getShortConstant("GROUP_MONSTER");
+    private static final short GROUP_MONSTER_VISION = constant.getShortConstant("GROUP_MONSTER_VISION");
+    private static int ID=0;
     
+    private int enemyID;
     
     public Enemy(float unitScale){
-        setBounds(0,0,64*unitScale,64*unitScale);
+        enemyID = ID;
+        myIA = new IA();
         ++ID;
         //CREAMOS EL PLAYERCONTROLLER
         super.controls = new DungeonIAController(this);
-        gameEng = DevRandEngine.getInstance();
+        
+    }
+    
+    public int getEnemyID(){
+        return enemyID;
     }
     
     public void createBody(float x, float y){
@@ -40,7 +53,7 @@ public class Enemy extends GameCharacter {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(x,y);
         super.body = gameEng.gamePhysics().getWorld().createBody(bodyDef);
-        super.body.setUserData(ID);
+        super.body.setUserData(enemyID);
         
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.getWidth()/4, this.getHeight()/4);
@@ -57,15 +70,24 @@ public class Enemy extends GameCharacter {
         fixtureArea.isSensor = true;
         fixtureArea.shape = Areashape;
         fixtureArea.density = 2f;
-        fixtureArea.filter.groupIndex = GROUP_MONSTER;
+        fixtureArea.filter.groupIndex = GROUP_MONSTER_VISION;
         body.createFixture(fixtureArea);
         Areashape.dispose();
         
         
     }
     
-    public int getID(){
+    public int getTotalID(){
         return ID;
+    }
+    
+    public GameCharacter.state iaComputeState(){
+        
+        return this.st;
+    }
+    
+    public GameCharacter.dir iaComputeDir(){
+        return myIA.RandomDir(RandomEngine.randInt(0,5));
     }
     
     public DungeonIAController getEnemyControls(){

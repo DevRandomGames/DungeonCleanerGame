@@ -118,10 +118,21 @@ public class RenderEngine {
     public void renderDebugInfo(){
         int X = 10, Y = 700;
         batch.begin();
+        font.setScale(1f);
+        font.setColor(Color.WHITE);
         for(int i=0; i<debugInfo.size; ++i){
             font.draw(batch,debugInfo.get(i),X,Y);
             Y -= 20;
         }
+        batch.end();
+    }
+    
+    
+    public void renderUI(String m, int posX, int posY){
+        font.setColor(Color.RED);
+        font.setScale(5f);
+        batch.begin();
+        font.draw(batch,m,posX,posY);
         batch.end();
     }
     
@@ -147,31 +158,6 @@ public class RenderEngine {
         return stage;
     }
     
-   /*public void renderZone(StaticTiledMapTile[][] zone,int width,int height){
-       
-        TiledMap map = new TiledMap();
-        MapLayers layers = map.getLayers();
-
-        TiledMapTileLayer layer1 = new TiledMapTileLayer(width, height, 1, 1);
-        
-        for(int i=0;i<zone.length;++i){
-            for(int j=0;j<zone[0].length;++j){
-                Cell cell = new Cell();
-                cell.setTile(zone[i][j]);
-                layer1.setCell(i, j, cell);
-                
-            }
-        }
-        layers.add(layer1);
-        mapRender = new OrthogonalTiledMapRenderer(map);
-        
-        
-        
-        mapRender.render();
-        
-   }
-   */
-   
-    
+     
     
 }
