@@ -20,6 +20,7 @@ public class Worm extends Enemy{
     
     public Worm(float unitScale) {
         super(unitScale);
+        this.setBounds(0,0,64*unitScale,64*unitScale);
         super.life = Enemy.constant.getIntConstant("WormLife");
         super.defense = Enemy.constant.getIntConstant("WormDefense");
         super.attack = Enemy.constant.getIntConstant("WormAttack");

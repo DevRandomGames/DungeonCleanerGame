@@ -18,6 +18,7 @@ public class Boss1 extends Enemy{
 
     public Boss1(float unitScale) {
         super(unitScale);
+        this.setBounds(0,0,64*unitScale,64*unitScale);
         super.life = Enemy.constant.getIntConstant("BossLife");
         super.defense = Enemy.constant.getIntConstant("BossDefense");
         super.attack = Enemy.constant.getIntConstant("BossAttack");
