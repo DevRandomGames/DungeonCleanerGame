@@ -8,6 +8,7 @@ package DungeonCleanerGame.CharacterPkg;
 import DevRandEnginePkg.ConstantEngine;
 import DevRandEnginePkg.DevRandEngine;
 import DevRandEnginePkg.RandomEngine;
+import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.walk;
 import DungeonCleanerGame.ControlsPkg.DungeonIAController;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
 import DungeonCleanerGame.IAPkg.IA;
@@ -81,13 +82,13 @@ public class Enemy extends GameCharacter {
         return ID;
     }
     
-    public GameCharacter.state iaComputeState(){
+    public void iaComputeState(){
         
-        return this.st;
+        this.st = walk;
     }
     
-    public GameCharacter.dir iaComputeDir(){
-        return myIA.RandomDir(RandomEngine.randInt(0,5));
+    public void iaComputeDir(){
+        this.d =  myIA.RandomDir(RandomEngine.randInt(0,5));
     }
     
     public DungeonIAController getEnemyControls(){
