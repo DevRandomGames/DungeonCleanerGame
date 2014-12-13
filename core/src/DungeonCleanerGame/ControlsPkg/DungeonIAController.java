@@ -6,7 +6,6 @@
 
 package DungeonCleanerGame.ControlsPkg;
 
-import DevRandEnginePkg.AIEngine;
 import DevRandEnginePkg.ControlsEnginePkg.IAController;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.CharacterPkg.Enemy;
@@ -46,8 +45,8 @@ public class DungeonIAController extends IAController{
         float forceMove = 0.5f;
         
         //gameEngine.gameIA().stateSelection(en);
-        gameEngine.gameIA().idiotWalk(en);
-        gameEngine.gameIA().RandomDir(en, RG.nextInt(4),Gdx.graphics.getDeltaTime());
+        //gameEngine.gameIA().idiotWalk(en);
+        //gameEngine.gameIA().RandomDir(en, RG.nextInt(4),Gdx.graphics.getDeltaTime());
         
         en.getBody().setAngularVelocity(0f);
         

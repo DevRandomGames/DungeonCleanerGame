@@ -21,7 +21,6 @@ public class DevRandEngine {
     private SoundEngine soundEng;
     private LogicEngine logicEng;
     private ControlsEngine controlsEng;
-    private AIEngine iaEngine;
     public RandomEngine randEng;
     public ConstantEngine consEng;
     
@@ -35,7 +34,6 @@ public class DevRandEngine {
         logicEng = LogicEngine.getInstance(this);
         physicsEng = PhysicsEngine.getInstance(this);
         controlsEng = ControlsEngine.getInstance(this);
-        iaEngine = AIEngine.getInstance(this);
         consEng = ConstantEngine.getInstance(this);
         
         
@@ -70,9 +68,6 @@ public class DevRandEngine {
         return controlsEng;
     }
     
-    public AIEngine gameIA(){
-        return iaEngine;
-    }
     
     public ConstantEngine gameConstant(){
         return consEng;

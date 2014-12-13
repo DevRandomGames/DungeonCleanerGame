@@ -201,7 +201,7 @@ public class DungeonCleaner extends ApplicationAdapter {
     private void createWorld() {
         gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
         combat = new CombatManager(DungeonMap);
-        collissions = new DungeonCollissions(combat);
+        collissions = new DungeonCollissions(combat,DungeonMap);
         gameEngine.gamePhysics().getWorld().setContactListener(collissions);
     }
 
