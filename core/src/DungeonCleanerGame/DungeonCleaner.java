@@ -103,6 +103,7 @@ public class DungeonCleaner extends ApplicationAdapter {
             rayhandler.lightList.get(0).setDistance( RandomEngine.randInt(3, 5));
         }
         renderDebugInfo();
+        renderUI();
     }
 
     
@@ -223,6 +224,10 @@ public class DungeonCleaner extends ApplicationAdapter {
         //COORDENADAS DE SCREEN, HE EMEPZADO IZQUIERDA ARRIBA POR ESO Y ES ALTA
         gameEngine.gameRender().addDebugString("PlyrX=" + p.getBodyX() + " PlyrY=" + p.getBodyY(), 0);
         gameEngine.gameRender().renderDebugInfo();
+    }
+    
+    private void renderUI(){
+        gameEngine.gameRender().renderUI(""+p.getLife(),100,100);
     }
 
     
