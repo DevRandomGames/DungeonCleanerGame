@@ -5,6 +5,7 @@
  */
 package DungeonCleanerGame.CharacterPkg;
 
+import DevRandEnginePkg.ConstantEngine;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.ControlsPkg.DungeonIAController;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
@@ -22,9 +23,11 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
  * @author ivan
  */
 public class Enemy extends GameCharacter {
-    private DevRandEngine gameEng;
-    private final short GROUP_MONSTER=-2;
-    static private int ID=0;
+    private final static DevRandEngine gameEng = DevRandEngine.getInstance();
+    private final static ConstantEngine constant = gameEng.gameConstant();
+    private static final short GROUP_MONSTER = constant.getShortConstant("GROUP_MONSTER");
+    private static final short GROUP_MONSTER_VISION = constant.getShortConstant("GROUP_MONSTER_VISION");
+    private static int ID=0;
     
     
     public Enemy(float unitScale){
@@ -32,7 +35,7 @@ public class Enemy extends GameCharacter {
         ++ID;
         //CREAMOS EL PLAYERCONTROLLER
         super.controls = new DungeonIAController(this);
-        gameEng = DevRandEngine.getInstance();
+        
     }
     
     public void createBody(float x, float y){
@@ -57,7 +60,7 @@ public class Enemy extends GameCharacter {
         fixtureArea.isSensor = true;
         fixtureArea.shape = Areashape;
         fixtureArea.density = 2f;
-        fixtureArea.filter.groupIndex = GROUP_MONSTER;
+        fixtureArea.filter.groupIndex = GROUP_MONSTER_VISION;
         body.createFixture(fixtureArea);
         Areashape.dispose();
         
