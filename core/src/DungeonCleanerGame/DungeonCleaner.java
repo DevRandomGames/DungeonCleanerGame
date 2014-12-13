@@ -109,10 +109,10 @@ public class DungeonCleaner extends ApplicationAdapter {
     private void constantsInitialization() {
         //INITIALIZING OCNSTANTS
         gameEngine.gameConstant().addConstant("unitScale",1/100f);
-        gameEngine.gameConstant().addConstant("GROUP_PLAYER",(short)0);
-        gameEngine.gameConstant().addConstant("GROUP_PLAYER_WEAPON",(short)1);
-        gameEngine.gameConstant().addConstant("GROUP_MONSTER",(short)2);
-        gameEngine.gameConstant().addConstant("GROUP_MONSTER_VISION",(short)3);
+        gameEngine.gameConstant().addConstant("GROUP_PLAYER",(short)1);
+        gameEngine.gameConstant().addConstant("GROUP_PLAYER_WEAPON",(short)2);
+        gameEngine.gameConstant().addConstant("GROUP_MONSTER",(short)3);
+        gameEngine.gameConstant().addConstant("GROUP_MONSTER_VISION",(short)4);
         
         gameEngine.gameConstant().addConstant("PlayerLife",100);
         gameEngine.gameConstant().addConstant("PlayerAttack",10);
