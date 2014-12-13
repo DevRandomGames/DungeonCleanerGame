@@ -29,13 +29,19 @@ public class Enemy extends GameCharacter {
     private static final short GROUP_MONSTER_VISION = constant.getShortConstant("GROUP_MONSTER_VISION");
     private static int ID=0;
     
+    private int enemyID;
     
     public Enemy(float unitScale){
         setBounds(0,0,64*unitScale,64*unitScale);
+        enemyID = ID;
         ++ID;
         //CREAMOS EL PLAYERCONTROLLER
         super.controls = new DungeonIAController(this);
         
+    }
+    
+    public int getEnemyID(){
+        return enemyID;
     }
     
     public void createBody(float x, float y){
@@ -43,7 +49,7 @@ public class Enemy extends GameCharacter {
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(x,y);
         super.body = gameEng.gamePhysics().getWorld().createBody(bodyDef);
-        super.body.setUserData(ID);
+        super.body.setUserData(enemyID);
         
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(this.getWidth()/4, this.getHeight()/4);
@@ -67,7 +73,7 @@ public class Enemy extends GameCharacter {
         
     }
     
-    public int getID(){
+    public int getTotalID(){
         return ID;
     }
     

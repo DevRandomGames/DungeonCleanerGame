@@ -121,6 +121,12 @@ public class GameCharacter extends Actor{
        //OVERRIDEN
     }*/
     
+    public void disableControls(float millis){
+        controls.timer += millis;
+        controlsEnabled = false;
+    }
+    
+    
     public float getBodyX(){
         return body.getPosition().x;
     }

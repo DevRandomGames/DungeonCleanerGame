@@ -6,7 +6,9 @@
 package DungeonCleanerGame;
 
 import DevRandEnginePkg.DevRandEngine;
+import DungeonCleanerGame.CharacterPkg.Player;
 import DungeonCleanerGame.GameMapPkg.GameMap;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 /**
@@ -27,7 +29,12 @@ public class CombatManager {
     }
     
     public void computeStrikeToPlayer(Body monster, Body player){
-        
+        Player p = map.getPlayer();
+        p.disableControls(2000);
+        int attack = map.getEnemy((Integer)monster.getUserData()).getAttack();
+        p.setLife(p.getLife() -  attack);
+        player.setLinearVelocity(new Vector2(0f,0f));
+        player.applyForceToCenter(new Vector2(40,40), true );
     }
     
 }

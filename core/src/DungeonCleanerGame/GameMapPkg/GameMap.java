@@ -8,6 +8,7 @@ package DungeonCleanerGame.GameMapPkg;
 
 
 import DevRandEnginePkg.RandomEngine;
+import DungeonCleanerGame.CharacterPkg.Enemy;
 import DungeonCleanerGame.CharacterPkg.Player;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -39,6 +40,18 @@ public class GameMap {
     
     public void addPlayer(Player p){
         player = p;
+    }
+    
+    public Player getPlayer(){
+        return player;
+    }
+    
+    public Enemy getEnemy(int ID){
+        ArrayList<Enemy> enemies = actualRoom.Enemies;
+        int i=0;
+        while(enemies.get(i).getEnemyID() != ID && i < enemies.size()) ++i;
+        if(i < enemies.size()) return enemies.get(i);
+        else return null;
     }
     
     public void newRoom(String roomName){
