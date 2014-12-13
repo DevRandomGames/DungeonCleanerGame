@@ -51,12 +51,7 @@ public class DungeonIAController extends IAController{
         float speed = 200;
         float forceMove = 0.5f;
         
-        if(super.timer <=0){
-            super.timer = 0;
-            en.controlsEnabled = true;
-        }
-        
-       if(en.controlsEnabled){
+        if(en.controlsEnabled){
             en.iaComputeState();
         
             if(iaTimer>=4){
@@ -70,6 +65,11 @@ public class DungeonIAController extends IAController{
                 default: idiotWalk(en);break;
             }
        }
+       
+        if(super.timer <=0){
+            super.timer = 0;
+            en.controlsEnabled = true;
+        }
         
         
         en.getBody().setAngularVelocity(0f);
