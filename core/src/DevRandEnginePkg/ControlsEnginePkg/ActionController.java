@@ -12,6 +12,7 @@ package DevRandEnginePkg.ControlsEnginePkg;
  */
 public abstract class ActionController {
      protected Object ctrlIdentity;
+     protected float timer = 0;
 
      public void computeAction(int p, int e, int f){
          //metodo sobreescrito por las subclases

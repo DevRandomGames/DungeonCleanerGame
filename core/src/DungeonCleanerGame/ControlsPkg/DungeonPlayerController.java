@@ -8,26 +8,23 @@ package DungeonCleanerGame.ControlsPkg;
 
 import DevRandEnginePkg.ControlsEnginePkg.KeyMapper;
 import DevRandEnginePkg.ControlsEnginePkg.PlayerController;
-import DevRandEnginePkg.DevRandEngine;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.*;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.*;
 import DungeonCleanerGame.CharacterPkg.Player;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.math.Vector3;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveBy;
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveBy;
+import com.badlogic.gdx.utils.TimeUtils;
+
 
 /**
  *
  * @author ArclorenSarth
  */
 public class DungeonPlayerController extends PlayerController{
-    private DevRandEngine gameEngine;
+    float oldTime = TimeUtils.millis();
     
     public DungeonPlayerController(Player p){
-        gameEngine = DevRandEngine.getInstance();
+        super.timer = 0;
         super.ctrlIdentity = p;
         super.keyMap = new KeyMapper();
         //PONEMOS LOS CONTROLES AL KEYMAPPER
@@ -35,7 +32,7 @@ public class DungeonPlayerController extends PlayerController{
         super.keyMap.addKey("right", Input.Keys.D);
         super.keyMap.addKey("up", Input.Keys.W);
         super.keyMap.addKey("down", Input.Keys.S);
-        super.keyMap.addKey("hit", Input.Keys.E);
+        super.keyMap.addKey("hit", Input.Keys.SPACE);
         
     }
     
@@ -43,46 +40,60 @@ public class DungeonPlayerController extends PlayerController{
     @Override
     public void computeAction(int p, int e, int f){
         Player pl = (Player) super.ctrlIdentity;
-        pl.st = walk;
-        Camera cam = gameEngine.gameRender().getCamera();
-        float speed = 5;
-        float forceMove = 1;
         
+        float newTime = TimeUtils.millis();
+        super.timer -= (TimeUtils.millis() - oldTime);
+        oldTime = newTime;
+        if(super.timer <=0){
+            super.timer = 0;
+            pl.controlsEnabled = true;
+        }
+        
+        
+        float horizontalMov = 0;
+        float verticalMov = 0;
+        float speed = 5;
+        boolean striking = false;
+        System.out.println(Gdx.graphics.getDeltaTime());
+        
+        //COMPUTE CONTROLS AND CALCULATE FUTURE REACTIONS
         if(Gdx.input.isKeyPressed(keyMap.key("left"))){
-            pl.d = left;
-            pl.getBody().setLinearVelocity(-speed, 0f);
-            //pl.getBody().applyForceToCenter(-forceMove, 0f, true);
-            //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
-            //cam.position.set(pl.getX(),pl.getY(),0);
+            horizontalMov += (-speed);
         }
-        else if(Gdx.input.isKeyPressed(keyMap.key("right"))){
-            pl.d = right;
-            pl.getBody().setLinearVelocity(speed, 0f);
-            //pl.getBody().applyForceToCenter(forceMove, 0f, true);
-            //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
-            //cam.position.set(pl.getX(),pl.getY(),0);
+        if(Gdx.input.isKeyPressed(keyMap.key("right"))){
+            horizontalMov += speed;
         }
-        else if(Gdx.input.isKeyPressed(keyMap.key("up"))){
-            pl.d = up;
-            pl.getBody().setLinearVelocity(0f, speed);
-            //pl.getBody().applyForceToCenter(0f, forceMove, true);
-            //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
-            //cam.position.set(pl.getX(),pl.getY(),0);
+        if(Gdx.input.isKeyPressed(keyMap.key("up"))){
+            verticalMov += speed;
         }
-        else if(Gdx.input.isKeyPressed(keyMap.key("down"))){
-            pl.d = down;
-            pl.getBody().setLinearVelocity(0f, -speed);
-            //pl.getBody().applyForceToCenter(0f, -forceMove, true);
-            //pl.setPosition(pl.getBody().getPosition().x,pl.getBody().getPosition().y);
-            //cam.position.set(pl.getX(),pl.getY(),0);
+        if(Gdx.input.isKeyPressed(keyMap.key("down"))){
+            verticalMov += (-speed);
         }
-        else if(Gdx.input.isKeyPressed(keyMap.key("hit"))){
-            pl.st = strike;
+        
+        if(Gdx.input.isKeyPressed(keyMap.key("hit"))){
+            striking = true;
         }
-        else{
-            pl.st = standby;
-            pl.getBody().setLinearVelocity(0f, 0f);
+        
+        
+        //Timer que desactiva controles
+        if(pl.controlsEnabled){
+            //COMPUTE FUTURE REACTION TO CONTROLS
+            pl.getBody().setLinearVelocity(horizontalMov,verticalMov);
+        
+            pl.st = walk;
+            if(horizontalMov > 0) pl.d = right;
+            else if (horizontalMov < 0) pl.d = left;
+            else if(verticalMov > 0) pl.d = up;
+            else if (verticalMov < 0) pl.d = down;
+        
+            if(horizontalMov == 0 && verticalMov == 0) pl.st = standby;
+        
+            if(striking) pl.st = strike;
+        
         }
+        pl.getBody().setAngularVelocity(0f);
+        
+        
     }
     
 }

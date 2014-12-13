@@ -32,10 +32,16 @@ public class GameCharacter extends Actor{
     protected ActionController controls;
     protected Body body;
     
+    public Boolean controlsEnabled = true;
+    public Boolean isStringing = false;
+    
     protected int life;
     protected int attack;
     protected int defense;
     protected int stamina;
+    
+    protected int maxLife;
+    protected int maxStamina;
     
     
     int sheet_rows;
