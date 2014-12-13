@@ -18,6 +18,7 @@ public class Ghost extends Enemy {
 
     public Ghost(float unitScale) {
         super(unitScale);
+        this.setBounds(0f, 0f, 64*unitScale, 64*unitScale);
         super.life = Enemy.constant.getIntConstant("BossLife");
         super.defense = Enemy.constant.getIntConstant("BossDefense");
         super.attack = Enemy.constant.getIntConstant("BossAttack");
