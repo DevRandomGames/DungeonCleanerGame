@@ -28,6 +28,27 @@ public class CombatManager {
     }
     
     public void computeStrikeToMonster(Body player, Body monster, WorldManifold mani){
+        Player p = map.getPlayer();
+        if(p.isStriking){
+            Enemy e = map.getEnemy((Integer)monster.getUserData());
+            e.disableControls(0.4f);
+
+            int attack = p.getAttack();
+            int stamina = p.getStamina();
+
+            int life = e.getLife();
+            int defense = e.getDefense();
+
+            e.setLife(newLife(life,defense,attack,stamina));
+            monster.setLinearVelocity(new Vector2(0f,0f));
+            Vector2 dir = mani.getNormal();
+            //System.out.println(mani.getNormal().toString());
+            //dir.add(point);
+            dir.x = dir.x*-1*2;
+            dir.y = dir.y*-1*2;
+            monster.applyForceToCenter(dir, true);
+            monster.setLinearVelocity(dir);
+        }
         
     }
     

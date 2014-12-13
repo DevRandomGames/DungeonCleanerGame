@@ -33,7 +33,7 @@ public class GameCharacter extends Actor{
     protected Body body;
     
     public Boolean controlsEnabled = true;
-    public Boolean isStringing = false;
+    public Boolean isStriking = false;
     
     protected int life;
     protected int attack;
