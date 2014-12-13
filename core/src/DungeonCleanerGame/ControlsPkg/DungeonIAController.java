@@ -9,6 +9,7 @@ package DungeonCleanerGame.ControlsPkg;
 import DevRandEnginePkg.ControlsEnginePkg.IAController;
 import DevRandEnginePkg.DevRandEngine;
 import DungeonCleanerGame.CharacterPkg.Enemy;
+import DungeonCleanerGame.CharacterPkg.GameCharacter;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.down;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.left;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.right;
@@ -32,17 +33,32 @@ public class DungeonIAController extends IAController{
     
     public DungeonIAController(Enemy e){
         super.ctrlIdentity = e;
+        super.timer=0;
         e.st = walk;
         gameEngine = DevRandEngine.getInstance();
         RG = new Random();
     }
     
     public void computeAction(int p, int e, int f){
+        
+        super.timer +=Gdx.graphics.getDeltaTime();
         Enemy en = (Enemy) super.ctrlIdentity;
         //en.st = walk;
         //Camera cam = gameEngine.gameRender().getCamera();
         float speed = 200;
         float forceMove = 0.5f;
+        
+        en.st = en.iaComputeState();
+        if(super.timer>=4){
+            super.timer = 0;
+            en.d = en.iaComputeDir();
+        }
+        
+        switch(en.st){
+            case walk: idiotWalk(en);break;
+            //case hit: idiotWalk(en);
+            default: idiotWalk(en);break;
+        }
         
         //gameEngine.gameIA().stateSelection(en);
         //gameEngine.gameIA().idiotWalk(en);
@@ -50,6 +66,22 @@ public class DungeonIAController extends IAController{
         
         en.getBody().setAngularVelocity(0f);
         
+    }
+    
+    public void idiotWalk(Enemy e){
+        
+        if(e.d==GameCharacter.dir.up && e.st==GameCharacter.state.walk){
+            e.getBody().setLinearVelocity(0f, 0.5f);
+        }
+        if(e.d==GameCharacter.dir.down && e.st==GameCharacter.state.walk){
+            e.getBody().setLinearVelocity(0f, -0.5f);
+        }
+        if(e.d==GameCharacter.dir.left && e.st==GameCharacter.state.walk){
+            e.getBody().setLinearVelocity(-0.5f, 0f);
+        }
+        if(e.d==GameCharacter.dir.right && e.st==GameCharacter.state.walk){
+            e.getBody().setLinearVelocity(0.5f, 0f);
+        }
     }
     
 }
