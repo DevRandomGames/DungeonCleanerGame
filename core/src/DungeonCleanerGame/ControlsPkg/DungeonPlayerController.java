@@ -42,8 +42,9 @@ public class DungeonPlayerController extends PlayerController{
         Player pl = (Player) super.ctrlIdentity;
         
         float newTime = TimeUtils.millis();
-        super.timer -= (TimeUtils.millis() - oldTime);
+        super.timer -= (Gdx.graphics.getDeltaTime());
         oldTime = newTime;
+        System.out.println(super.timer);
         if(super.timer <=0){
             super.timer = 0;
             pl.controlsEnabled = true;
@@ -54,7 +55,7 @@ public class DungeonPlayerController extends PlayerController{
         float verticalMov = 0;
         float speed = 5;
         boolean striking = false;
-        System.out.println(Gdx.graphics.getDeltaTime());
+        
         
         //COMPUTE CONTROLS AND CALCULATE FUTURE REACTIONS
         if(Gdx.input.isKeyPressed(keyMap.key("left"))){

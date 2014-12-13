@@ -30,7 +30,7 @@ public class CombatManager {
     
     public void computeStrikeToPlayer(Body monster, Body player){
         Player p = map.getPlayer();
-        p.disableControls(2000);
+        p.disableControls(0.7f);
         int attack = map.getEnemy((Integer)monster.getUserData()).getAttack();
         p.setLife(p.getLife() -  attack);
         player.setLinearVelocity(new Vector2(0f,0f));
