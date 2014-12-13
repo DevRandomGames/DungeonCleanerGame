@@ -46,10 +46,12 @@ public class CombatManager {
         p.setLife(newLife(life,defense,attack,stamina));
         player.setLinearVelocity(new Vector2(0f,0f));
         Vector2 dir = mani.getNormal();
+        System.out.println(mani.getNormal().toString());
         //dir.add(point);
-        dir.x = dir.x*2;
-        dir.y = dir.y*2;
+        dir.x = dir.x*-1*2;
+        dir.y = dir.y*-1*2;
         player.applyForceToCenter(dir, true);
+        player.setLinearVelocity(dir);
     }
     
     

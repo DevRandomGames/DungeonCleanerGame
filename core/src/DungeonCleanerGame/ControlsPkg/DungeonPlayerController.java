@@ -44,7 +44,7 @@ public class DungeonPlayerController extends PlayerController{
         float newTime = TimeUtils.millis();
         super.timer -= (Gdx.graphics.getDeltaTime());
         oldTime = newTime;
-        System.out.println(super.timer);
+       // System.out.println(super.timer);
         if(super.timer <=0){
             super.timer = 0;
             pl.controlsEnabled = true;
