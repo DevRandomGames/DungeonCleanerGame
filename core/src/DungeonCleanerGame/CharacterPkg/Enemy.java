@@ -57,7 +57,8 @@ public class Enemy extends GameCharacter {
     
     public void killEnemy(){
         super.body.setLinearVelocity(0f,0f);
-        gameEng.gamePhysics().addDeadBodie(super.body);
+        gameEng.gameControls().removeControl(super.controls);
+        if(super.body != null) gameEng.gamePhysics().addDeadBodie(super.body);
         if(bulletbody != null) gameEng.gamePhysics().addDeadBodie(bulletbody);
         this.remove();
         //aqui reproducir sonido o algo
