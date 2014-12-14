@@ -65,17 +65,17 @@ public class DungeonCleaner extends ApplicationAdapter {
         widthScreen = Gdx.graphics.getWidth();
         heightScreen = Gdx.graphics.getHeight();
         gameEngine = DevRandEngine.getInstance();
-        
+
         constantsInitialization();
-        
+
         gameEngine.gameRender().setCamera((int) (widthScreen * unitScale), (int) (heightScreen * unitScale));
-                
+
         createGameMap();
         createWorld();
         createPlayer();
         initPlayer(4.0f, 4.0f);
         createEnemies();
-        
+
         MapParserManager.inicialize();
         parseMap();
 
@@ -97,71 +97,65 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gamePhysics().renderPhysics();
         gameEngine.gameRender().renderMap();
         gameEngine.gameRender().renderStage();
-        //gameEngine.gameRender().renderWorldDebug();
+        gameEngine.gameRender().renderWorldDebug();
         RayHandler rayhandler = gameEngine.gamePhysics().getRayhandler();
 
         rayhandler.setCombinedMatrix(gameEngine.gameRender().getCamera().combined);
         rayhandler.updateAndRender();
-        if(rayhandler.lightList.size >0) {
-            rayhandler.lightList.get(0).setDistance( RandomEngine.randInt(3, 5));
-        }
+
         renderDebugInfo();
         renderUI();
         gameEngine.gameSound().autoPlayList();
     }
 
-    
-    
-    
     private void constantsInitialization() {
         //INITIALIZING OCNSTANTS
-        gameEngine.gameConstant().addConstant("unitScale",1/100f);
-        gameEngine.gameConstant().addConstant("GROUP_PLAYER",(short)1);
-        gameEngine.gameConstant().addConstant("GROUP_PLAYER_WEAPON",(short)2);
-        gameEngine.gameConstant().addConstant("GROUP_MONSTER",(short)3);
-        gameEngine.gameConstant().addConstant("GROUP_MONSTER_VISION",(short)4);
-        gameEngine.gameConstant().addConstant("BULLET", (short)5);
-        
-        gameEngine.gameConstant().addConstant("PlayerLife",100);
-        gameEngine.gameConstant().addConstant("PlayerAttack",10);
-        gameEngine.gameConstant().addConstant("PlayerDefense",20);
-        gameEngine.gameConstant().addConstant("PlayerStamina",60);
-        
-        gameEngine.gameConstant().addConstant("EnemyLife",100);
-        gameEngine.gameConstant().addConstant("EnemyAttack",10);
-        gameEngine.gameConstant().addConstant("EnemyDefense",30);
-        gameEngine.gameConstant().addConstant("EnemyStamina",60);
-        
-        gameEngine.gameConstant().addConstant("WormLife",10);
-        gameEngine.gameConstant().addConstant("WormAttack",15);
-        gameEngine.gameConstant().addConstant("WormDefense",10);
-        gameEngine.gameConstant().addConstant("WormStamina",30);
-        
-        gameEngine.gameConstant().addConstant("GhostLife",40);
-        gameEngine.gameConstant().addConstant("GhostAttack",25);
-        gameEngine.gameConstant().addConstant("GhostDefense",5);
-        gameEngine.gameConstant().addConstant("GhostStamina",60);
-        
-        gameEngine.gameConstant().addConstant("BossLife",300);
-        gameEngine.gameConstant().addConstant("BossAttack",50);
-        gameEngine.gameConstant().addConstant("BossDefense",60);
-        gameEngine.gameConstant().addConstant("BossStamina",200);
-        
-         
+        gameEngine.gameConstant().addConstant("unitScale", 1 / 100f);
+        gameEngine.gameConstant().addConstant("GROUP_PLAYER", (short) 1);
+        gameEngine.gameConstant().addConstant("GROUP_PLAYER_WEAPON", (short) 2);
+        gameEngine.gameConstant().addConstant("GROUP_MONSTER", (short) 3);
+        gameEngine.gameConstant().addConstant("GROUP_MONSTER_VISION", (short) 4);
+        gameEngine.gameConstant().addConstant("BULLET", (short) 5);
+        gameEngine.gameConstant().addConstant("CATEGORY_NOCOLLIDABLE",(short) 0x8);
+
+        gameEngine.gameConstant().addConstant("PlayerLife", 100);
+        gameEngine.gameConstant().addConstant("PlayerAttack", 10);
+        gameEngine.gameConstant().addConstant("PlayerDefense", 20);
+        gameEngine.gameConstant().addConstant("PlayerStamina", 60);
+
+        gameEngine.gameConstant().addConstant("EnemyLife", 100);
+        gameEngine.gameConstant().addConstant("EnemyAttack", 10);
+        gameEngine.gameConstant().addConstant("EnemyDefense", 30);
+        gameEngine.gameConstant().addConstant("EnemyStamina", 60);
+
+        gameEngine.gameConstant().addConstant("WormLife", 10);
+        gameEngine.gameConstant().addConstant("WormAttack", 15);
+        gameEngine.gameConstant().addConstant("WormDefense", 10);
+        gameEngine.gameConstant().addConstant("WormStamina", 30);
+
+        gameEngine.gameConstant().addConstant("GhostLife", 40);
+        gameEngine.gameConstant().addConstant("GhostAttack", 25);
+        gameEngine.gameConstant().addConstant("GhostDefense", 5);
+        gameEngine.gameConstant().addConstant("GhostStamina", 60);
+
+        gameEngine.gameConstant().addConstant("BossLife", 300);
+        gameEngine.gameConstant().addConstant("BossAttack", 50);
+        gameEngine.gameConstant().addConstant("BossDefense", 60);
+        gameEngine.gameConstant().addConstant("BossStamina", 200);
+
         //GETTING CONSTANTS NECESSARY FOR MAIN 
         unitScale = gameEngine.gameConstant().getFloatConstant("unitScale");
     }
-    
-    
+
     private void inputControl() {
         gameEngine.gameControls().computeControls();
     }
-    
-    private void createPlayer(){
+
+    private void createPlayer() {
         p = new Player(unitScale);
-        
+
     }
-    
+
     private void initPlayer(float posX, float posY) {
         gameEngine.gameControls().addControl(p.getPlayerControls());
         //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
@@ -172,7 +166,6 @@ public class DungeonCleaner extends ApplicationAdapter {
         DungeonMap.addPlayer(p);
     }
 
-    
     private void createEnemies() {
         ArrayList<Enemy> enem = DungeonMap.getActualRoom().Enemies;
         Enemy e;
@@ -188,7 +181,6 @@ public class DungeonCleaner extends ApplicationAdapter {
         }
     }
 
-    
     private void saveEnemiesPosition() {
         Array<Actor> act = gameEngine.gameRender().getStage().getActors();
         GameCharacter a;
@@ -198,7 +190,6 @@ public class DungeonCleaner extends ApplicationAdapter {
         }
     }
 
-    
     private void createGameMap() {
         DungeonMap = new GameMap();
         DungeonMap.newRoom("BigRoom1.tmx");
@@ -206,11 +197,10 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameRender().setMapToRender(DungeonMap.getActualRoom().getRoomMap(), unitScale);
     }
 
-    
     private void createWorld() {
         gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
         combat = new CombatManager(DungeonMap);
-        collissions = new DungeonCollissions(combat,DungeonMap);
+        collissions = new DungeonCollissions(combat, DungeonMap);
         gameEngine.gamePhysics().getWorld().setContactListener(collissions);
     }
 
@@ -227,20 +217,18 @@ public class DungeonCleaner extends ApplicationAdapter {
         createEnemies();
         parseMap();
     }
-    
-    
+
     private void renderDebugInfo() {
         //COORDENADAS DE SCREEN, HE EMEPZADO IZQUIERDA ARRIBA POR ESO Y ES ALTA
         gameEngine.gameRender().addDebugString("PlyrX=" + p.getBodyX() + " PlyrY=" + p.getBodyY(), 0);
         gameEngine.gameRender().addDebugString("controls =" + gameEngine.gameControls().getNumCtrls(), 4);
         gameEngine.gameRender().renderDebugInfo();
     }
-    
-    private void renderUI(){
-        gameEngine.gameRender().renderUI(""+p.getLife(),120,120);
+
+    private void renderUI() {
+        gameEngine.gameRender().renderUI("" + p.getLife(), 120, 120);
     }
 
-    
     private void createMusic() {
         gameEngine.gameSound().setMusicPath("Audio/Music/");
         gameEngine.gameSound().setSoundPath("Audio/Sound/");
@@ -249,7 +237,6 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameSound().setRandomMusicToPlay();
     }
 
-    
     private void parseMap() {
         //en un futuro se ocupara el parser Manager
         MapParserManager.parse(DungeonMap.getActualRoom().getRoomMap());

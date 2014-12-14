@@ -85,7 +85,7 @@
  </layer>
  <layer name="Doors_and_Objects" width="24" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFhEAwEIdQwZwyIC6HshOQxEOBOAxN7Twgno/HLGzyFUBcCcSJQJyEJB4OxBFoahcA8UI85mOTrwLiaig7BY9ebKAGiGuBuI5EfcSCeiBuAOJGItR2EqEGPXybgLgZiFtwyCMDYtLLAgbSwx8GQO5HTy/UBNjSCzUBMeFPDxAJxFFAHE0j82OAOBaI42hkPjUAAKzwGkA=
+   eJzdklkOwjAMRH1H9lWAOAP7Tn9yCSg34Wg8iSJZVpqmFPhgpCel9sSNRhb5LzmRUVHdevLuvFSDeuWXicxgnp31DxvQNN4LXAOzfP0FLGEME1VvQdt4U7gF5vv6K1hn56npkeE9ME42sIVdyFRBezjAMcLrIjw23xOcIcnpa8XsSyrl89ey+1KUfxn59uWTisn/m3LPeKUDXeipWsivvqPUhwEM33jjr/QARqMj8Q==
   </data>
  </layer>
  <layer name="Traps" width="24" height="16">
@@ -97,6 +97,9 @@
   <object name="Bed" type="object" x="1900" y="300" width="200" height="300"/>
   <object name="Bonfire" type="object" x="1100" y="700" width="100" height="100">
    <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="4"/>
+    <property name="dancingPeriode" value="0.1"/>
     <property name="light" value="true"/>
     <property name="lightColor" value="1,1,0,1"/>
     <property name="lightDistance" value="5"/>
@@ -124,6 +127,138 @@
     <property name="lightDistance" value="2"/>
     <property name="offsetx" value="0.0"/>
     <property name="offsety" value="0."/>
+   </properties>
+  </object>
+  <object name="llum1" type="object" x="2223" y="750">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsetx" value="-0.7"/>
+   </properties>
+  </object>
+  <object name="llum2" type="object" x="2220" y="1151">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsetx" value="-0.7"/>
+   </properties>
+  </object>
+  <object name="llum3" type="object" x="2220" y="1349">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsetx" value="-0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="1749" y="1423">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsety" value="0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="1048" y="1420">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsety" value="0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="548" y="1420">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsety" value="0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="174" y="1049">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsetx" value="0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="173" y="649">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsetx" value="0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="453" y="173">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsety" value="-0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="1049" y="176">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsety" value="-0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="1349" y="178">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsety" value="-0.7"/>
+   </properties>
+  </object>
+  <object name="llum12" type="object" x="1751" y="180">
+   <properties>
+    <property name="dancingLight" value="true"/>
+    <property name="dancingMinDistance" value="0.5"/>
+    <property name="dancingPeriode" value="0.3"/>
+    <property name="light" value="true"/>
+    <property name="lightColor" value="1,1,0,1"/>
+    <property name="lightDistance" value="1"/>
+    <property name="offsety" value="-0.7"/>
    </properties>
   </object>
  </objectgroup>

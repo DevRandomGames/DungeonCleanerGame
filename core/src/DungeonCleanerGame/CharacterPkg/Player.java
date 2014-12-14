@@ -8,6 +8,7 @@ package DungeonCleanerGame.CharacterPkg;
 import DevRandEnginePkg.ConstantEngine;
 import DevRandEnginePkg.ControlsEnginePkg.KeyMapper;
 import DevRandEnginePkg.DevRandEngine;
+import static DungeonCleanerGame.CharacterPkg.Enemy.constant;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -68,6 +69,7 @@ public class Player extends GameCharacter{
         fixtureDef2.density = 2f;
         fixtureDef2.isSensor = true;
         fixtureDef2.filter.groupIndex=GROUP_PLAYER_WEAPON;
+        fixtureDef2.filter.categoryBits= constant.getShortConstant("CATEGORY_NOCOLLIDABLE");
         fixture = body.createFixture(fixtureDef2);
         shape.dispose();
         

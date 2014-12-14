@@ -91,6 +91,7 @@ public class PhysicsEngine {
             rayhandler.dispose();
         }
         rayhandler = new RayHandler(world);
+        
     }
 
     public void createCharacters(ArrayList<GameCharacter> charList) {

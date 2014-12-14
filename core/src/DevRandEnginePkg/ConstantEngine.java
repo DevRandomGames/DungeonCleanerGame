@@ -15,6 +15,9 @@ import java.util.TreeMap;
 public class ConstantEngine {
     private DevRandEngine engine;
     private static ConstantEngine INSTANCE = null;
+    
+    //Si esto sale en la presentación, que sepais que artem esta tirando bytes
+    //a la basura usando objectos para tipos primitivos
     TreeMap<String,Integer> intConstantMap;
     TreeMap<String,Float> floatConstantMap;
     TreeMap<String,Short> shortConstantMap;

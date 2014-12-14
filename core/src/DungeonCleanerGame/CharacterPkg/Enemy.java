@@ -93,6 +93,7 @@ public class Enemy extends GameCharacter {
         fixtureArea.shape = Areashape;
         fixtureArea.density = 2f;
         fixtureArea.filter.groupIndex = GROUP_MONSTER_VISION;
+        fixtureArea.filter.categoryBits = constant.getShortConstant("CATEGORY_NOCOLLIDABLE");
         body.createFixture(fixtureArea);
         Areashape.dispose();
         

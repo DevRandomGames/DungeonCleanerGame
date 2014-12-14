@@ -12,7 +12,7 @@ package DevRandEnginePkg;
 public class UtilsEngine {
     
     public static float parseFloat(String toParse){
-        return toParse==null ? 0f : Float.parseFloat(toParse);
+        return toParse==null || toParse.isEmpty() ? 0f : Float.parseFloat(toParse);
     }
     
 }
