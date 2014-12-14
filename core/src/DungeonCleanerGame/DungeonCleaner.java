@@ -97,7 +97,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gamePhysics().renderPhysics();
         gameEngine.gameRender().renderMap();
         gameEngine.gameRender().renderStage();
-        gameEngine.gameRender().renderWorldDebug();
+        //gameEngine.gameRender().renderWorldDebug();
         RayHandler rayhandler = gameEngine.gamePhysics().getRayhandler();
 
         rayhandler.setCombinedMatrix(gameEngine.gameRender().getCamera().combined);
