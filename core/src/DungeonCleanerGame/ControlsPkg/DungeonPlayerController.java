@@ -8,6 +8,7 @@ package DungeonCleanerGame.ControlsPkg;
 
 import DevRandEnginePkg.ControlsEnginePkg.KeyMapper;
 import DevRandEnginePkg.ControlsEnginePkg.PlayerController;
+import DevRandEnginePkg.DevRandEngine;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.*;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.*;
 import DungeonCleanerGame.CharacterPkg.Player;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.utils.TimeUtils;
  * @author ArclorenSarth
  */
 public class DungeonPlayerController extends PlayerController{
+    private static final DevRandEngine eng = DevRandEngine.getInstance();
     float attackCooldown;
     float attackTime;
     boolean striking;
@@ -91,6 +93,7 @@ public class DungeonPlayerController extends PlayerController{
             }
             else if(attackTime == 0 && attackCooldown == 0){
                 striking = true;
+                eng.gameSound().playSoundWeapon();
                 attackTime = 0.5f;
                 attackCooldown = 0.9f;
             }

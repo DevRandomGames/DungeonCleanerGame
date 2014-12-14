@@ -42,6 +42,10 @@ public class Player extends GameCharacter{
         LoadTexture();
     }
     
+    public void playSoundDamage(){
+        gameEng.gameSound().playSoundPlayer();
+    }
+    
     public void createBody(float x, float y){
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;

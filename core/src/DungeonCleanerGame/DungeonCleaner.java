@@ -226,6 +226,8 @@ public class DungeonCleaner extends ApplicationAdapter {
         initPlayer(newPosPlyr.x, newPosPlyr.y);
         createEnemies();
         parseMap();
+        
+        gameEngine.gameSound().playSoundDoor();
     }
     
     
@@ -246,6 +248,9 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameSound().setSoundPath("Audio/Sound/");
         gameEngine.gameSound().addMusic("DoomTheme.mp3");
         gameEngine.gameSound().addMusic("DukeNukemTheme.mp3");
+        gameEngine.gameSound().addMusic("SeriousSamTheme.mp3");
+        gameEngine.gameSound().addMusic("SeriousSamThemeVocal.mp3");
+        gameEngine.gameSound().loadSounds();
         gameEngine.gameSound().setRandomMusicToPlay();
     }
 

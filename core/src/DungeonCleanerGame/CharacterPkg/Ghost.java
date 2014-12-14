@@ -5,6 +5,7 @@
  */
 package DungeonCleanerGame.CharacterPkg;
 
+import DevRandEnginePkg.DevRandEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -15,7 +16,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * @author ivan
  */
 public class Ghost extends Enemy {
-
+    private static final DevRandEngine eng = DevRandEngine.getInstance();
+    
     public Ghost(float unitScale) {
         super(unitScale);
         this.setBounds(0f, 0f, 64*unitScale, 64*unitScale);
@@ -26,6 +28,10 @@ public class Ghost extends Enemy {
         LoadTexture();
     }
     
+    @Override
+    public void playSoundDamage(){
+        eng.gameSound().playSoundGhost();
+    }
     
     private void LoadTexture(){
         WalkSheet = new Texture(Gdx.files.internal("Ghost.png"));

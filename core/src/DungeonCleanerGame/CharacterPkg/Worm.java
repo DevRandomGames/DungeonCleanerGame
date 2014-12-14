@@ -6,6 +6,7 @@
 package DungeonCleanerGame.CharacterPkg;
 
 import DevRandEnginePkg.ConstantEngine;
+import DevRandEnginePkg.DevRandEngine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -16,7 +17,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * @author ivan
  */
 public class Worm extends Enemy{
-    
+    private static final DevRandEngine eng = DevRandEngine.getInstance();
     
     public Worm(float unitScale) {
         super(unitScale);
@@ -28,7 +29,10 @@ public class Worm extends Enemy{
         LoadTexture();
     }
     
-    
+    @Override
+    public void playSoundDamage(){
+        eng.gameSound().playSoundWorm();
+    }
     
     private void LoadTexture(){
         WalkSheet = new Texture(Gdx.files.internal("WormWalk.png"));
