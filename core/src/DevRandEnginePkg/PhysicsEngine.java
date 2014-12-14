@@ -47,12 +47,12 @@ public class PhysicsEngine {
     
     public void renderPhysics(){
         for(int i=0; i < deadBodies.size(); ++i)
-            if(deadBodies.get(i) != null) world.destroyBody(deadBodies.get(i));
+            if(deadBodies.get(i) != null && world != null) world.destroyBody(deadBodies.get(i));
         deadBodies.clear();
         
         world.step(1.0f/60.0f, 6, 2);
         for(int i=0; i < deadBodies.size(); ++i)
-            if(deadBodies.get(i) != null) world.destroyBody(deadBodies.get(i));
+            if(deadBodies.get(i) != null && world != null) world.destroyBody(deadBodies.get(i));
         deadBodies.clear();
         
     }
