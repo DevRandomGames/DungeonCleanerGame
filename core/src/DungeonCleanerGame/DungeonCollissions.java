@@ -93,7 +93,7 @@ public class DungeonCollissions implements ContactListener{
             }
             
             int monsterID = (Integer) Monster.getUserData();
-            gmap.getEnemy(monsterID);
+            gmap.getEnemy(monsterID).getIA().actAlert(Player);
             
         }
     }
