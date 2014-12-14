@@ -50,7 +50,7 @@ public class DungeonPlayerController extends PlayerController{
         
         float horizontalMov = 0;
         float verticalMov = 0;
-        float speed = 5;
+        float speed = 2f;
         boolean striking = false;
         
         
@@ -91,9 +91,12 @@ public class DungeonPlayerController extends PlayerController{
                 pl.st = strike;
             }
             else pl.isStriking = false;
-        
+            System.out.println(striking);
+            pl.getBody().getFixtureList().get(1).setSensor(!striking);
+               
         }
         pl.getBody().setAngularVelocity(0f);
+        
         
         
     }
