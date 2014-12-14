@@ -111,8 +111,10 @@ public class RenderEngine {
     }
     
     public void addDebugString(String info, int numL){
-        if(numL >= debugInfo.size)
+        if(numL >= debugInfo.size){
+            for(int i=debugInfo.size; i<numL; ++i) debugInfo.add("");
             debugInfo.add(info);
+        }
         else debugInfo.set(numL, info); 
     }
     

@@ -46,15 +46,15 @@ public class PhysicsEngine {
     }
     
     public void renderPhysics(){
-        for(int i=0; i < deadBodies.size(); ++i){
+        for(int i=0; i < deadBodies.size(); ++i)
             world.destroyBody(deadBodies.get(i));
-            deadBodies.remove(i);
-        }
+        deadBodies.clear();
+        
         world.step(1.0f/60.0f, 6, 2);
-        for(int i=0; i < deadBodies.size(); ++i){
+        for(int i=0; i < deadBodies.size(); ++i)
             world.destroyBody(deadBodies.get(i));
-            deadBodies.remove(i);
-        }
+        deadBodies.clear();
+        
     }
     
     public World getWorld(){
@@ -66,6 +66,8 @@ public class PhysicsEngine {
     }      
     
     public void createWorld(TiledMap map, float unitScale){
+        deadBodies.clear();
+        if (world != null) world.dispose();
         parser = new Box2DMapObjectParser();
         world = new World(new Vector2(0f,0f),true);
         parser.setUnitScale(unitScale);

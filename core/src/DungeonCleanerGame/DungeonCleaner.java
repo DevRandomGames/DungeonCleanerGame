@@ -159,10 +159,11 @@ public class DungeonCleaner extends ApplicationAdapter {
     
     private void createPlayer(){
         p = new Player(unitScale);
-        gameEngine.gameControls().addControl(p.getPlayerControls());
+        
     }
     
     private void initPlayer(float posX, float posY) {
+        gameEngine.gameControls().addControl(p.getPlayerControls());
         //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
         p.createBody(posX, posY);
         gameEngine.gameRender().getCamera().position.set(p.getBodyX(), p.getBodyY(), 0);
@@ -215,6 +216,7 @@ public class DungeonCleaner extends ApplicationAdapter {
 
     private void changeMap() {
         System.gc();
+        gameEngine.gameControls().clearControls();
         Vector2 newPosPlyr = DungeonMap.getActualPos();
         saveEnemiesPosition();
         gameEngine.gameRender().getStage().clear();
@@ -230,6 +232,7 @@ public class DungeonCleaner extends ApplicationAdapter {
     private void renderDebugInfo() {
         //COORDENADAS DE SCREEN, HE EMEPZADO IZQUIERDA ARRIBA POR ESO Y ES ALTA
         gameEngine.gameRender().addDebugString("PlyrX=" + p.getBodyX() + " PlyrY=" + p.getBodyY(), 0);
+        gameEngine.gameRender().addDebugString("controls =" + gameEngine.gameControls().getNumCtrls(), 4);
         gameEngine.gameRender().renderDebugInfo();
     }
     
