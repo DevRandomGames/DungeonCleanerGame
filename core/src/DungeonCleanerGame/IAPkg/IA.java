@@ -73,25 +73,39 @@ public class IA {
     
     public GameCharacter.dir nextDirToPlayer(float x, float y){
         
-        System.out.println("NEXT DIR");
+        //System.out.println("NEXT DIR");
         int diffx = (int)x - (int)playerBody.getPosition().x;
-        int diffy = (int)y - (int)playerBody.getPosition().y;
-        if(Math.abs(diffx)<Math.abs(diffy)){
-            if(diffx<0){
-                return dir.right;
-            }
-            else return dir.left;
-        }
-        else{
-            if(diffy<0){
-                return dir.up;
-            }
+        int diffy = (int) y - (int)playerBody.getPosition().y;
+        
+        if(diffx==0){
+            if(diffy<0) return dir.up;
             else return dir.down;
         }
+        
+        if(diffy==0){
+            if(diffx<0) return dir.right;
+            else return dir.left;
+        }
+        
+        if(Math.abs(diffx) < Math.abs(diffy)){
+            if(diffx<0) return dir.right;
+            else return dir.left;
+        }
+        
+        if(Math.abs(diffy)<Math.abs(diffx)){
+            if(diffy<0) return dir.up;
+            else return dir.down;
+        }
+        
+        if(Math.abs(diffy)==Math.abs(diffx)){
+            System.out.println("CABUM");
+        }
+        
+        return dir.down;
     }
     
     public GameCharacter.dir RandomDir(int i){
-        System.out.println("RANDOM DIR");
+        //System.out.println("RANDOM DIR");
         switch(i){
             case 0: return  GameCharacter.dir.left;
             case 1: return  GameCharacter.dir.right;
@@ -105,7 +119,7 @@ public class IA {
         int ai = (int) a;
         int bi = (int) b;
         
-        if(ai-1<=bi || bi<=ai+1) return true;
+        if(a-1<=b || b<=a+1) return true;
         return false;
     }
     
