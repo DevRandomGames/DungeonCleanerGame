@@ -230,7 +230,7 @@ public class DungeonCleaner extends ApplicationAdapter {
     }
     
     private void renderUI(){
-        gameEngine.gameRender().renderUI(""+p.getLife(),100,100);
+        gameEngine.gameRender().renderUI(""+p.getLife(),120,120);
     }
 
     

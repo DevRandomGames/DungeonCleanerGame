@@ -21,7 +21,10 @@ import com.badlogic.gdx.utils.TimeUtils;
  * @author ArclorenSarth
  */
 public class DungeonPlayerController extends PlayerController{
-    
+    float attackCooldown;
+    float attackTime;
+    boolean striking;
+   
     
     public DungeonPlayerController(Player p){
         super.timer = 0;
@@ -33,6 +36,10 @@ public class DungeonPlayerController extends PlayerController{
         super.keyMap.addKey("up", Input.Keys.W);
         super.keyMap.addKey("down", Input.Keys.S);
         super.keyMap.addKey("hit", Input.Keys.SPACE);
+        
+        attackCooldown = 0;
+        striking = false;
+        
         
     }
     
@@ -46,12 +53,22 @@ public class DungeonPlayerController extends PlayerController{
             super.timer = 0;
             pl.controlsEnabled = true;
         }
+        attackTime -= Gdx.graphics.getDeltaTime();
+        if(attackTime <= 0) {
+            attackTime = 0;
+            striking = false;
+            
+        }
+        attackCooldown -= Gdx.graphics.getDeltaTime();
+        if(attackCooldown <= 0) {
+            attackCooldown = 0;
+        }
         
         
         float horizontalMov = 0;
         float verticalMov = 0;
         float speed = 2f;
-        boolean striking = false;
+        
         
         
         //COMPUTE CONTROLS AND CALCULATE FUTURE REACTIONS
@@ -69,7 +86,15 @@ public class DungeonPlayerController extends PlayerController{
         }
         
         if(Gdx.input.isKeyPressed(keyMap.key("hit"))){
-            striking = true;
+            if(attackTime > 0){
+                striking = true;
+            }
+            else if(attackTime == 0 && attackCooldown == 0){
+                striking = true;
+                attackTime = 0.5f;
+                attackCooldown = 1.2f;
+            }
+            
         }
         
         
@@ -91,7 +116,7 @@ public class DungeonPlayerController extends PlayerController{
                 pl.st = strike;
             }
             else pl.isStriking = false;
-            System.out.println(striking);
+            
             pl.getBody().getFixtureList().get(1).setSensor(!striking);
                
         }
