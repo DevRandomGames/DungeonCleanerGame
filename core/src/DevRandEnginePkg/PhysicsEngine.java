@@ -66,6 +66,7 @@ public class PhysicsEngine {
     }      
     
     public void createWorld(TiledMap map, float unitScale){
+        deadBodies.clear();
         if (world != null) world.dispose();
         parser = new Box2DMapObjectParser();
         world = new World(new Vector2(0f,0f),true);
