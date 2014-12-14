@@ -32,6 +32,7 @@ public class Worm extends Enemy{
     
     private void LoadTexture(){
         WalkSheet = new Texture(Gdx.files.internal("WormWalk.png"));
+        Bullet = new Texture(Gdx.files.internal("bullet.png"));
         //StrikeSheet = new Texture(Gdx.files.internal("Warrior_hit.png"));
         
         WalkRightTex = new TextureRegion[2];

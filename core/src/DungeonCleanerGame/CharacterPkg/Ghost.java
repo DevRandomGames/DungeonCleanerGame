@@ -29,6 +29,7 @@ public class Ghost extends Enemy {
     
     private void LoadTexture(){
         WalkSheet = new Texture(Gdx.files.internal("Ghost.png"));
+        Bullet = new Texture(Gdx.files.internal("bullet.png"));
         //StrikeSheet = new Texture(Gdx.files.internal("Warrior_hit.png"));
         
         WalkRightTex = new TextureRegion[1];

@@ -50,6 +50,7 @@ public class GameCharacter extends Actor{
     
     Texture WalkSheet;
     Texture StrikeSheet;
+    Texture Bullet;
     
     int HEIGTH;
     int WIDTH;
@@ -181,7 +182,7 @@ public class GameCharacter extends Actor{
 
     
     
-    private TextureRegion UpdateCharacter(float DeltaTime){
+    TextureRegion UpdateCharacter(float DeltaTime){
         
         statetime+=DeltaTime;
         
@@ -241,5 +242,10 @@ public class GameCharacter extends Actor{
         return fm;
     }
     
+    
+    Texture getBulletTex(){
+        
+        return Bullet;
+    }
        
 }

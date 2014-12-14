@@ -13,6 +13,8 @@ import DungeonCleanerGame.ControlsPkg.DungeonIAController;
 import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
 import DungeonCleanerGame.IAPkg.IA;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -114,6 +116,7 @@ public class Enemy extends GameCharacter {
         bulletbody.createFixture(fixtureBull);
         cshape.dispose();
         
+        
     }
     
     public Body getBullet(){
@@ -160,5 +163,22 @@ public class Enemy extends GameCharacter {
     
     public IA getIA(){
         return myIA;
+    }
+    
+    @Override
+    public void draw(Batch batch, float alpha){
+        
+        texture = super.UpdateCharacter(Gdx.graphics.getDeltaTime());
+        batch.draw(texture,
+                   body.getPosition().x-((float)this.getWidth()/2f),
+                   body.getPosition().y-((float)this.getHeight()/2f),
+                   this.getOriginX(),this.getOriginY(),this.getWidth(),
+                   this.getHeight(),this.getScaleX(), this.getScaleY(),
+                   this.getRotation(),false);
+        
+        if(bulletbody!=null){
+            batch.draw(Bullet, bulletbody.getPosition().x-0.07f, bulletbody.getPosition().y-0.07f, 0.16f,0.16f );
+        }
+        
     }
 }
