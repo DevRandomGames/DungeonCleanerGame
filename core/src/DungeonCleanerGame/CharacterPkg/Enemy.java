@@ -29,7 +29,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 public class Enemy extends GameCharacter {
     private final static DevRandEngine gameEng = DevRandEngine.getInstance();
     protected final static ConstantEngine constant = gameEng.gameConstant();
-    private static IA myIA;
+    private IA myIA;
     private static final short GROUP_MONSTER = constant.getShortConstant("GROUP_MONSTER");
     private static final short GROUP_MONSTER_VISION = constant.getShortConstant("GROUP_MONSTER_VISION");
     private static int ID=0;
