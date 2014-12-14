@@ -138,10 +138,10 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameConstant().addConstant("GhostDefense", 5);
         gameEngine.gameConstant().addConstant("GhostStamina", 60);
 
-        gameEngine.gameConstant().addConstant("BossLife", 300);
-        gameEngine.gameConstant().addConstant("BossAttack", 50);
-        gameEngine.gameConstant().addConstant("BossDefense", 60);
-        gameEngine.gameConstant().addConstant("BossStamina", 200);
+        gameEngine.gameConstant().addConstant("BossLife", 150);
+        gameEngine.gameConstant().addConstant("BossAttack", 60);
+        gameEngine.gameConstant().addConstant("BossDefense", 15);
+        gameEngine.gameConstant().addConstant("BossStamina", 100);
 
         //GETTING CONSTANTS NECESSARY FOR MAIN 
         unitScale = gameEngine.gameConstant().getFloatConstant("unitScale");
