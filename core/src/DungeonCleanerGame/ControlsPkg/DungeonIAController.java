@@ -43,10 +43,16 @@ public class DungeonIAController extends IAController{
     }
     
     public void computeAction(int p, int e, int f){
-        
-        super.timer -=Gdx.graphics.getDeltaTime();
-        iaTimer+=Gdx.graphics.getDeltaTime();
         Enemy en = (Enemy) super.ctrlIdentity;
+        super.timer -=Gdx.graphics.getDeltaTime();
+        if(super.timer <=0){
+            super.timer = 0;
+            en.controlsEnabled = true;
+            en.getBody().setLinearVelocity(0f, 0f);
+        }
+        
+        iaTimer+=Gdx.graphics.getDeltaTime();
+        
         //en.st = walk;
         //Camera cam = gameEngine.gameRender().getCamera();
         float speed = 200;
@@ -74,10 +80,7 @@ public class DungeonIAController extends IAController{
             }
        }
        
-        if(super.timer <=0){
-            super.timer = 0;
-            en.controlsEnabled = true;
-        }
+        
         
         
         en.getBody().setAngularVelocity(0f);
