@@ -69,8 +69,10 @@ public class Enemy extends GameCharacter {
         super.body = gameEng.gamePhysics().getWorld().createBody(bodyDef);
         super.body.setUserData(enemyID);
         
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.getWidth()/5f, this.getHeight()/5f);
+        /*PolygonShape shape = new PolygonShape();
+        shape.setAsBox(this.getWidth()/5f, this.getHeight()/5f);*/
+        CircleShape shape = new CircleShape();
+        shape.setRadius(this.getWidth()/4f);
         FixtureDef fixtureBox = new FixtureDef();
         fixtureBox.shape = shape;
         fixtureBox.density = 2f;
@@ -78,8 +80,10 @@ public class Enemy extends GameCharacter {
         body.createFixture(fixtureBox);
         shape.dispose();
         
-        PolygonShape Areashape = new PolygonShape();
-        Areashape.setAsBox(this.getWidth()*2, this.getHeight()*2);
+        /*PolygonShape Areashape = new PolygonShape();
+        Areashape.setAsBox(this.getWidth()*2, this.getHeight()*2);*/
+        CircleShape Areashape = new CircleShape();
+        shape.setRadius(this.getWidth()*2);
         FixtureDef fixtureArea = new FixtureDef();
         fixtureArea.isSensor = true;
         fixtureArea.shape = Areashape;

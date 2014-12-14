@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -47,8 +48,10 @@ public class Player extends GameCharacter{
         bodyDef.position.set(x,y);
         super.body = gameEng.gamePhysics().getWorld().createBody(bodyDef);
         super.body.setUserData("Player");
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.getWidth()/5f, this.getHeight()/5f);
+        /*PolygonShape shape = new PolygonShape();
+        shape.setAsBox(this.getWidth()/5f, this.getHeight()/5f);*/
+        CircleShape shape = new CircleShape();
+        shape.setRadius(this.getWidth()/4f);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 2f;
@@ -56,9 +59,10 @@ public class Player extends GameCharacter{
         Fixture fixture = body.createFixture(fixtureDef);
         shape.dispose();
         
-             
-        shape = new PolygonShape();
-        shape.setAsBox(this.getWidth()/2, this.getHeight()/2);
+        /*shape = new PolygonShape();
+        shape.setAsBox(this.getWidth()/2, this.getHeight()/2);*/
+        shape = new CircleShape();
+        shape.setRadius(this.getWidth()/2f);
         FixtureDef fixtureDef2 = new FixtureDef();
         fixtureDef2.shape = shape;
         fixtureDef2.density = 2f;
