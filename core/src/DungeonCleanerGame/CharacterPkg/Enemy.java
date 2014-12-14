@@ -64,7 +64,7 @@ public class Enemy extends GameCharacter {
         super.body.setUserData(enemyID);
         
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.getWidth()/4, this.getHeight()/4);
+        shape.setAsBox(this.getWidth()/5f, this.getHeight()/5f);
         FixtureDef fixtureBox = new FixtureDef();
         fixtureBox.shape = shape;
         fixtureBox.density = 2f;

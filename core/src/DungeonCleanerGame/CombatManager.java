@@ -45,8 +45,8 @@ public class CombatManager {
             monster.setLinearVelocity(new Vector2(0f,0f));
             Vector2 dir = new Vector2(monster.getPosition().x,monster.getPosition().y);
             dir.sub(player.getPosition());
-            dir.x = dir.x*4;
-            dir.y = dir.y*4;
+            dir.x = dir.x*7;
+            dir.y = dir.y*7;
             
             monster.setLinearVelocity(dir);
             if(e.getLife() <= 0){
@@ -62,7 +62,7 @@ public class CombatManager {
         Player p = map.getPlayer();
         Enemy e = map.getEnemy((Integer)monster.getUserData());
         
-        p.disableControls(0.4f);
+        p.disableControls(0.3f);
         
         int attack = e.getAttack();
         int stamina = e.getStamina();
@@ -75,8 +75,8 @@ public class CombatManager {
         player.setLinearVelocity(new Vector2(0f,0f));
         Vector2 dir = new Vector2(player.getPosition().x,player.getPosition().y);
         dir.sub(monster.getPosition());
-        dir.x = dir.x*3;
-        dir.y = dir.y*3;
+        dir.x = dir.x*10;
+        dir.y = dir.y*10;
         
         player.setLinearVelocity(dir);
     }
