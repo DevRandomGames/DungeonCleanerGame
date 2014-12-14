@@ -78,7 +78,7 @@ public class Room {
     }
     
     private void GenerateEnemies(){
-        int ns = RandomEngine.randInt(2,width*height/2);
+        int ns = RandomEngine.randInt(2,width*height/4);
         Enemies = new ArrayList();
         int t;
         int rand;
