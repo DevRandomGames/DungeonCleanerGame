@@ -215,8 +215,8 @@ public class DungeonCleaner extends ApplicationAdapter {
     }
 
     private void changeMap() {
-        gameEngine.gameControls().clearControls();
         System.gc();
+        gameEngine.gameControls().clearControls();
         Vector2 newPosPlyr = DungeonMap.getActualPos();
         saveEnemiesPosition();
         gameEngine.gameRender().getStage().clear();
