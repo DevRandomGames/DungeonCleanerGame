@@ -57,6 +57,10 @@ public class Enemy extends GameCharacter {
         return enemyID;
     }
     
+    public void playSoundDamage(){
+        //OVERRIDED
+    }
+    
     public void killEnemy(){
         super.body.setLinearVelocity(0f,0f);
         gameEng.gameControls().removeControl(super.controls);

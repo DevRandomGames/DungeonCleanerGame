@@ -49,6 +49,8 @@ public class CombatManager {
             dir.y = dir.y*7;
             
             monster.setLinearVelocity(dir);
+            
+            e.playSoundDamage();
             if(e.getLife() <= 0){
                 map.killEnemy((Integer)monster.getUserData());
                 e.killEnemy();
@@ -73,6 +75,8 @@ public class CombatManager {
         p.setLife(newLife(life,defense,attack,stamina));
         
         player.setLinearVelocity(new Vector2(0f,0f));
+        
+        p.playSoundDamage();
         Vector2 dir = new Vector2(player.getPosition().x,player.getPosition().y);
         dir.sub(monster.getPosition());
         dir.x = dir.x*10;
@@ -101,6 +105,7 @@ public class CombatManager {
         dir.x = dir.x*10;
         dir.y = dir.y*10;
         
+        p.playSoundDamage();
         player.setLinearVelocity(dir);
     }
     
