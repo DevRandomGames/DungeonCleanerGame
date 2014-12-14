@@ -32,7 +32,7 @@ public class CombatManager {
         if(p.isStriking){
             System.out.println("EN>TRO");
             Enemy e = map.getEnemy((Integer)monster.getUserData());
-            e.disableControls(0.4f);
+            e.disableControls(0.3f);
 
             int attack = p.getAttack();
             int stamina = p.getStamina();
@@ -41,13 +41,13 @@ public class CombatManager {
             int defense = e.getDefense();
 
             e.setLife(newLife(life,defense,attack,stamina));
+            
             monster.setLinearVelocity(new Vector2(0f,0f));
-            Vector2 dir = mani.getNormal();
-            //System.out.println(mani.getNormal().toString());
-            //dir.add(point);
-            dir.x = dir.x*-1*2;
-            dir.y = dir.y*-1*2;
-            monster.applyForceToCenter(dir, true);
+            Vector2 dir = new Vector2(monster.getPosition().x,monster.getPosition().y);
+            dir.sub(player.getPosition());
+            dir.x = dir.x*4;
+            dir.y = dir.y*4;
+            
             monster.setLinearVelocity(dir);
         }
         
@@ -57,7 +57,7 @@ public class CombatManager {
         Player p = map.getPlayer();
         Enemy e = map.getEnemy((Integer)monster.getUserData());
         
-        p.disableControls(0.7f);
+        p.disableControls(0.4f);
         
         int attack = e.getAttack();
         int stamina = e.getStamina();
@@ -66,13 +66,13 @@ public class CombatManager {
         int defense = p.getDefense();
         
         p.setLife(newLife(life,defense,attack,stamina));
+        
         player.setLinearVelocity(new Vector2(0f,0f));
-        Vector2 dir = mani.getNormal();
-        //System.out.println(mani.getNormal().toString());
-        //dir.add(point);
-        dir.x = dir.x*-1*2;
-        dir.y = dir.y*-1*2;
-        player.applyForceToCenter(dir, true);
+        Vector2 dir = new Vector2(player.getPosition().x,player.getPosition().y);
+        dir.sub(monster.getPosition());
+        dir.x = dir.x*3;
+        dir.y = dir.y*3;
+        
         player.setLinearVelocity(dir);
     }
     
