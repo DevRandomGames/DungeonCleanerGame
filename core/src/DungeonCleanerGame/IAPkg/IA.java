@@ -73,6 +73,7 @@ public class IA {
     
     public GameCharacter.dir nextDirToPlayer(float x, float y){
         
+        System.out.println("NEXT DIR");
         int diffx = (int)x - (int)playerBody.getPosition().x;
         int diffy = (int)y - (int)playerBody.getPosition().y;
         if(Math.abs(diffx)<Math.abs(diffy)){
@@ -90,6 +91,7 @@ public class IA {
     }
     
     public GameCharacter.dir RandomDir(int i){
+        System.out.println("RANDOM DIR");
         switch(i){
             case 0: return  GameCharacter.dir.left;
             case 1: return  GameCharacter.dir.right;

@@ -14,6 +14,7 @@ import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.down;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.left;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.right;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.dir.up;
+import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.stalk;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.standby;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.strike;
 import static DungeonCleanerGame.CharacterPkg.GameCharacter.state.walk;
@@ -58,14 +59,14 @@ public class DungeonIAController extends IAController{
                 iaTimer = 0;
                 en.iaComputeDir();
             }
-            
+            if(iaTimer>=2 && en.st == stalk){
+                iaTimer = 0;
+                en.iaComputeDir();
+            }
         
             switch(en.st){
-                case walk: Walk(en);
-                           
-                           break;
-                           
-                case stalk: Walk(en);
+                case walk: Walk(en);break;          
+                case stalk: Walk(en);break;
                 default: Walk(en);break;
             }
        }
@@ -82,16 +83,16 @@ public class DungeonIAController extends IAController{
     
     public void Walk(Enemy e){
         
-        if(e.d==GameCharacter.dir.up && e.st==GameCharacter.state.walk){
+        if(e.d==GameCharacter.dir.up ){
             e.getBody().setLinearVelocity(0f, 0.5f);
         }
-        if(e.d==GameCharacter.dir.down && e.st==GameCharacter.state.walk){
+        if(e.d==GameCharacter.dir.down ){
             e.getBody().setLinearVelocity(0f, -0.5f);
         }
-        if(e.d==GameCharacter.dir.left && e.st==GameCharacter.state.walk){
+        if(e.d==GameCharacter.dir.left){
             e.getBody().setLinearVelocity(-0.5f, 0f);
         }
-        if(e.d==GameCharacter.dir.right && e.st==GameCharacter.state.walk){
+        if(e.d==GameCharacter.dir.right ){
             e.getBody().setLinearVelocity(0.5f, 0f);
         }
     }

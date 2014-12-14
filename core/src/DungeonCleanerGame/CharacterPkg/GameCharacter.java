@@ -197,6 +197,9 @@ public class GameCharacter extends Actor{
             case strike:
                 fm = GetStrikeAnimation(d);
             break;
+            case stalk:
+                fm = GetWalkAnimation(d);
+            break;
                 
         }
         
