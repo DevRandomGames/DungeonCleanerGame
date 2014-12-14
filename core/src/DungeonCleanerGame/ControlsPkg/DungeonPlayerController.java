@@ -92,7 +92,7 @@ public class DungeonPlayerController extends PlayerController{
             else if(attackTime == 0 && attackCooldown == 0){
                 striking = true;
                 attackTime = 0.5f;
-                attackCooldown = 1.2f;
+                attackCooldown = 0.9f;
             }
             
         }
