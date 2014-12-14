@@ -81,6 +81,29 @@ public class CombatManager {
         player.setLinearVelocity(dir);
     }
     
+    private void computeBulletToPlayer(Body bullet,Body player,WorldManifold mani){
+        Player p = map.getPlayer();
+        
+        
+        p.disableControls(0.3f);
+        
+        int attack = 10;
+        int stamina = 10;
+        
+        int life = p.getLife();
+        int defense = p.getDefense();
+        
+        p.setLife(newLife(life,defense,attack,stamina));
+        
+        player.setLinearVelocity(new Vector2(0f,0f));
+        Vector2 dir = new Vector2(player.getPosition().x,player.getPosition().y);
+        dir.sub(bullet.getPosition());
+        dir.x = dir.x*10;
+        dir.y = dir.y*10;
+        
+        player.setLinearVelocity(dir);
+    }
+    
     
     private int newLife(int oldLife, int defense, int attack, int stamina){
         int finalAttack = attack; //posteriormente aplicarle una mult con (stamina/maxStamina) o algo asi

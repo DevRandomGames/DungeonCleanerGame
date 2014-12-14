@@ -78,7 +78,8 @@ public class GameCharacter extends Actor{
         up,
         down,
         right,
-        left
+        left,
+        not;
     }
     
     TextureRegion texture;

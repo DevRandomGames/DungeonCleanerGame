@@ -70,10 +70,10 @@ public class Ghost extends Enemy {
         WalkRight = new Animation(0.3f,WalkRightTex);
         WalkUp = new Animation(0.3f,WalkUpTex);
         
-        /*StrikeUp = new Animation(0.1f,StrikeUpTex);
-        StrikeDown =new Animation(0.1f,StrikeDownTex);
-        StrikeLeft = new Animation(0.1f,StrikeLeftTex);
-        StrikeRight = new Animation(0.1f,StrikeRightTex);*/
+        StrikeDown = new Animation(0, WalkDownTex[0]);
+        StrikeLeft = new Animation(0, WalkLeftTex[0]);
+        StrikeRight = new Animation(0,WalkRightTex[0]);
+        StrikeUp = new Animation(0, WalkUpTex[0]);
         
         
         stndbydown = new Animation(0, WalkDownTex[0]);

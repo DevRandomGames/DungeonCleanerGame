@@ -97,7 +97,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gamePhysics().renderPhysics();
         gameEngine.gameRender().renderMap();
         gameEngine.gameRender().renderStage();
-        //gameEngine.gameRender().renderWorldDebug();
+        gameEngine.gameRender().renderWorldDebug();
         RayHandler rayhandler = gameEngine.gamePhysics().getRayhandler();
 
         rayhandler.setCombinedMatrix(gameEngine.gameRender().getCamera().combined);
@@ -120,6 +120,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameConstant().addConstant("GROUP_PLAYER_WEAPON",(short)2);
         gameEngine.gameConstant().addConstant("GROUP_MONSTER",(short)3);
         gameEngine.gameConstant().addConstant("GROUP_MONSTER_VISION",(short)4);
+        gameEngine.gameConstant().addConstant("BULLET", (short)5);
         
         gameEngine.gameConstant().addConstant("PlayerLife",100);
         gameEngine.gameConstant().addConstant("PlayerAttack",10);

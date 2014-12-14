@@ -29,6 +29,7 @@ public class DungeonCollissions implements ContactListener{
     private static final short gPW = cons.getShortConstant("GROUP_PLAYER_WEAPON");
     private static final short gM = cons.getShortConstant("GROUP_MONSTER");
     private static final short gMV = cons.getShortConstant("GROUP_MONSTER_VISION");
+    private static final short gB = cons.getShortConstant("BULLET");
     private final CombatManager combat;
     private final GameMap gmap;
     int numPlyHits;
@@ -95,6 +96,22 @@ public class DungeonCollissions implements ContactListener{
             int monsterID = (Integer) Monster.getUserData();
             gmap.getEnemy(monsterID).getIA().actAlert(Player);
             
+        }
+        else if((fixA.getFilterData().groupIndex==gP && fixB.getFilterData().groupIndex==gB)
+            || (fixA.getFilterData().groupIndex==gB && fixB.getFilterData().groupIndex==gP)){
+            if(fixB.getFilterData().groupIndex==gP){
+                Player = fixB.getBody();
+                Monster = fixA.getBody();
+            }
+            else {
+                Player = fixA.getBody();
+                Monster = fixB.getBody();
+            }
+            WorldManifold mani = contact.getWorldManifold();
+            combat.computeStrikeToPlayer(Monster, Player,mani);
+            
+            //SE 
+            //eng.gamePhysics().getWorld().
         }
     }
     

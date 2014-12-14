@@ -63,10 +63,13 @@ public class DungeonIAController extends IAController{
                 iaTimer = 0;
                 en.iaComputeDir();
             }
-        
+            
+            
             switch(en.st){
                 case walk: Walk(en);break;          
                 case stalk: Walk(en);break;
+                case strike: Shot(en);break;
+                case standby:break;
                 default: Walk(en);break;
             }
        }
@@ -95,6 +98,25 @@ public class DungeonIAController extends IAController{
         if(e.d==GameCharacter.dir.right ){
             e.getBody().setLinearVelocity(0.5f, 0f);
         }
+    }
+    
+    public void Shot(Enemy e){
+        e.getBody().setLinearVelocity(0f, 0f);
+        e.createBullet();
+        //e.getBullet().applyLinearImpulse(timer, timer, timer, timer, true);
+        if(e.d==GameCharacter.dir.up ){
+            e.getBullet().setLinearVelocity(0f, 5f);
+        }
+        if(e.d==GameCharacter.dir.down ){
+            e.getBullet().setLinearVelocity(0f, -5f);
+        }
+        if(e.d==GameCharacter.dir.left){
+            e.getBullet().setLinearVelocity(-5f, 0f);
+        }
+        if(e.d==GameCharacter.dir.right ){
+            e.getBullet().setLinearVelocity(5f, 0f);
+        }
+        
     }
     
 }

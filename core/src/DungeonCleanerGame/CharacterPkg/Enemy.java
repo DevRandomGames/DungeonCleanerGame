@@ -14,8 +14,10 @@ import DungeonCleanerGame.ControlsPkg.DungeonPlayerController;
 import DungeonCleanerGame.IAPkg.IA;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -32,12 +34,16 @@ public class Enemy extends GameCharacter {
     private IA myIA;
     private static final short GROUP_MONSTER = constant.getShortConstant("GROUP_MONSTER");
     private static final short GROUP_MONSTER_VISION = constant.getShortConstant("GROUP_MONSTER_VISION");
+    private static final short BULLET = constant.getShortConstant("BULLET");
     private static int ID=0;
     
     private int enemyID;
+    private int bulletID;
+    private Body bulletbody;
     
     public Enemy(float unitScale){
         enemyID = ID;
+        bulletID = ID;
         myIA = new IA();
         ++ID;
         //CREAMOS EL PLAYERCONTROLLER
@@ -85,6 +91,28 @@ public class Enemy extends GameCharacter {
         
     }
     
+    public void createBullet(){
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.position.set(super.body.getPosition().x,super.body.getPosition().y);
+        bulletbody = gameEng.gamePhysics().getWorld().createBody(bodyDef);
+        bulletbody.setUserData(bulletID);
+        
+        CircleShape cshape = new CircleShape();
+        cshape.setRadius(0.1f);
+        FixtureDef fixtureBull = new FixtureDef();
+        fixtureBull.shape = cshape;
+        fixtureBull.density = 0.5f;
+        fixtureBull.filter.groupIndex = BULLET ;
+        bulletbody.createFixture(fixtureBull);
+        cshape.dispose();
+        
+    }
+    
+    public Body getBullet(){
+        return bulletbody;
+    }
+    
     public int getTotalID(){
         return ID;
     }
@@ -95,9 +123,17 @@ public class Enemy extends GameCharacter {
         }
         else if(myIA.getHit()){
             this.st = st.strike;
+            myIA.setHit(false);
+            myIA.actStnby();
         }
-        else {
+        else if(myIA.getStnby() && myIA.getTime()<2) {
+            this.st = st.standby;
+            myIA.addTime(Gdx.graphics.getDeltaTime());
+        }
+        else{
             myIA.decAlert();
+            myIA.clearTimer();
+            myIA.decStnby();
             this.st = walk;
         }
     }

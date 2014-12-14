@@ -18,6 +18,7 @@ public class IA {
     
     private boolean alert;
     private boolean hitting;
+    private boolean stnby;
     
     private float alertTimer;
     private float hittingTimer;
@@ -43,6 +44,19 @@ public class IA {
     public void decAlert(){
         alert = false;
         alertTimer=0;
+    }
+    
+    public void actStnby(){
+        stnby=true;
+        alertTimer=0;
+    }
+    
+    public void decStnby(){
+        stnby=false;
+    }
+    
+    public boolean getStnby(){
+        return stnby;
     }
     
     public void setHit(boolean b){
@@ -78,11 +92,17 @@ public class IA {
         int diffy = (int) y - (int)playerBody.getPosition().y;
         
         if(diffx==0){
-            if(diffy<0) return dir.up;
+            setHit(true);
+            decAlert();
+            if(diffy<0){
+                return dir.up;
+            }
             else return dir.down;
         }
         
         if(diffy==0){
+            setHit(true);
+            decAlert();
             if(diffx<0) return dir.right;
             else return dir.left;
         }
@@ -99,10 +119,13 @@ public class IA {
         
         if(Math.abs(diffy)==Math.abs(diffx)){
             System.out.println("CABUM");
+            if(diffy<0) return dir.up;
+            else return dir.down;
         }
         
         return dir.down;
     }
+    
     
     public GameCharacter.dir RandomDir(int i){
         //System.out.println("RANDOM DIR");
