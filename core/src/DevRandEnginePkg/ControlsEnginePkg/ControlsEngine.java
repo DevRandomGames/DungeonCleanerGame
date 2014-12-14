@@ -53,6 +53,10 @@ public class ControlsEngine {
         actionCtrls.clear();
     }
     
+    public int getNumCtrls(){
+        return actionCtrls.size();
+    }
+    
     public void changeStatus(int p,int e,int f){
         plyrSts = p;
         enmSts = e;

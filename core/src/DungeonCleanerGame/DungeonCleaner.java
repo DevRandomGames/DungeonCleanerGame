@@ -232,6 +232,7 @@ public class DungeonCleaner extends ApplicationAdapter {
     private void renderDebugInfo() {
         //COORDENADAS DE SCREEN, HE EMEPZADO IZQUIERDA ARRIBA POR ESO Y ES ALTA
         gameEngine.gameRender().addDebugString("PlyrX=" + p.getBodyX() + " PlyrY=" + p.getBodyY(), 0);
+        gameEngine.gameRender().addDebugString("controls =" + gameEngine.gameControls().getNumCtrls(), 4);
         gameEngine.gameRender().renderDebugInfo();
     }
     
