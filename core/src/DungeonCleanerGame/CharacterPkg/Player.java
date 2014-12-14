@@ -48,7 +48,7 @@ public class Player extends GameCharacter{
         super.body = gameEng.gamePhysics().getWorld().createBody(bodyDef);
         super.body.setUserData("Player");
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(this.getWidth()/4, this.getHeight()/4);
+        shape.setAsBox(this.getWidth()/5f, this.getHeight()/5f);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = 2f;
