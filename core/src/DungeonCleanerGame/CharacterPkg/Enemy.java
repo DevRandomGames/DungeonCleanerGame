@@ -83,15 +83,32 @@ public class Enemy extends GameCharacter {
     }
     
     public void iaComputeState(){
-        
-        this.st = walk;
+        if(myIA.getAlert() && myIA.getTime()>0){
+            this.st = st.stalk;
+        }
+        else if(myIA.getHit()){
+            this.st = st.strike;
+        }
+        else {
+            myIA.decAlert();
+            this.st = walk;
+        }
     }
     
     public void iaComputeDir(){
-        this.d =  myIA.RandomDir(RandomEngine.randInt(0,5));
+        if(this.st == st.walk){
+            this.d =  myIA.RandomDir(RandomEngine.randInt(0,5));
+        }
+        else {
+           this.d = myIA.nextDirToPlayer(this.getBodyX(),this.getBodyY()); 
+        }
     }
     
     public DungeonIAController getEnemyControls(){
         return (DungeonIAController) super.controls;
+    }
+    
+    public IA getIA(){
+        return myIA;
     }
 }

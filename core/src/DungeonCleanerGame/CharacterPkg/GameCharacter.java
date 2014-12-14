@@ -70,7 +70,8 @@ public class GameCharacter extends Actor{
         walk,
         die,
         strike,
-        standby;
+        standby,
+        stalk;
     }
     
     public enum dir{

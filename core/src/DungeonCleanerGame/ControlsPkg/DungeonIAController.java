@@ -54,15 +54,19 @@ public class DungeonIAController extends IAController{
         if(en.controlsEnabled){
             en.iaComputeState();
         
-            if(iaTimer>=4){
+            if(iaTimer>=4 && en.st == walk){
                 iaTimer = 0;
                 en.iaComputeDir();
             }
+            
         
             switch(en.st){
-                case walk: idiotWalk(en);break;
-                //case hit: idiotWalk(en);
-                default: idiotWalk(en);break;
+                case walk: Walk(en);
+                           
+                           break;
+                           
+                case stalk: Walk(en);
+                default: Walk(en);break;
             }
        }
        
@@ -76,7 +80,7 @@ public class DungeonIAController extends IAController{
         
     }
     
-    public void idiotWalk(Enemy e){
+    public void Walk(Enemy e){
         
         if(e.d==GameCharacter.dir.up && e.st==GameCharacter.state.walk){
             e.getBody().setLinearVelocity(0f, 0.5f);
