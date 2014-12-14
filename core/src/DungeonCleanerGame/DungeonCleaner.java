@@ -137,8 +137,8 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         gameEngine.gameConstant().addConstant("GhostLife",40);
         gameEngine.gameConstant().addConstant("GhostAttack",25);
-        gameEngine.gameConstant().addConstant("GhostDefense",7);
-        gameEngine.gameConstant().addConstant("GhostStamina",50);
+        gameEngine.gameConstant().addConstant("GhostDefense",5);
+        gameEngine.gameConstant().addConstant("GhostStamina",60);
         
         gameEngine.gameConstant().addConstant("BossLife",300);
         gameEngine.gameConstant().addConstant("BossAttack",50);
