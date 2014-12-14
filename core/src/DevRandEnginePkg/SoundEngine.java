@@ -62,8 +62,8 @@ public class SoundEngine {
     }
     
     public void playSoundWeapon(){
-        sounds.get("sword").play();
-        sounds.get("swing").play();
+        //sounds.get("sword").play();
+        sounds.get("swing3").play();
     }
     
     public void playSoundDoor(){
@@ -71,34 +71,38 @@ public class SoundEngine {
     }
     
     public void playSoundWorm(){
-        
+        sounds.get("slime10").play();
     }
     
     public void playSoundGhost(){
-        
+        sounds.get("shade11").play();
     }
     
     public void playSoundBoss(){
-        
+        sounds.get("ogre5").play();
     }
     
     public void playSoundPlayer(){
-        
+        sounds.get("chainmail2").play();
+    }
+    
+    public void playSoundProjectile(){
+        sounds.get("random2").play();
     }
     
     
     public void loadSounds(){
         addSound("swing","swing.mp3");
-        addSound("swing2","swing2.mp3");
         addSound("swing3","swing3.mp3");
         addSound("sword","sword.mp3");
-        addSound("sword2","sword2.mp3");
-        addSound("sword3","sword3.mp3");
-        addSound("sword4","sword4.mp3");
-        addSound("sword5","sword5.mp3");
-        
+              
         addSound("door","door.mp3");
         
+        addSound("shade11","shade11.mp3");
+        addSound("slime10","slime10.mp3");
+        addSound("ogre5","ogre5.mp3");
+        addSound("random2","random2.mp3");
+        addSound("chainmail2","chainmail2.mp3");
         
     }
     

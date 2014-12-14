@@ -29,8 +29,7 @@ import java.util.Random;
  */
 public class DungeonIAController extends IAController{
     
-    private DevRandEngine gameEngine;
-    private Random RG;
+    private static final DevRandEngine gameEngine = DevRandEngine.getInstance();
     private float iaTimer;
     
     public DungeonIAController(Enemy e){
@@ -38,8 +37,7 @@ public class DungeonIAController extends IAController{
         super.timer=0;
         iaTimer=0;
         e.st = walk;
-        gameEngine = DevRandEngine.getInstance();
-        RG = new Random();
+        
     }
     
     public void computeAction(int p, int e, int f){
@@ -104,6 +102,7 @@ public class DungeonIAController extends IAController{
     }
     
     public void Shot(Enemy e){
+        gameEngine.gameSound().playSoundProjectile();
         e.getBody().setLinearVelocity(0f, 0f);
         e.createBullet();
         //e.getBullet().applyLinearImpulse(timer, timer, timer, timer, true);
