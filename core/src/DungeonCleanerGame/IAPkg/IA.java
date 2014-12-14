@@ -118,7 +118,7 @@ public class IA {
         }
         
         if(Math.abs(diffy)==Math.abs(diffx)){
-            System.out.println("CABUM");
+         //   System.out.println("CABUM");
             if(diffy<0) return dir.up;
             else return dir.down;
         }

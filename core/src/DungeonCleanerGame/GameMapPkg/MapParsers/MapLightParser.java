@@ -7,7 +7,6 @@ package DungeonCleanerGame.GameMapPkg.MapParsers;
 
 import DevRandEnginePkg.DevRandEngine;
 import DevRandEnginePkg.UtilsEngine;
-import box2dLight.Light;
 import box2dLight.PointLight;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.Color;
@@ -18,7 +17,6 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**

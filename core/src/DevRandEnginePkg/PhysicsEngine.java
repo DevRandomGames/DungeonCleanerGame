@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DevRandEnginePkg;
 
 import DungeonCleanerGame.CharacterPkg.GameCharacter;
@@ -13,6 +12,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,69 +21,84 @@ import java.util.Iterator;
  * @author ArclorenSarth
  */
 public class PhysicsEngine {
+
     private DevRandEngine engine;
     private static PhysicsEngine INSTANCE = null;
-    
+
     private World world;
     Box2DMapObjectParser parser;
     private RayHandler rayhandler;
-    
+
     ArrayList<Body> deadBodies;
-    
-    
-    private PhysicsEngine(DevRandEngine e){
+
+    private PhysicsEngine(DevRandEngine e) {
         engine = e;
         deadBodies = new ArrayList();
     }
-    
-    private static void createInstance(DevRandEngine e){
+
+    private static void createInstance(DevRandEngine e) {
         INSTANCE = new PhysicsEngine(e);
     }
-    
-    public static PhysicsEngine getInstance(DevRandEngine e){
-        if(INSTANCE == null) createInstance(e);
+
+    public static PhysicsEngine getInstance(DevRandEngine e) {
+        if (INSTANCE == null) {
+            createInstance(e);
+        }
         return INSTANCE;
     }
-    
-    public void renderPhysics(){
-        for(int i=0; i < deadBodies.size(); ++i)
-            world.destroyBody(deadBodies.get(i));
+
+    public void renderPhysics() {
+         Array bodies = new Array();
+        for (int i = 0; i < deadBodies.size(); ++i) {
+            try {
+               
+                world.getBodies(bodies);
+                if (bodies.contains(deadBodies.get(i), true)) {
+                    world.destroyBody(deadBodies.get(i));
+                }
+            } catch (NullPointerException e) {
+                System.out.println("ERROR : " + e.getMessage());
+            }
+        }
         deadBodies.clear();
-        
-        world.step(1.0f/60.0f, 6, 2);
-        for(int i=0; i < deadBodies.size(); ++i)
+
+        world.step(1.0f / 60.0f, 6, 2);
+        for (int i = 0; i < deadBodies.size(); ++i) {
             world.destroyBody(deadBodies.get(i));
+        }
         deadBodies.clear();
-        
+
     }
-    
-    public World getWorld(){
+
+    public World getWorld() {
         return world;
     }
-    
-    public void addDeadBodie(Body b){
+
+    public void addDeadBodie(Body b) {
         deadBodies.add(b);
-    }      
-    
-    public void createWorld(TiledMap map, float unitScale){
+    }
+
+    public void createWorld(TiledMap map, float unitScale) {
         deadBodies.clear();
-        if (world != null) world.dispose();
+        if (world != null) {
+            world.dispose();
+        }
         parser = new Box2DMapObjectParser();
-        world = new World(new Vector2(0f,0f),true);
+        world = new World(new Vector2(0f, 0f), true);
         parser.setUnitScale(unitScale);
         parser.load(world, map);
-        if(rayhandler!=null ) rayhandler.dispose();
+        if (rayhandler != null) {
+            rayhandler.dispose();
+        }
         rayhandler = new RayHandler(world);
     }
-    
-    
-    public void createCharacters(ArrayList<GameCharacter> charList){
+
+    public void createCharacters(ArrayList<GameCharacter> charList) {
         //generar bodys a partir de una lista de Personages.
     }
 
     public RayHandler getRayhandler() {
-       return rayhandler;
+        return rayhandler;
     }
-    
-    
+
 }
