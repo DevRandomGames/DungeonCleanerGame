@@ -58,6 +58,7 @@ public class Enemy extends GameCharacter {
     public void killEnemy(){
         super.body.setLinearVelocity(0f,0f);
         gameEng.gamePhysics().addDeadBodie(super.body);
+        if(bulletbody != null) gameEng.gamePhysics().addDeadBodie(bulletbody);
         this.remove();
         //aqui reproducir sonido o algo
     }
@@ -99,6 +100,7 @@ public class Enemy extends GameCharacter {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(super.body.getPosition().x,super.body.getPosition().y);
+        if(bulletbody != null) gameEng.gamePhysics().addDeadBodie(bulletbody);
         bulletbody = gameEng.gamePhysics().getWorld().createBody(bodyDef);
         bulletbody.setUserData(bulletID);
         
