@@ -78,16 +78,20 @@ public class Room {
     }
     
     private void GenerateEnemies(){
-        int ns = RandomEngine.randInt(2,width*height/2);
+        int ns = RandomEngine.randInt(2,width*height/4);
         Enemies = new ArrayList();
         int t;
+        int rand;
         Enemy e;
         float x,y;
         float unitScale = constant.getFloatConstant("unitScale");
         for(int i=0;i<ns;++i){
-            t = RandomEngine.randInt(0, 2);
-            x = RandomEngine.randInt(2, width-2);
-            y = RandomEngine.randInt(2, height-2);
+            rand = RandomEngine.randInt(0, 10000);
+            x = RandomEngine.randInt(3, width-3);
+            y = RandomEngine.randInt(3, height-3);
+            if(rand%200 == 0) t=2;
+            else if(rand%5 == 0) t=1;
+            else t=0;
             switch(t){
                 case 0: e = new Worm(unitScale); break;
                 case 1: e = new Ghost(unitScale); break;

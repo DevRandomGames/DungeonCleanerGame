@@ -122,7 +122,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         
         gameEngine.gameConstant().addConstant("PlayerLife",100);
         gameEngine.gameConstant().addConstant("PlayerAttack",10);
-        gameEngine.gameConstant().addConstant("PlayerDefense",30);
+        gameEngine.gameConstant().addConstant("PlayerDefense",20);
         gameEngine.gameConstant().addConstant("PlayerStamina",60);
         
         gameEngine.gameConstant().addConstant("EnemyLife",100);
@@ -131,14 +131,14 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameConstant().addConstant("EnemyStamina",60);
         
         gameEngine.gameConstant().addConstant("WormLife",10);
-        gameEngine.gameConstant().addConstant("WormAttack",7);
+        gameEngine.gameConstant().addConstant("WormAttack",15);
         gameEngine.gameConstant().addConstant("WormDefense",10);
         gameEngine.gameConstant().addConstant("WormStamina",30);
         
         gameEngine.gameConstant().addConstant("GhostLife",40);
-        gameEngine.gameConstant().addConstant("GhostAttack",20);
-        gameEngine.gameConstant().addConstant("GhostDefense",15);
-        gameEngine.gameConstant().addConstant("GhostStamina",50);
+        gameEngine.gameConstant().addConstant("GhostAttack",25);
+        gameEngine.gameConstant().addConstant("GhostDefense",5);
+        gameEngine.gameConstant().addConstant("GhostStamina",60);
         
         gameEngine.gameConstant().addConstant("BossLife",300);
         gameEngine.gameConstant().addConstant("BossAttack",50);
