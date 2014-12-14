@@ -49,6 +49,10 @@ public class ControlsEngine {
         actionCtrls.remove(c);
     }
     
+    public void clearControls(){
+        actionCtrls.clear();
+    }
+    
     public void changeStatus(int p,int e,int f){
         plyrSts = p;
         enmSts = e;
