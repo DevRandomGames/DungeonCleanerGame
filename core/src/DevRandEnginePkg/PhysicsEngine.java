@@ -63,7 +63,11 @@ public class PhysicsEngine {
     
     public void addDeadBodie(Body b){
         deadBodies.add(b);
-    }      
+    }  
+    
+    public int getNumDeads(){
+        return deadBodies.size();
+    }
     
     public void createWorld(TiledMap map, float unitScale){
         deadBodies.clear();
