@@ -107,6 +107,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         }
         renderDebugInfo();
         renderUI();
+        gameEngine.gameSound().autoPlayList();
     }
 
     

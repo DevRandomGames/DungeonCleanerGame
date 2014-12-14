@@ -72,6 +72,16 @@ public class SoundEngine {
         music = audio.newMusic(Gdx.files.internal(musicPath + musicNames.get(random)));
         music.play();
     }
+    
+    public void autoPlayList(){
+        if (music != null && !music.isPlaying()){
+            music.stop();
+            music.dispose();
+            int random = engine.randEng.randInt(0,musicNames.size);
+            music = audio.newMusic(Gdx.files.internal(musicPath + musicNames.get(random)));
+            music.play();
+        }
+    }
    
     
 }
