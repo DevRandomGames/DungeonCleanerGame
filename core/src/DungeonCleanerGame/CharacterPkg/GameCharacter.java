@@ -121,8 +121,8 @@ public class GameCharacter extends Actor{
        //OVERRIDEN
     }*/
     
-    public void disableControls(float millis){
-        controls.timer += millis;
+    public void disableControls(float seconds){
+        controls.timer = seconds;
         controlsEnabled = false;
     }
     
