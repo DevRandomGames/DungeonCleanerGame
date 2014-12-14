@@ -30,7 +30,7 @@ public class CombatManager {
     public void computeStrikeToMonster(Body player, Body monster, WorldManifold mani){
         Player p = map.getPlayer();
         if(p.isStriking){
-            System.out.println("EN>TRO");
+            
             Enemy e = map.getEnemy((Integer)monster.getUserData());
             e.disableControls(0.3f);
 
@@ -49,6 +49,11 @@ public class CombatManager {
             dir.y = dir.y*4;
             
             monster.setLinearVelocity(dir);
+            if(e.getLife() <= 0){
+                map.killEnemy((Integer)monster.getUserData());
+                e.killEnemy();
+            }
+            
         }
         
     }

@@ -72,8 +72,8 @@ public class DungeonCleaner extends ApplicationAdapter {
                 
         createGameMap();
         createWorld();
-        p = new Player(unitScale);
-        createPlayer(4.0f, 4.0f);
+        createPlayer();
+        initPlayer(4.0f, 4.0f);
         createEnemies();
         
         MapParserManager.inicialize();
@@ -154,11 +154,13 @@ public class DungeonCleaner extends ApplicationAdapter {
     private void inputControl() {
         gameEngine.gameControls().computeControls();
     }
-
     
-    private void createPlayer(float posX, float posY) {
-        //ANADIMOS PlayerControls AL CONTROLS ENGINE
+    private void createPlayer(){
+        p = new Player(unitScale);
         gameEngine.gameControls().addControl(p.getPlayerControls());
+    }
+    
+    private void initPlayer(float posX, float posY) {
         //POSICIONAMOS AL JUGADOR Y LA CAMARA ENCIMA SUYO
         p.createBody(posX, posY);
         gameEngine.gameRender().getCamera().position.set(p.getBodyX(), p.getBodyY(), 0);
@@ -217,7 +219,7 @@ public class DungeonCleaner extends ApplicationAdapter {
         gameEngine.gameRender().setMapToRender(DungeonMap.getActualRoom().getRoomMap(), unitScale);
         gameEngine.gamePhysics().createWorld(DungeonMap.getActualRoom().getRoomMap(), unitScale);
         gameEngine.gamePhysics().getWorld().setContactListener(collissions);
-        createPlayer(newPosPlyr.x, newPosPlyr.y);
+        initPlayer(newPosPlyr.x, newPosPlyr.y);
         createEnemies();
         parseMap();
     }
@@ -230,7 +232,7 @@ public class DungeonCleaner extends ApplicationAdapter {
     }
     
     private void renderUI(){
-        gameEngine.gameRender().renderUI(""+p.getLife(),100,100);
+        gameEngine.gameRender().renderUI(""+p.getLife(),120,120);
     }
 
     

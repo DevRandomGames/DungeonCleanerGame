@@ -10,9 +10,11 @@ import DungeonCleanerGame.CharacterPkg.GameCharacter;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -26,9 +28,12 @@ public class PhysicsEngine {
     Box2DMapObjectParser parser;
     private RayHandler rayhandler;
     
+    ArrayList<Body> deadBodies;
+    
     
     private PhysicsEngine(DevRandEngine e){
         engine = e;
+        deadBodies = new ArrayList();
     }
     
     private static void createInstance(DevRandEngine e){
@@ -42,13 +47,19 @@ public class PhysicsEngine {
     
     public void renderPhysics(){
         world.step(1.0f/60.0f, 6, 2);
+        for(int i=0; i < deadBodies.size(); ++i){
+            world.destroyBody(deadBodies.get(i));
+            deadBodies.remove(i);
+        }
     }
     
     public World getWorld(){
         return world;
     }
     
-    
+    public void addDeadBodie(Body b){
+        deadBodies.add(b);
+    }      
     
     public void createWorld(TiledMap map, float unitScale){
         parser = new Box2DMapObjectParser();

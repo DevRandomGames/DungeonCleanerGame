@@ -45,15 +45,16 @@ public class RenderEngine {
     
     private Box2DDebugRenderer debugRenderer;
     private SpriteBatch batch;
-    private BitmapFont font;
+    private BitmapFont fontDebug;
+    private BitmapFont fontUI;
     private Array<String> debugInfo;
     
     
     private RenderEngine(DevRandEngine e){
         engine = e;
         batch = new SpriteBatch();
-        font = new BitmapFont();
-        font.setColor(Color.WHITE);
+        fontDebug = new BitmapFont();
+        fontUI = new BitmapFont();
         debugInfo = new Array();
         debugRenderer = new Box2DDebugRenderer();
         
@@ -118,10 +119,9 @@ public class RenderEngine {
     public void renderDebugInfo(){
         int X = 10, Y = 700;
         batch.begin();
-        font.setScale(1f);
-        font.setColor(Color.WHITE);
+        fontDebug.setColor(Color.WHITE);
         for(int i=0; i<debugInfo.size; ++i){
-            font.draw(batch,debugInfo.get(i),X,Y);
+            fontDebug.draw(batch,debugInfo.get(i),X,Y);
             Y -= 20;
         }
         batch.end();
@@ -129,10 +129,10 @@ public class RenderEngine {
     
     
     public void renderUI(String m, int posX, int posY){
-        font.setColor(Color.RED);
-        font.setScale(5f);
+        fontUI.setColor(Color.RED);
+        fontUI.setScale(3f,3f);
         batch.begin();
-        font.draw(batch,m,posX,posY);
+        fontUI.draw(batch,m,posX,posY);
         batch.end();
     }
     
