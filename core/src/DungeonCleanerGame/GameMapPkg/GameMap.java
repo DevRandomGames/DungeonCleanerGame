@@ -54,6 +54,13 @@ public class GameMap {
         else return null;
     }
     
+    public void killEnemy(int ID){
+        ArrayList<Enemy> enemies = actualRoom.Enemies;
+        int i=0;
+        while(enemies.get(i).getEnemyID() != ID && i < enemies.size()) ++i;
+        enemies.remove(i);
+    }
+    
     public void newRoom(String roomName){
         Room r = new Room(roomName);
         DungeonMap.add(r);
